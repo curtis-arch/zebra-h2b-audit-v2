@@ -1,18 +1,18 @@
-import { nextCookies } from 'better-auth/next-js';
-import { betterAuth, type BetterAuthOptions } from "better-auth";
-import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { db } from "@zebra-h2b-audit-v2/db";
 import * as schema from "@zebra-h2b-audit-v2/db/schema/auth";
+import { type BetterAuthOptions, betterAuth } from "better-auth";
+import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { nextCookies } from "better-auth/next-js";
 
 export const auth = betterAuth<BetterAuthOptions>({
-	database: drizzleAdapter(db, {
-		provider: "pg",
+  database: drizzleAdapter(db, {
+    provider: "pg",
 
-		schema: schema,
-	}),
-	trustedOrigins: [process.env.CORS_ORIGIN || ""],
-	emailAndPassword: {
-		enabled: true,
-	},
-  plugins: [nextCookies()]
+    schema,
+  }),
+  trustedOrigins: [process.env.CORS_ORIGIN || ""],
+  emailAndPassword: {
+    enabled: true,
+  },
+  plugins: [nextCookies()],
 });
