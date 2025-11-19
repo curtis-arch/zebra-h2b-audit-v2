@@ -3,6 +3,9 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import Dashboard from "./dashboard";
 
+// Force dynamic rendering to prevent build-time data fetching
+export const dynamic = "force-dynamic";
+
 export default async function DashboardPage() {
   const session = await auth.api.getSession({
     headers: await headers(),
