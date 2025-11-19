@@ -1,7 +1,13 @@
 /**
  * Field Label Mappings
  *
- * Maps logical field names to their raw attribute_label values from the database.
+ * @deprecated This mapping is DEPRECATED and should no longer be used.
+ * All queries now use exact matching on raw attribute_label values directly from the database.
+ * "Different is different!" - "Memory" and "memory" are treated as separate fields.
+ *
+ * Kept for backwards compatibility only. Will be removed in a future version.
+ *
+ * Previously mapped logical field names to their raw attribute_label values from the database.
  * Used for field population analysis and gap detection.
  *
  * NOTE: These are raw values with original casing preserved. Queries use LOWER()

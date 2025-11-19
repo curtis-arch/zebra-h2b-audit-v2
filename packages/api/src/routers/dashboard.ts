@@ -11,11 +11,7 @@ import {
   sql,
 } from "@zebra-h2b-audit-v2/db";
 import { z } from "zod";
-import {
-  FIELD_LABEL_MAPPINGS,
-  type FieldName,
-  GAP_ANALYSIS,
-} from "../constants";
+import { GAP_ANALYSIS } from "../constants";
 import { publicProcedure, router } from "../index";
 
 export const dashboardRouter = router({
@@ -54,8 +50,9 @@ export const dashboardRouter = router({
   }),
 
   /**
-   * Get field population statistics for 10 key fields
+   * Get field population statistics for ALL distinct attribute labels
    * Returns: field name, files with data, coverage %, files missing, unique values
+   * Shows every distinct label separately - "Memory" and "memory" are different!
    */
   getFieldPopulationStats: publicProcedure.query(async () => {
     // Get total file count first
@@ -64,23 +61,29 @@ export const dashboardRouter = router({
       .from(configFile);
     const totalFiles = totalFilesResult[0]?.count ?? 0;
 
-    // Build results for each field
-    const results = await Promise.all(
-      Object.entries(FIELD_LABEL_MAPPINGS).map(async ([fieldName, labels]) => {
-        // Create case-insensitive label matching using LOWER()
-        const lowerLabels = labels.map(l => l.toLowerCase());
+    // Get ALL distinct attribute labels from the database
+    const distinctLabelsResult = await db
+      .select({ label: configPosition.attributeLabel })
+      .from(configPosition)
+      .groupBy(configPosition.attributeLabel)
+      .orderBy(configPosition.attributeLabel);
 
-        // Count files that have ANY of these labels (case-insensitive)
+    const allLabels = distinctLabelsResult.map((row) => row.label);
+
+    // Build results for each distinct label (EXACT matching, no case-insensitive grouping)
+    const results = await Promise.all(
+      allLabels.map(async (label) => {
+        // Count files that have this EXACT label
         const filesWithDataResult = await db
           .select({
             count: sql<number>`COUNT(DISTINCT ${configPosition.fileId})`,
           })
           .from(configPosition)
-          .where(sql`LOWER(${configPosition.attributeLabel}) IN (${sql.join(lowerLabels.map(l => sql`${l}`), sql`, `)})`);
+          .where(eq(configPosition.attributeLabel, label));
 
         const filesWithData = filesWithDataResult[0]?.count ?? 0;
 
-        // Count unique option codes across all labels for this field (case-insensitive)
+        // Count unique option codes for this EXACT label
         const uniqueValuesResult = await db
           .select({ count: sql<number>`COUNT(DISTINCT ${configOption.code})` })
           .from(configOption)
@@ -88,7 +91,7 @@ export const dashboardRouter = router({
             configPosition,
             eq(configOption.positionId, configPosition.id)
           )
-          .where(sql`LOWER(${configPosition.attributeLabel}) IN (${sql.join(lowerLabels.map(l => sql`${l}`), sql`, `)})`);
+          .where(eq(configPosition.attributeLabel, label));
 
         const uniqueValues = uniqueValuesResult[0]?.count ?? 0;
 
@@ -96,7 +99,7 @@ export const dashboardRouter = router({
           totalFiles > 0 ? (filesWithData / totalFiles) * 100 : 0;
 
         return {
-          field: fieldName as FieldName,
+          field: label, // Return the exact label as-is
           filesWithData,
           coverage: Number.parseFloat(coverage.toFixed(1)),
           filesMissing: totalFiles - filesWithData,
@@ -118,33 +121,20 @@ export const dashboardRouter = router({
   /**
    * Get products with and without a specific field
    * Used for drill-down when user clicks on a field
+   * Accepts ANY string (the exact raw attribute_label)
    */
   getProductsMissingField: publicProcedure
     .input(
       z.object({
-        field: z.enum([
-          "Memory",
-          "Series",
-          "Family",
-          "Print Width",
-          "Character Set",
-          "Interface",
-          "Media Type",
-          "Label Sensor",
-          "Country Code",
-          "Channel Type",
-        ]),
+        field: z.string(), // Accept any string - the exact attribute_label
       })
     )
     .query(async ({ input }) => {
-      const labels = FIELD_LABEL_MAPPINGS[input.field];
-      const lowerLabels = labels.map(l => l.toLowerCase());
-
-      // Get all file IDs that HAVE any of these labels (case-insensitive)
+      // Get all file IDs that HAVE this EXACT label
       const filesWithFieldResult = await db
         .select({ fileId: configPosition.fileId })
         .from(configPosition)
-        .where(sql`LOWER(${configPosition.attributeLabel}) IN (${sql.join(lowerLabels.map(l => sql`${l}`), sql`, `)})`);
+        .where(eq(configPosition.attributeLabel, input.field));
 
       const fileIdsWithField = filesWithFieldResult.map((row) => row.fileId);
 
@@ -192,30 +182,17 @@ export const dashboardRouter = router({
   /**
    * Get products that have a specific component value for a field
    * Used for filtering products when clicking on a component variant
+   * Accepts ANY string for field (the exact raw attribute_label)
    */
   getProductsByComponentValue: publicProcedure
     .input(
       z.object({
-        field: z.enum([
-          "Memory",
-          "Series",
-          "Family",
-          "Print Width",
-          "Character Set",
-          "Interface",
-          "Media Type",
-          "Label Sensor",
-          "Country Code",
-          "Channel Type",
-        ]),
+        field: z.string(), // Accept any string - the exact attribute_label
         componentValue: z.string(),
       })
     )
     .query(async ({ input }) => {
-      const labels = FIELD_LABEL_MAPPINGS[input.field];
-      const lowerLabels = labels.map(l => l.toLowerCase());
-
-      // Get all file IDs that have this component value for this field (case-insensitive)
+      // Get all file IDs that have this component value for this EXACT field
       const productsResult = await db
         .select({
           id: configFile.id,
@@ -231,7 +208,7 @@ export const dashboardRouter = router({
           eq(configOption.id, configOptionComponent.optionId)
         )
         .where(
-          sql`LOWER(${configPosition.attributeLabel}) IN (${sql.join(lowerLabels.map(l => sql`${l}`), sql`, `)}) AND ${configOptionComponent.rawValue} = ${input.componentValue}`
+          sql`${configPosition.attributeLabel} = ${input.field} AND ${configOptionComponent.rawValue} = ${input.componentValue}`
         )
         .orderBy(configFile.baseModel);
 
@@ -246,29 +223,16 @@ export const dashboardRouter = router({
   /**
    * Get component breakdown for a specific field
    * Returns: components with frequency counts and product coverage
+   * Accepts ANY string for field (the exact raw attribute_label)
    */
   getComponentBreakdownForField: publicProcedure
     .input(
       z.object({
-        field: z.enum([
-          "Memory",
-          "Series",
-          "Family",
-          "Print Width",
-          "Character Set",
-          "Interface",
-          "Media Type",
-          "Label Sensor",
-          "Country Code",
-          "Channel Type",
-        ]),
+        field: z.string(), // Accept any string - the exact attribute_label
       })
     )
     .query(async ({ input }) => {
-      const labels = FIELD_LABEL_MAPPINGS[input.field];
-      const lowerLabels = labels.map(l => l.toLowerCase());
-
-      // Get component breakdown with stats (case-insensitive)
+      // Get component breakdown with stats for this EXACT label
       const componentsResult = await db
         .select({
           rawValue: configOptionComponent.rawValue,
@@ -286,14 +250,14 @@ export const dashboardRouter = router({
           eq(configOption.positionId, configPosition.id)
         )
         .innerJoin(configFile, eq(configPosition.fileId, configFile.id))
-        .where(sql`LOWER(${configPosition.attributeLabel}) IN (${sql.join(lowerLabels.map(l => sql`${l}`), sql`, `)})`)
+        .where(eq(configPosition.attributeLabel, input.field))
         .groupBy(
           configOptionComponent.rawValue,
           configOptionComponent.componentType
         )
         .orderBy(sql`COUNT(*) DESC`);
 
-      // Get coverage stats - total products with field vs products with component data (case-insensitive)
+      // Get coverage stats - total products with field vs products with component data
       const coverageResult = await db
         .select({
           totalProductsWithField: sql<number>`COUNT(DISTINCT ${configFile.id})`,
@@ -306,7 +270,7 @@ export const dashboardRouter = router({
           configOptionComponent,
           eq(configOption.id, configOptionComponent.optionId)
         )
-        .where(sql`LOWER(${configPosition.attributeLabel}) IN (${sql.join(lowerLabels.map(l => sql`${l}`), sql`, `)})`);
+        .where(eq(configPosition.attributeLabel, input.field));
 
       const coverage = coverageResult[0] ?? {
         totalProductsWithField: 0,
