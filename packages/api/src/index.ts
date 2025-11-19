@@ -22,3 +22,7 @@ export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
     },
   });
 });
+
+export { createContext } from "./context";
+// Export the combined router and types
+export { type AppRouter, appRouter } from "./routers";

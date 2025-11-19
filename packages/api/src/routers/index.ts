@@ -1,10 +1,18 @@
-import { protectedProcedure, publicProcedure, router } from "../index";
+import { publicProcedure, router } from "../index";
+import { cohortsRouter } from "./cohorts";
+import { componentsRouter } from "./components";
+import { dashboardRouter } from "./dashboard";
+import { productsRouter } from "./products";
 
 export const appRouter = router({
+  // Health check endpoint
   healthCheck: publicProcedure.query(() => "OK"),
-  privateData: protectedProcedure.query(({ ctx }) => ({
-    message: "This is private",
-    user: ctx.session.user,
-  })),
+
+  // Feature routers
+  dashboard: dashboardRouter,
+  products: productsRouter,
+  cohorts: cohortsRouter,
+  components: componentsRouter,
 });
+
 export type AppRouter = typeof appRouter;
