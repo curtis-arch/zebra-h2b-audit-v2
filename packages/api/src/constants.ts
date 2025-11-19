@@ -1,45 +1,53 @@
 /**
  * Field Label Mappings
  *
- * Maps logical field names to their database normalized_label representations.
+ * Maps logical field names to their raw attribute_label values from the database.
  * Used for field population analysis and gap detection.
+ *
+ * NOTE: These are raw values with original casing preserved. Queries use LOWER()
+ * for case-insensitive matching to handle variants like "Country code" vs "Country Code".
  */
 export const FIELD_LABEL_MAPPINGS = {
   Memory: [
-    "memory",
-    "memory / flash",
-    "memory (ram/flash/sd slot)",
-    "memory (ram/rom)",
-    "ram",
-    "ram & storage",
-    "ram/flash memory",
-    "cpu/memory",
-    "cpu memory",
+    "Memory",
+    "Memory / Flash",
+    "Memory (RAM/Flash/SD slot)",
+    "Memory (RAM/ROM)",
+    "RAM/Flash Memory",
+    "CPU/Memory",
+    "CPU Memory",
+    "CPU memory",
+    "CPU & Memory",
+    "CPU and Memory",
+    "Flash Memory",
+    "Memory & Battery Option",
   ],
-  Series: ["series"],
-  Family: ["family", "product family"],
-  "Print Width": ["print width"],
-  "Character Set": ["character set"],
+  Series: ["Series"],
+  Family: ["Family", "Product Family"],
+  "Print Width": ["Print Width"],
+  "Character Set": ["Character Set"],
   Interface: [
-    "interface",
-    "interface (connectivity)",
-    "interface / imaging option",
-    "interface cable options",
-    "interface options",
-    "interface out",
+    "Interface",
+    "Interface (Connectivity)",
+    "Interface / Imaging Option",
+    "Interface Cable Options",
+    "Interface Options",
+    "Interface Out",
   ],
-  "Media Type": ["media type", "media options"],
-  "Label Sensor": ["label sensor"],
+  "Media Type": ["Media Type", "Media Options"],
+  "Label Sensor": ["Label Sensor"],
   "Country Code": [
-    "country code",
-    "country",
-    "country/compliance",
-    "country / compliance",
-    "country or custom",
-    "country code/custom",
-    "county code/custom",
+    "Country Code",
+    "Country",
+    "Country/Compliance",
+    "Country / Compliance",
+    "Country or Custom",
+    "Country Code/Custom",
+    "Country Code/Custom Version",
+    "Country/Custom",
+    "Country code", // lowercase variant found in data
   ],
-  "Channel Type": ["channel type"],
+  "Channel Type": ["Channel Type"],
 } as const;
 
 export type FieldName = keyof typeof FIELD_LABEL_MAPPINGS;

@@ -67,17 +67,20 @@ export const dashboardRouter = router({
     // Build results for each field
     const results = await Promise.all(
       Object.entries(FIELD_LABEL_MAPPINGS).map(async ([fieldName, labels]) => {
-        // Count files that have ANY of these labels
+        // Create case-insensitive label matching using LOWER()
+        const lowerLabels = labels.map(l => l.toLowerCase());
+
+        // Count files that have ANY of these labels (case-insensitive)
         const filesWithDataResult = await db
           .select({
             count: sql<number>`COUNT(DISTINCT ${configPosition.fileId})`,
           })
           .from(configPosition)
-          .where(inArray(configPosition.attributeLabel, labels));
+          .where(sql`LOWER(${configPosition.attributeLabel}) IN (${sql.join(lowerLabels.map(l => sql`${l}`), sql`, `)})`);
 
         const filesWithData = filesWithDataResult[0]?.count ?? 0;
 
-        // Count unique option codes across all labels for this field
+        // Count unique option codes across all labels for this field (case-insensitive)
         const uniqueValuesResult = await db
           .select({ count: sql<number>`COUNT(DISTINCT ${configOption.code})` })
           .from(configOption)
@@ -85,7 +88,7 @@ export const dashboardRouter = router({
             configPosition,
             eq(configOption.positionId, configPosition.id)
           )
-          .where(inArray(configPosition.attributeLabel, labels));
+          .where(sql`LOWER(${configPosition.attributeLabel}) IN (${sql.join(lowerLabels.map(l => sql`${l}`), sql`, `)})`);
 
         const uniqueValues = uniqueValuesResult[0]?.count ?? 0;
 
@@ -135,12 +138,13 @@ export const dashboardRouter = router({
     )
     .query(async ({ input }) => {
       const labels = FIELD_LABEL_MAPPINGS[input.field];
+      const lowerLabels = labels.map(l => l.toLowerCase());
 
-      // Get all file IDs that HAVE any of these labels
+      // Get all file IDs that HAVE any of these labels (case-insensitive)
       const filesWithFieldResult = await db
         .select({ fileId: configPosition.fileId })
         .from(configPosition)
-        .where(inArray(configPosition.attributeLabel, labels));
+        .where(sql`LOWER(${configPosition.attributeLabel}) IN (${sql.join(lowerLabels.map(l => sql`${l}`), sql`, `)})`);
 
       const fileIdsWithField = filesWithFieldResult.map((row) => row.fileId);
 
@@ -209,8 +213,9 @@ export const dashboardRouter = router({
     )
     .query(async ({ input }) => {
       const labels = FIELD_LABEL_MAPPINGS[input.field];
+      const lowerLabels = labels.map(l => l.toLowerCase());
 
-      // Get all file IDs that have this component value for this field
+      // Get all file IDs that have this component value for this field (case-insensitive)
       const productsResult = await db
         .select({
           id: configFile.id,
@@ -226,7 +231,7 @@ export const dashboardRouter = router({
           eq(configOption.id, configOptionComponent.optionId)
         )
         .where(
-          sql`${inArray(configPosition.attributeLabel, labels)} AND ${configOptionComponent.rawValue} = ${input.componentValue}`
+          sql`LOWER(${configPosition.attributeLabel}) IN (${sql.join(lowerLabels.map(l => sql`${l}`), sql`, `)}) AND ${configOptionComponent.rawValue} = ${input.componentValue}`
         )
         .orderBy(configFile.baseModel);
 
@@ -261,8 +266,9 @@ export const dashboardRouter = router({
     )
     .query(async ({ input }) => {
       const labels = FIELD_LABEL_MAPPINGS[input.field];
+      const lowerLabels = labels.map(l => l.toLowerCase());
 
-      // Get component breakdown with stats
+      // Get component breakdown with stats (case-insensitive)
       const componentsResult = await db
         .select({
           rawValue: configOptionComponent.rawValue,
@@ -280,14 +286,14 @@ export const dashboardRouter = router({
           eq(configOption.positionId, configPosition.id)
         )
         .innerJoin(configFile, eq(configPosition.fileId, configFile.id))
-        .where(inArray(configPosition.attributeLabel, labels))
+        .where(sql`LOWER(${configPosition.attributeLabel}) IN (${sql.join(lowerLabels.map(l => sql`${l}`), sql`, `)})`)
         .groupBy(
           configOptionComponent.rawValue,
           configOptionComponent.componentType
         )
         .orderBy(sql`COUNT(*) DESC`);
 
-      // Get coverage stats - total products with field vs products with component data
+      // Get coverage stats - total products with field vs products with component data (case-insensitive)
       const coverageResult = await db
         .select({
           totalProductsWithField: sql<number>`COUNT(DISTINCT ${configFile.id})`,
@@ -300,7 +306,7 @@ export const dashboardRouter = router({
           configOptionComponent,
           eq(configOption.id, configOptionComponent.optionId)
         )
-        .where(inArray(configPosition.attributeLabel, labels));
+        .where(sql`LOWER(${configPosition.attributeLabel}) IN (${sql.join(lowerLabels.map(l => sql`${l}`), sql`, `)})`);
 
       const coverage = coverageResult[0] ?? {
         totalProductsWithField: 0,

@@ -378,7 +378,6 @@ export default function ProductDetailPage({ params }: PageProps) {
                   <TableHead className="w-12" />
                   <TableHead>Index</TableHead>
                   <TableHead>Attribute Label</TableHead>
-                  <TableHead>Normalized Label</TableHead>
                   <TableHead className="text-center">Options</TableHead>
                   <TableHead>Section</TableHead>
                 </TableRow>
@@ -388,7 +387,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                   <TableRow>
                     <TableCell
                       className="h-24 text-center text-muted-foreground"
-                      colSpan={6}
+                      colSpan={5}
                     >
                       No positions found
                     </TableCell>
@@ -418,9 +417,6 @@ export default function ProductDetailPage({ params }: PageProps) {
                             {position.positionIndex}
                           </TableCell>
                           <TableCell>{position.attributeLabel}</TableCell>
-                          <TableCell className="text-muted-foreground text-sm">
-                            {position.normalizedLabel}
-                          </TableCell>
                           <TableCell className="text-center">
                             <Badge variant="outline">
                               {position.optionCount}
@@ -434,7 +430,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                         {/* Expanded Options */}
                         {isExpanded && (
                           <TableRow>
-                            <TableCell className="bg-muted/30 p-0" colSpan={6}>
+                            <TableCell className="bg-muted/30 p-0" colSpan={5}>
                               <div className="p-4">
                                 {isLoadingPositionOptions ? (
                                   <div className="space-y-2">

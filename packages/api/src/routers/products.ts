@@ -164,7 +164,6 @@ export const productsRouter = router({
           id: configPosition.id,
           positionIndex: configPosition.positionIndex,
           attributeLabel: configPosition.attributeLabel,
-          normalizedLabel: configPosition.normalizedLabel,
           sectionOrder: configPosition.sectionOrder,
           notes: configPosition.notes,
           optionCount: sql<number>`COUNT(${configOption.id})`,
@@ -251,20 +250,6 @@ export const productsRouter = router({
 
       return options;
     }),
-
-  /**
-   * Get all unique normalized labels (for filters)
-   * Returns: sorted list of unique normalized attribute labels
-   */
-  getAllNormalizedLabels: publicProcedure.query(async () => {
-    const results = await db
-      .select({ normalizedLabel: configPosition.normalizedLabel })
-      .from(configPosition)
-      .groupBy(configPosition.normalizedLabel)
-      .orderBy(asc(configPosition.normalizedLabel));
-
-    return results.map((r) => r.normalizedLabel);
-  }),
 
   /**
    * Get file blob content for source data viewer
