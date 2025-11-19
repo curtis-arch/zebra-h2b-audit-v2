@@ -135,8 +135,8 @@ export const cohortsRouter = router({
         ...cohort,
         files,
         productCount: files.length,
-        positionCount: Array.isArray(cohort?.signatureJson?.signature)
-          ? cohort.signatureJson.signature.length
+        positionCount: Array.isArray((cohort?.signatureJson as any)?.signature)
+          ? (cohort.signatureJson as any).signature.length
           : 0,
       };
     }),

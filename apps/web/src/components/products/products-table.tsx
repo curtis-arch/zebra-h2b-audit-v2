@@ -61,7 +61,7 @@ type Product = {
   cohortId: number | null;
   sourcePath: string;
   sourceHash: string | null;
-  importedAt: Date;
+  importedAt: string | null;
   positionCount: number;
 };
 

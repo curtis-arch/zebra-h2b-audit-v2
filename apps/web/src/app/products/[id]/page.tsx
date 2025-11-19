@@ -197,14 +197,16 @@ export default function ProductDetailPage({ params }: PageProps) {
   }
 
   // Format date
-  const formatDate = (date: Date) =>
-    new Date(date).toLocaleDateString("en-US", {
+  const formatDate = (date: Date | string | null) => {
+    if (!date) return "N/A";
+    return new Date(date).toLocaleDateString("en-US", {
       year: "numeric",
       month: "short",
       day: "numeric",
       hour: "2-digit",
       minute: "2-digit",
     });
+  };
 
   // signatureJson is already a JavaScript object (JSONB type from Drizzle)
   // No need to parse - just use it directly

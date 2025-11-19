@@ -108,7 +108,7 @@ export function Sidebar() {
                       ? "bg-sidebar-accent text-sidebar-accent-foreground"
                       : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
                   )}
-                  href={item.href}
+                  href={item.href as any}
                   key={item.name}
                   onClick={() => setIsOpen(false)}
                 >

@@ -398,7 +398,7 @@ export function CohortsTable({ cohorts }: CohortsTableProps) {
                 <TableRow
                   className="cursor-pointer transition-colors hover:bg-muted/80"
                   key={row.id}
-                  onClick={() => router.push(`/cohorts/${row.original.id}`)}
+                  onClick={() => router.push(`/cohorts/${row.original.id}` as any)}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>

@@ -142,14 +142,14 @@ export const componentsRouter = router({
         number,
         {
           fileId: number;
-          baseModel: string;
+          baseModel: string | null;
           productCode: string | null;
           specStyle: string;
           sourcePath: string | null;
           options: Array<{
             code: string;
             description: string | null;
-            positionIndex: number;
+            positionIndex: number | null;
             attributeLabel: string;
           }>;
         }
