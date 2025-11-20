@@ -187,20 +187,12 @@ export default function FieldPopulationPage() {
                     <BarChart3 className="h-4 w-4 text-muted-foreground" />
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-baseline justify-between">
-                      <div className="font-bold text-2xl">
-                        {field.coverage}%
-                      </div>
-                      <Badge className={coverageColor} variant="default">
-                        {field.coverage >= 50
-                          ? "Good"
-                          : field.coverage >= 20
-                            ? "Fair"
-                            : "Low"}
-                      </Badge>
+                    <div className="font-bold text-2xl">
+                      {field.coverage}%
                     </div>
                     <p className="mt-2 text-muted-foreground text-sm">
-                      {field.filesWithData} / {totalProducts} products
+                      {field.filesWithData} of {totalProducts} products have this
+                      attribute
                     </p>
                     <p className="text-muted-foreground text-xs">
                       {field.uniqueValues} unique values
@@ -450,8 +442,7 @@ export default function FieldPopulationPage() {
                           onComponentClick={handleComponentClick}
                           selectedComponent={selectedComponent}
                           totalProducts={
-                            componentBreakdown.data.coverage
-                              .totalProductsWithField
+                            componentBreakdown.data.totalProductsGlobal
                           }
                         />
                       </div>

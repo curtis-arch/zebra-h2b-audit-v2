@@ -252,6 +252,11 @@ export const dashboardRouter = router({
         )
         .where(eq(configPosition.attributeLabel, input.field));
 
+      // Get global total count of all products for percentage calculations
+      const globalTotalResult = await db
+        .select({ count: count() })
+        .from(configFile);
+
       const coverage = coverageResult[0] ?? {
         totalProductsWithField: 0,
         productsWithComponents: 0,
@@ -274,6 +279,7 @@ export const dashboardRouter = router({
                 100
               : 0,
         },
+        totalProductsGlobal: globalTotalResult[0]?.count ?? 0,
       };
     }),
 });

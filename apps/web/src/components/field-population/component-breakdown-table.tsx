@@ -157,15 +157,18 @@ export function ComponentBreakdownTable({
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           variant="ghost"
         >
-          % of Total
+          % of All Products
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       ),
       cell: ({ row }) => {
         const percentage = row.getValue("percentage") as number;
+        const products = row.getValue("uniqueProducts") as number;
         return (
           <div className="flex items-center gap-2">
-            <span className="font-mono text-sm">{percentage.toFixed(1)}%</span>
+            <span className="font-mono text-sm" title={`${products} of ${totalProducts} products`}>
+              {percentage.toFixed(1)}%
+            </span>
             <div className="h-2 w-16 overflow-hidden rounded-full bg-muted">
               <div
                 className="h-full bg-primary"
