@@ -40,6 +40,7 @@ type ProductFieldStatus = {
   sourcePath: string;
   cohortId: number | null;
   hasField: boolean;
+  positionIndex: number | null;
 };
 
 interface FieldPopulationTableProps {
@@ -128,6 +129,30 @@ export function FieldPopulationTable({
               {path.replace(fileName, "...")}
             </div>
           </div>
+        );
+      },
+    },
+    {
+      id: "positionIndex",
+      accessorKey: "positionIndex",
+      header: ({ column }) => (
+        <Button
+          className="h-8 px-2 hover:bg-muted/50"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          variant="ghost"
+        >
+          Position
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      ),
+      cell: ({ row }) => {
+        const position = row.getValue("positionIndex") as number | null;
+        return position !== null ? (
+          <Badge className="font-mono" variant="secondary">
+            {position}
+          </Badge>
+        ) : (
+          <span className="text-muted-foreground text-xs">N/A</span>
         );
       },
     },

@@ -7,7 +7,6 @@ import {
   count,
   db,
   eq,
-  inArray,
   sql,
 } from "@zebra-h2b-audit-v2/db";
 import { z } from "zod";
@@ -95,6 +94,16 @@ export const dashboardRouter = router({
 
         const uniqueValues = uniqueValuesResult[0]?.count ?? 0;
 
+        // Count unique positions for this attribute
+        const uniquePositionsResult = await db
+          .select({
+            count: sql<number>`COUNT(DISTINCT ${configPosition.positionIndex})`,
+          })
+          .from(configPosition)
+          .where(eq(configPosition.attributeLabel, label));
+
+        const uniquePositions = uniquePositionsResult[0]?.count ?? 0;
+
         const coverage =
           totalFiles > 0 ? (filesWithData / totalFiles) * 100 : 0;
 
@@ -104,6 +113,7 @@ export const dashboardRouter = router({
           coverage: Number.parseFloat(coverage.toFixed(1)),
           filesMissing: totalFiles - filesWithData,
           uniqueValues,
+          uniquePositions,
         };
       })
     );
@@ -145,11 +155,13 @@ export const dashboardRouter = router({
           baseModel: configFile.baseModel,
           sourcePath: configFile.sourcePath,
           cohortId: configFile.cohortId,
+          positionIndex: configPosition.positionIndex,
         })
         .from(configFile)
+        .innerJoin(configPosition, eq(configFile.id, configPosition.fileId))
         .where(
           fileIdsWithField.length > 0
-            ? inArray(configFile.id, fileIdsWithField)
+            ? sql`${configPosition.attributeLabel} = ${input.field}`
             : sql`1=0` // If no files have the field, return empty
         )
         .orderBy(configFile.baseModel);

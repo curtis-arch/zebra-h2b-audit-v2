@@ -94,11 +94,13 @@ export default function FieldPopulationPage() {
     const withField = productDetails.data.productsWithField.map((p) => ({
       ...p,
       hasField: true,
+      positionIndex: p.positionIndex ?? null,
     }));
 
     const missingField = productDetails.data.productsMissingField.map((p) => ({
       ...p,
       hasField: false,
+      positionIndex: null,
     }));
 
     const allProducts = [...withField, ...missingField];
@@ -203,12 +205,31 @@ export default function FieldPopulationPage() {
                     <p className="text-muted-foreground text-xs">
                       {field.uniqueValues} unique values
                     </p>
+                    <p className="text-muted-foreground text-xs">
+                      {field.uniquePositions}{" "}
+                      {field.uniquePositions === 1 ? "position" : "positions"}
+                    </p>
                     <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-muted">
                       <div
                         className={`h-full ${coverageColor}`}
                         style={{ width: `${field.coverage}%` }}
                       />
                     </div>
+                    <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-muted">
+                      <div
+                        className={`h-full ${
+                          field.uniquePositions === 1
+                            ? "bg-green-600"
+                            : field.uniquePositions === 2
+                              ? "bg-amber-600"
+                              : "bg-red-600"
+                        }`}
+                        style={{ width: "100%" }}
+                      />
+                    </div>
+                    <p className="mt-1 text-muted-foreground text-xs">
+                      Position distribution
+                    </p>
                   </CardContent>
                 </Card>
               );
