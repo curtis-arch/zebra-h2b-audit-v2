@@ -443,27 +443,37 @@ export default function ProductDetailPage({ params }: PageProps) {
                                     <div className="mb-3 font-medium text-sm">
                                       Options ({positionOptions.length})
                                     </div>
-                                    <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
-                                      {positionOptions.map((option) => (
-                                        <div
-                                          className="rounded-md border bg-background p-3"
-                                          key={option.id}
-                                        >
-                                          <div className="mb-1 font-mono font-semibold text-sm">
-                                            {option.code}
-                                          </div>
-                                          <div className="text-muted-foreground text-xs">
-                                            {option.description}
-                                          </div>
-                                          {(option.rawCode !== option.code ||
-                                            option.rawDescription !==
-                                              option.description) && (
-                                            <div className="mt-2 border-t pt-2 text-muted-foreground text-xs">
-                                              <div>Raw: {option.rawCode}</div>
-                                            </div>
-                                          )}
-                                        </div>
-                                      ))}
+                                    <div className="rounded-md border">
+                                      <Table>
+                                        <TableHeader>
+                                          <TableRow>
+                                            <TableHead className="w-32">
+                                              Value
+                                            </TableHead>
+                                            <TableHead>Description</TableHead>
+                                          </TableRow>
+                                        </TableHeader>
+                                        <TableBody>
+                                          {positionOptions.map((option) => (
+                                            <TableRow key={option.id}>
+                                              <TableCell className="font-mono font-semibold">
+                                                {option.code}
+                                                {(option.rawCode !==
+                                                  option.code ||
+                                                  option.rawDescription !==
+                                                    option.description) && (
+                                                  <div className="mt-1 font-normal text-muted-foreground text-xs">
+                                                    Raw: {option.rawCode}
+                                                  </div>
+                                                )}
+                                              </TableCell>
+                                              <TableCell className="text-muted-foreground text-sm">
+                                                {option.description}
+                                              </TableCell>
+                                            </TableRow>
+                                          ))}
+                                        </TableBody>
+                                      </Table>
                                     </div>
                                   </div>
                                 ) : (
