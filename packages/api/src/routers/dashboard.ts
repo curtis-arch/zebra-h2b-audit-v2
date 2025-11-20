@@ -54,69 +54,37 @@ export const dashboardRouter = router({
    * Shows every distinct label separately - "Memory" and "memory" are different!
    */
   getFieldPopulationStats: publicProcedure.query(async () => {
-    // Get total file count first
+    // Get total file count
     const totalFilesResult = await db
       .select({ count: count() })
       .from(configFile);
     const totalFiles = totalFilesResult[0]?.count ?? 0;
 
-    // Get ALL distinct attribute labels from the database
-    const distinctLabelsResult = await db
-      .select({ label: configPosition.attributeLabel })
-      .from(configPosition)
-      .groupBy(configPosition.attributeLabel)
-      .orderBy(configPosition.attributeLabel);
-
-    const allLabels = distinctLabelsResult.map((row) => row.label);
-
-    // Build results for each distinct label (EXACT matching, no case-insensitive grouping)
-    const results = await Promise.all(
-      allLabels.map(async (label) => {
-        // Count files that have this EXACT label
-        const filesWithDataResult = await db
-          .select({
-            count: sql<number>`COUNT(DISTINCT ${configPosition.fileId})`,
-          })
-          .from(configPosition)
-          .where(eq(configPosition.attributeLabel, label));
-
-        const filesWithData = filesWithDataResult[0]?.count ?? 0;
-
-        // Count unique option codes for this EXACT label
-        const uniqueValuesResult = await db
-          .select({ count: sql<number>`COUNT(DISTINCT ${configOption.code})` })
-          .from(configOption)
-          .innerJoin(
-            configPosition,
-            eq(configOption.positionId, configPosition.id)
-          )
-          .where(eq(configPosition.attributeLabel, label));
-
-        const uniqueValues = uniqueValuesResult[0]?.count ?? 0;
-
-        // Count unique positions for this attribute
-        const uniquePositionsResult = await db
-          .select({
-            count: sql<number>`COUNT(DISTINCT ${configPosition.positionIndex})`,
-          })
-          .from(configPosition)
-          .where(eq(configPosition.attributeLabel, label));
-
-        const uniquePositions = uniquePositionsResult[0]?.count ?? 0;
-
-        const coverage =
-          totalFiles > 0 ? (filesWithData / totalFiles) * 100 : 0;
-
-        return {
-          field: label, // Return the exact label as-is
-          filesWithData,
-          coverage: Number.parseFloat(coverage.toFixed(1)),
-          filesMissing: totalFiles - filesWithData,
-          uniqueValues,
-          uniquePositions,
-        };
+    // Single consolidated query with GROUP BY to calculate all stats in one database call
+    const statsResult = await db
+      .select({
+        field: configPosition.attributeLabel,
+        filesWithData: sql<number>`COUNT(DISTINCT ${configPosition.fileId})`,
+        uniqueValues: sql<number>`COUNT(DISTINCT ${configOption.code})`,
+        uniquePositions: sql<number>`COUNT(DISTINCT ${configPosition.positionIndex})`,
       })
-    );
+      .from(configPosition)
+      .leftJoin(configOption, eq(configOption.positionId, configPosition.id))
+      .groupBy(configPosition.attributeLabel);
+
+    // Calculate coverage and format results
+    const results = statsResult.map((row) => {
+      const coverage =
+        totalFiles > 0 ? (row.filesWithData / totalFiles) * 100 : 0;
+      return {
+        field: row.field,
+        filesWithData: row.filesWithData,
+        coverage: Number.parseFloat(coverage.toFixed(1)),
+        filesMissing: totalFiles - row.filesWithData,
+        uniqueValues: row.uniqueValues,
+        uniquePositions: row.uniquePositions,
+      };
+    });
 
     // Sort by coverage descending
     return results.sort((a, b) => b.coverage - a.coverage);

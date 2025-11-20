@@ -68,6 +68,16 @@ export const configPosition = pgTable(
       table.positionIndex,
       table.normalizedLabel
     ),
+    // Performance indexes for field population queries
+    idxPositionAttributeLabel: index("idx_position_attribute_label").on(
+      table.attributeLabel
+    ),
+    idxPositionFileId: index("idx_position_file_id").on(table.fileId),
+    idxPositionIndex: index("idx_position_index").on(table.positionIndex),
+    idxPositionLabelFileId: index("idx_position_label_file_id").on(
+      table.attributeLabel,
+      table.fileId
+    ),
   })
 );
 
@@ -96,6 +106,8 @@ export const configOption = pgTable(
       table.positionId,
       table.code
     ),
+    // Performance index for join queries
+    idxOptionPositionId: index("idx_option_position_id").on(table.positionId),
   })
 );
 
