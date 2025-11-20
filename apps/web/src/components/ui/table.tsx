@@ -1,4 +1,5 @@
-import type * as React from "react";
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
 
 import { cn } from "@/lib/utils";
 
@@ -50,9 +51,14 @@ function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
   );
 }
 
-function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
+interface TableRowProps extends React.ComponentProps<"tr"> {
+  asChild?: boolean;
+}
+
+function TableRow({ className, asChild = false, ...props }: TableRowProps) {
+  const Comp = asChild ? Slot : "tr";
   return (
-    <tr
+    <Comp
       className={cn(
         "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
         className

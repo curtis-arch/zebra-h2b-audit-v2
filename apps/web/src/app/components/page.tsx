@@ -1,12 +1,8 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import {
-  Check,
-  ChevronsUpDown,
-  Package,
-  X,
-} from "lucide-react";
+import { Check, ChevronsUpDown, Package, X } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ComponentsTable } from "@/components/components/components-table";
 import { DashboardHeader } from "@/components/layout";
@@ -19,6 +15,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -29,8 +37,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { trpc } from "@/utils/trpc";
 
@@ -226,27 +232,30 @@ export default function ComponentsPage() {
         <CardHeader>
           <CardTitle>Component Types</CardTitle>
           <CardDescription>
-            Browse component variants by type ({componentTypes.length} types available)
+            Browse component variants by type ({componentTypes.length} types
+            available)
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-6">
             {/* Type Selector */}
             <div className="space-y-2">
-              <label className="text-sm font-medium">Select Component Type</label>
-              <Popover open={open} onOpenChange={setOpen}>
+              <label className="font-medium text-sm">
+                Select Component Type
+              </label>
+              <Popover onOpenChange={setOpen} open={open}>
                 <PopoverTrigger asChild>
                   <Button
-                    variant="outline"
-                    role="combobox"
                     aria-expanded={open}
                     className="w-full justify-between"
+                    role="combobox"
+                    variant="outline"
                   >
                     {activeType ? (
-                      <div className="flex items-center justify-between flex-1">
+                      <div className="flex flex-1 items-center justify-between">
                         <span>{activeType}</span>
                         {stats && (
-                          <Badge variant="secondary" className="ml-2">
+                          <Badge className="ml-2" variant="secondary">
                             {stats.uniqueValues} variants
                           </Badge>
                         )}
@@ -257,13 +266,13 @@ export default function ComponentsPage() {
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-[600px] p-0" align="start">
+                <PopoverContent align="start" className="w-[600px] p-0">
                   <Command>
                     <CommandInput placeholder="Search component types..." />
                     <CommandEmpty>No component type found.</CommandEmpty>
                     <CommandGroup className="max-h-72 overflow-auto">
                       {isLoadingTypes ? (
-                        <div className="p-4 space-y-2">
+                        <div className="space-y-2 p-4">
                           <Skeleton className="h-8 w-full" />
                           <Skeleton className="h-8 w-full" />
                           <Skeleton className="h-8 w-full" />
@@ -272,26 +281,30 @@ export default function ComponentsPage() {
                         componentTypes.map((type) => (
                           <CommandItem
                             key={type.componentType}
-                            value={type.componentType}
                             onSelect={(value) => {
                               setActiveType(value);
                               setSelectedComponent(null);
                               setOpen(false);
                             }}
+                            value={type.componentType}
                           >
                             <Check
                               className={cn(
                                 "mr-2 h-4 w-4",
-                                activeType === type.componentType ? "opacity-100" : "opacity-0"
+                                activeType === type.componentType
+                                  ? "opacity-100"
+                                  : "opacity-0"
                               )}
                             />
-                            <div className="flex items-center justify-between flex-1">
-                              <span className="font-medium">{type.componentType}</span>
+                            <div className="flex flex-1 items-center justify-between">
+                              <span className="font-medium">
+                                {type.componentType}
+                              </span>
                               <div className="flex items-center gap-2">
-                                <Badge variant="outline" className="text-xs">
+                                <Badge className="text-xs" variant="outline">
                                   {type.totalCount} total
                                 </Badge>
-                                <Badge variant="secondary" className="text-xs">
+                                <Badge className="text-xs" variant="secondary">
                                   {type.uniqueValues} variants
                                 </Badge>
                               </div>
@@ -321,11 +334,11 @@ export default function ComponentsPage() {
               )
             ) : (
               <div className="rounded-lg border border-dashed py-12 text-center">
-                <Package className="mx-auto mb-4 h-12 w-12 opacity-50 text-muted-foreground" />
-                <p className="text-muted-foreground font-medium">
+                <Package className="mx-auto mb-4 h-12 w-12 text-muted-foreground opacity-50" />
+                <p className="font-medium text-muted-foreground">
                   Select a component type to view variants
                 </p>
-                <p className="text-muted-foreground text-sm mt-1">
+                <p className="mt-1 text-muted-foreground text-sm">
                   Choose from {componentTypes.length} available types
                 </p>
               </div>
@@ -392,34 +405,43 @@ export default function ComponentsPage() {
                       </TableHeader>
                       <TableBody>
                         {productsQuery.data?.products.map((product) => (
-                          <TableRow key={product.fileId}>
-                            <TableCell className="font-medium">
-                              <Badge className="font-mono" variant="outline">
-                                {product.baseModel}
-                              </Badge>
-                            </TableCell>
-                            <TableCell>
-                              {product.productCode ?? "N/A"}
-                            </TableCell>
-                            <TableCell>
-                              <Badge variant="secondary">
-                                {product.specStyle}
-                              </Badge>
-                            </TableCell>
-                            <TableCell>
-                              <div className="flex flex-wrap gap-1">
-                                {product.options.map((opt, idx) => (
-                                  <Badge
-                                    className="text-xs"
-                                    key={idx}
-                                    title={`${opt.attributeLabel} (Pos ${opt.positionIndex}): ${opt.description}`}
-                                    variant="default"
-                                  >
-                                    {opt.code}
-                                  </Badge>
-                                ))}
-                              </div>
-                            </TableCell>
+                          <TableRow
+                            key={product.fileId}
+                            className="cursor-pointer transition-colors hover:bg-muted/50"
+                            asChild
+                          >
+                            <Link
+                              href={`/products/${product.fileId}`}
+                              className="table-row"
+                            >
+                              <TableCell className="font-medium">
+                                <Badge className="font-mono" variant="outline">
+                                  {product.baseModel}
+                                </Badge>
+                              </TableCell>
+                              <TableCell>
+                                {product.productCode ?? "N/A"}
+                              </TableCell>
+                              <TableCell>
+                                <Badge variant="secondary">
+                                  {product.specStyle}
+                                </Badge>
+                              </TableCell>
+                              <TableCell>
+                                <div className="flex flex-wrap gap-1">
+                                  {product.options.map((opt, idx) => (
+                                    <Badge
+                                      className="text-xs"
+                                      key={idx}
+                                      title={`${opt.attributeLabel} (Pos ${opt.positionIndex}): ${opt.description}`}
+                                      variant="default"
+                                    >
+                                      {opt.code}
+                                    </Badge>
+                                  ))}
+                                </div>
+                              </TableCell>
+                            </Link>
                           </TableRow>
                         ))}
                       </TableBody>
