@@ -64,7 +64,7 @@ export default function FieldPopulationPage() {
 
   const handleFieldClick = (fieldName: string) => {
     setSelectedField(fieldName);
-    setActiveTab("all"); // Reset to "all" tab when selecting a new field
+    setActiveTab("has"); // Default to "has" tab to show products with the attribute
     setSelectedComponent(null); // Reset component filter
   };
 

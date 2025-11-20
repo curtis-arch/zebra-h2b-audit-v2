@@ -324,7 +324,13 @@ export function FieldPopulationTable({
                   className="cursor-pointer transition-colors hover:bg-muted/80"
                   data-state={row.getIsSelected() && "selected"}
                   key={row.id}
-                  onClick={() => router.push(`/products/${row.original.id}`)}
+                  onClick={() =>
+                    window.open(
+                      `/products/${row.original.id}`,
+                      "_blank",
+                      "noopener,noreferrer"
+                    )
+                  }
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
