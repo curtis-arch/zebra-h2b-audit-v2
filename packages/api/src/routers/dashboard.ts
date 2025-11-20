@@ -58,7 +58,8 @@ export const dashboardRouter = router({
     const totalFilesResult = await db
       .select({ count: count() })
       .from(configFile);
-    const totalFiles = totalFilesResult[0]?.count ?? 0;
+    // Convert to number explicitly - Drizzle may return strings from COUNT
+    const totalFiles = Number(totalFilesResult[0]?.count ?? 0);
 
     // Single consolidated query with GROUP BY to calculate all stats in one database call
     const statsResult = await db
@@ -74,15 +75,20 @@ export const dashboardRouter = router({
 
     // Calculate coverage and format results
     const results = statsResult.map((row) => {
+      // Convert to numbers explicitly - Drizzle may return strings from COUNT
+      const filesWithData = Number(row.filesWithData);
+      const uniqueValues = Number(row.uniqueValues);
+      const uniquePositions = Number(row.uniquePositions);
+
       const coverage =
-        totalFiles > 0 ? (row.filesWithData / totalFiles) * 100 : 0;
+        totalFiles > 0 ? (filesWithData / totalFiles) * 100 : 0;
       return {
         field: row.field,
-        filesWithData: row.filesWithData,
+        filesWithData,
         coverage: Number.parseFloat(coverage.toFixed(1)),
-        filesMissing: totalFiles - row.filesWithData,
-        uniqueValues: row.uniqueValues,
-        uniquePositions: row.uniquePositions,
+        filesMissing: totalFiles - filesWithData,
+        uniqueValues,
+        uniquePositions,
       };
     });
 
