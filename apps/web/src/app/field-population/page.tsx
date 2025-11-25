@@ -188,12 +188,10 @@ export default function FieldPopulationPage() {
                     <BarChart3 className="h-4 w-4 text-muted-foreground" />
                   </CardHeader>
                   <CardContent>
-                    <div className="font-bold text-2xl">
-                      {field.coverage}%
-                    </div>
+                    <div className="font-bold text-2xl">{field.coverage}%</div>
                     <p className="mt-2 text-muted-foreground text-sm">
-                      {field.filesWithData} of {totalProducts} products have this
-                      attribute
+                      {field.filesWithData} of {totalProducts} products have
+                      this attribute
                     </p>
                     <p className="text-muted-foreground text-xs">
                       {field.uniqueValues} unique values

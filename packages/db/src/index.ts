@@ -1,8 +1,9 @@
 import { neon, neonConfig } from "@neondatabase/serverless";
-import { drizzle } from "drizzle-orm/neon-http";
 import type { NeonHttpDatabase } from "drizzle-orm/neon-http";
+import { drizzle } from "drizzle-orm/neon-http";
 import ws from "ws";
 import * as authSchema from "./schema/auth";
+import * as embeddingsSchema from "./schema/embeddings";
 import * as zebraSchema from "./schema/zebra";
 
 neonConfig.webSocketConstructor = ws;
@@ -13,6 +14,7 @@ neonConfig.webSocketConstructor = ws;
 // Combine all schemas for full type inference
 const schema = {
   ...authSchema,
+  ...embeddingsSchema,
   ...zebraSchema,
 };
 
@@ -45,7 +47,7 @@ export const db = new Proxy({} as NeonHttpDatabase<Schema>, {
 });
 
 // Export schemas for direct access
-export { authSchema, zebraSchema };
+export { authSchema, embeddingsSchema, zebraSchema };
 
 // Re-export Drizzle ORM utilities for API package
 export {
@@ -61,4 +63,5 @@ export {
 } from "drizzle-orm";
 // Export individual tables for convenience
 export * from "./schema/auth";
+export * from "./schema/embeddings";
 export * from "./schema/zebra";
