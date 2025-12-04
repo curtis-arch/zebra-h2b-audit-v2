@@ -8,6 +8,7 @@ import {
   timestamp,
   uniqueIndex,
   varchar,
+  boolean,
 } from "drizzle-orm/pg-core";
 
 /**
@@ -157,28 +158,14 @@ export const configOptionComponent = pgTable(
   "config_option_component",
   {
     id: serial("id").primaryKey(),
-
-    // Foreign key to the option this component was extracted from
     optionId: integer("option_id")
       .notNull()
       .references(() => configOption.id, { onDelete: "cascade" }),
-
-    // The raw component value as extracted from description
     rawValue: varchar("raw_value", { length: 255 }).notNull(),
-
-    // Position of this component in the description (0-based, left-to-right)
     sequencePosition: integer("sequence_position").notNull(),
-
-    // Semantic type of this component (e.g., 'connectivity', 'memory_spec', 'region')
     componentType: varchar("component_type", { length: 100 }),
-
-    // Normalized/canonical form of the component value
     normalizedValue: varchar("normalized_value", { length: 255 }),
-
-    // Optional reference to a taxonomy/controlled vocabulary (future use)
     taxonomyId: integer("taxonomy_id"),
-
-    // Audit timestamp
     createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
   },
   (table) => ({
@@ -196,3 +183,154 @@ export const configOptionComponent = pgTable(
     idxComponentType: index("idx_component_type").on(table.componentType),
   })
 );
+
+/**
+ * Zebra-Provided Attributes - Core attribute data with wide columns
+ *
+ * Stores 260 attributes from attribute-comparison-by-type.xlsx with
+ * frequently-populated properties in columnar format. Each row represents
+ * one attribute with its core metadata.
+ *
+ * CRITICAL: attribute_name MUST preserve exact Excel values (no normalization).
+ * This is the golden source for attribute name matching across systems.
+ */
+export const zebraProvidedAttributes = pgTable(
+  "zebra_provided_attributes",
+  {
+    id: serial("id").primaryKey(),
+    attributeName: text("attribute_name").notNull(),
+    excelRowNumber: integer("excel_row_number").notNull(),
+    isHardware: boolean("is_hardware").default(false),
+    isSupplies: boolean("is_supplies").default(false),
+    dataSourceHardware: text("data_source_hardware"),
+    dataSourceSss: text("data_source_sss"),
+    effortHardware: text("effort_hardware"),
+    effortSss: text("effort_sss"),
+    modelOrSku: text("model_or_sku"),
+    description: text("description"),
+    importedAt: timestamp("imported_at", { withTimezone: true })
+      .defaultNow()
+      .notNull(),
+    importedFrom: text("imported_from").notNull(),
+    importSourceHash: varchar("import_source_hash", { length: 64 }),
+  },
+  (table) => ({
+    uqAttributeName: uniqueIndex("uq_zebra_attr_name").on(table.attributeName),
+    idxExcelRow: index("idx_zebra_attr_excel_row").on(table.excelRowNumber),
+    idxIsHardware: index("idx_zebra_attr_hardware").on(table.isHardware),
+    idxIsSupplies: index("idx_zebra_attr_supplies").on(table.isSupplies),
+    idxDataSourceHw: index("idx_zebra_attr_ds_hw").on(table.dataSourceHardware),
+    idxDataSourceSss: index("idx_zebra_attr_ds_sss").on(table.dataSourceSss),
+  })
+);
+
+/**
+ * Zebra-Provided Properties Catalog - Property metadata registry
+ *
+ * Defines all 22 properties from the Excel spreadsheet with complete
+ * traceability to source coordinates. Each property gets a normalized
+ * name and tracks its Excel column position.
+ *
+ * Property names formatted as: "{normalized_name} ({excel_column})"
+ * Example: "hardware (C)", "data_source_hardware (H)"
+ */
+export const zebraProvidedPropertiesCatalog = pgTable(
+  "zebra_provided_properties_catalog",
+  {
+    id: serial("id").primaryKey(),
+    propertyName: varchar("property_name", { length: 255 }).notNull(),
+    propertySlug: varchar("property_slug", { length: 255 }).notNull(),
+    excelColumnLetter: varchar("excel_column_letter", { length: 2 }).notNull(),
+    excelColumnPosition: integer("excel_column_position").notNull(),
+    excelHeaderValue: text("excel_header_value").notNull(),
+    dataType: varchar("data_type", { length: 50 }).notNull(),
+    storageStrategy: varchar("storage_strategy", { length: 20 }).notNull(),
+    populationPercent: integer("population_percent").notNull(),
+    wideColumnName: varchar("wide_column_name", { length: 255 }),
+    eavPropertyKey: varchar("eav_property_key", { length: 255 }),
+    description: text("description"),
+    exampleValues: text("example_values"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .defaultNow()
+      .notNull(),
+  },
+  (table) => ({
+    uqPropertySlug: uniqueIndex("uq_zebra_prop_slug").on(table.propertySlug),
+    uqExcelColumn: uniqueIndex("uq_zebra_prop_excel_col").on(
+      table.excelColumnLetter
+    ),
+    uqExcelPosition: uniqueIndex("uq_zebra_prop_excel_pos").on(
+      table.excelColumnPosition
+    ),
+    idxStorageStrategy: index("idx_zebra_prop_storage").on(
+      table.storageStrategy
+    ),
+    idxDataType: index("idx_zebra_prop_datatype").on(table.dataType),
+  })
+);
+
+/**
+ * Zebra-Provided Attribute Values - EAV table for sparse properties
+ *
+ * Stores properties with <40% population rate in Entity-Attribute-Value format.
+ * Each row represents one property value for one attribute.
+ *
+ * VALUE PRESERVATION STRATEGY:
+ * - original_value: Always stored as TEXT (raw Excel value)
+ * - typed columns (boolean_value, text_value, etc.): Normalized/parsed values
+ * - is_normalized: Flag indicating if normalization was applied
+ *
+ * This dual-storage approach enables:
+ * 1. Auditing: Compare original vs normalized values
+ * 2. Re-normalization: Reprocess original values with improved logic
+ * 3. Type safety: Query typed columns with proper NULL semantics
+ */
+export const zebraProvidedAttributeValues = pgTable(
+  "zebra_provided_attribute_values",
+  {
+    id: serial("id").primaryKey(),
+    attributeId: integer("attribute_id")
+      .notNull()
+      .references(() => zebraProvidedAttributes.id, { onDelete: "cascade" }),
+    propertyId: integer("property_id")
+      .notNull()
+      .references(() => zebraProvidedPropertiesCatalog.id, {
+        onDelete: "restrict",
+      }),
+    excelCellRef: varchar("excel_cell_ref", { length: 10 }).notNull(),
+    originalValue: text("original_value").notNull(),
+    booleanValue: boolean("boolean_value"),
+    textValue: text("text_value"),
+    categoricalValue: varchar("categorical_value", { length: 255 }),
+    numericValue: integer("numeric_value"),
+    isNormalized: boolean("is_normalized").default(false).notNull(),
+    normalizationNote: text("normalization_note"),
+    importedAt: timestamp("imported_at", { withTimezone: true })
+      .defaultNow()
+      .notNull(),
+  },
+  (table) => ({
+    uqAttributeProperty: uniqueIndex("uq_zebra_attr_prop_value").on(
+      table.attributeId,
+      table.propertyId
+    ),
+    idxAttributeId: index("idx_zebra_value_attr").on(table.attributeId),
+    idxPropertyId: index("idx_zebra_value_prop").on(table.propertyId),
+    idxExcelCellRef: index("idx_zebra_value_cell_ref").on(table.excelCellRef),
+    idxBooleanValue: index("idx_zebra_value_bool").on(table.booleanValue),
+    idxCategoricalValue: index("idx_zebra_value_cat").on(
+      table.categoricalValue
+    ),
+    idxAttrProp: index("idx_zebra_value_attr_prop").on(
+      table.attributeId,
+      table.propertyId
+    ),
+  })
+);
+
+export type ZebraProvidedAttribute = typeof zebraProvidedAttributes.$inferSelect;
+export type NewZebraProvidedAttribute = typeof zebraProvidedAttributes.$inferInsert;
+export type ZebraProvidedPropertyCatalog = typeof zebraProvidedPropertiesCatalog.$inferSelect;
+export type NewZebraProvidedPropertyCatalog = typeof zebraProvidedPropertiesCatalog.$inferInsert;
+export type ZebraProvidedAttributeValue = typeof zebraProvidedAttributeValues.$inferSelect;
+export type NewZebraProvidedAttributeValue = typeof zebraProvidedAttributeValues.$inferInsert;
