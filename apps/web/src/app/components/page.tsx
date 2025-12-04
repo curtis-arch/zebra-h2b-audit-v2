@@ -406,13 +406,13 @@ export default function ComponentsPage() {
                       <TableBody>
                         {productsQuery.data?.products.map((product) => (
                           <TableRow
-                            key={product.fileId}
-                            className="cursor-pointer transition-colors hover:bg-muted/50"
                             asChild
+                            className="cursor-pointer transition-colors hover:bg-muted/50"
+                            key={product.fileId}
                           >
                             <Link
-                              href={`/products/${product.fileId}`}
                               className="table-row"
+                              href={`/products/${product.fileId}`}
                             >
                               <TableCell className="font-medium">
                                 <Badge className="font-mono" variant="outline">

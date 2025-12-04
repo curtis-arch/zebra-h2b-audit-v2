@@ -80,8 +80,7 @@ export const dashboardRouter = router({
       const uniqueValues = Number(row.uniqueValues);
       const uniquePositions = Number(row.uniquePositions);
 
-      const coverage =
-        totalFiles > 0 ? (filesWithData / totalFiles) * 100 : 0;
+      const coverage = totalFiles > 0 ? (filesWithData / totalFiles) * 100 : 0;
       return {
         field: row.field,
         filesWithData,

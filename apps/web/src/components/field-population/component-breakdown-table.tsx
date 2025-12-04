@@ -166,7 +166,10 @@ export function ComponentBreakdownTable({
         const products = row.getValue("uniqueProducts") as number;
         return (
           <div className="flex items-center gap-2">
-            <span className="font-mono text-sm" title={`${products} of ${totalProducts} products`}>
+            <span
+              className="font-mono text-sm"
+              title={`${products} of ${totalProducts} products`}
+            >
               {percentage.toFixed(1)}%
             </span>
             <div className="h-2 w-16 overflow-hidden rounded-full bg-muted">

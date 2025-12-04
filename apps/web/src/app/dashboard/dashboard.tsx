@@ -9,7 +9,8 @@ export default function Dashboard({
   return (
     <>
       <p className="text-muted-foreground">
-        This is a placeholder dashboard component. The main dashboard is at the root path (/).
+        This is a placeholder dashboard component. The main dashboard is at the
+        root path (/).
       </p>
     </>
   );

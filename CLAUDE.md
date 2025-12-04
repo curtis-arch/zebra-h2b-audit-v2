@@ -1,152 +1,78 @@
-# CLAUDE.md
+# Project: Zebra H2B Audit v2
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## Purpose
+Dashboard for analyzing Zebra product configuration matrices. Parses SKU structures, groups files into grammar cohorts, and provides data exploration tools.
 
-## Project Overview
+## Stack
+- **Runtime:** Bun 1.3.0
+- **Framework:** Next.js 16 + React 19 (App Router)
+- **Database:** Neon PostgreSQL + Drizzle ORM
+- **Auth:** Better-Auth
+- **API:** tRPC + TanStack Query
+- **Linting:** Ultracite (Biome)
 
-A full-stack TypeScript monorepo built with:
-- **Next.js 16** with App Router
-- **tRPC** for end-to-end type-safe APIs
-- **Drizzle ORM** with PostgreSQL (Neon)
-- **Better-Auth** for authentication
-- **Turborepo** for monorepo management
-- **Bun** as package manager (v1.3.0)
-- **Ultracite** (Biome) for linting/formatting
+## Structure
+```
+apps/web/              # Next.js app (port 3001)
+packages/
+  api/                 # tRPC routers
+  auth/                # Better-Auth config
+  db/                  # Drizzle schema & client
+```
 
-## Development Commands
+## Commands
+**Package Manager: Bun** (NEVER npm/yarn/pnpm)
 
-### Setup
 ```bash
-bun install                    # Install dependencies
-bun run db:push                # Push schema changes to database
+bun install            # Install deps
+bun dev                # Start all apps
+bun dev:web            # Start web only (port 3001)
+bun build              # Build all
+bun run check          # Lint/format (Biome)
+bun run check-types    # Type check all workspaces
+bun run db:push        # Push schema to Neon
+bun run db:studio      # Open Drizzle Studio
 ```
 
-### Development
-```bash
-bun run dev                    # Start all apps in dev mode
-bun run dev:web                # Start only web app (port 3001)
-bun run dev:native             # Start only native app
-```
+## Work Style
+Act as **architect and delegator**:
+- **DEFAULT TO DELEGATION** - Ask "can a subagent handle this?" before doing work yourself
+- If task touches 3+ files or spans multiple domains, spawn parallel subagents
+- Use `context-researcher` to fetch current docs before implementing
+- Run independent subagent tasks in parallel (single message, multiple Task calls)
+- Only do work yourself for single-file, single-domain tasks
+- Verify subagent output before accepting
 
-### Building & Type Checking
-```bash
-bun run build                  # Build all apps
-bun run check-types            # Type check all workspaces
-bun run check                  # Run Biome linter/formatter (auto-fix)
-```
+### Delegation Triggers
+- Database/schema work -> `neon-drizzle-expert`
+- Auth changes -> `better-auth-expert`
+- UI components -> `frontend-ui-expert`
+- API routes/tRPC -> `api-expert`
+- Next.js routing/RSC -> `nextjs-16-expert`
+- React hooks/components -> `react-19-expert`
+- Type issues -> `typescript-expert`
+- Deployment -> `vercel-expert`
+- Need library docs -> `context-researcher` first, THEN specialist
 
-### Database Operations
-```bash
-bun run db:push                # Push schema to database
-bun run db:studio              # Open Drizzle Studio UI
-bun run db:generate            # Generate migrations
-bun run db:migrate             # Run migrations
-```
+## Tool Rules
 
-All database commands target the `@zebra-h2b-audit-v2/db` package and read from `apps/web/.env`.
+**STOP. Read `agent_docs/tool-protocol.md` before any code task.**
 
-## Architecture
+| Task | Use This | NOT This |
+|------|----------|----------|
+| Package manager | **Bun only** | npm/yarn/pnpm |
+| DB queries | **Neon MCP** | raw psql |
+| File edits | `mcp__filesystem-with-morph__edit_file` | Read -> Edit chains |
+| Code search | `warp_grep` or `ast-grep` | Grep -> Read chains |
+| Browser debug | **chrome-devtools MCP** | push and pray |
+| Library docs | **Context7 MCP** | WebSearch/guessing |
 
-### Monorepo Structure
+## Critical Rules
+1. **No mock data** - use real DB/APIs (UI-only work excepted)
+2. **Organize output** - tests to `agent_tests/<feature>/`, docs to `project-management/`
+3. **Browser first** - use chrome-devtools MCP to verify before deploying
+4. **Real packages** - check Context7 for current API before using libraries
 
-```
-zebra-h2b-audit-v2/
-├── apps/
-│   └── web/                   # Next.js application (port 3001)
-└── packages/
-    ├── api/                   # tRPC routers & procedures
-    ├── auth/                  # Better-Auth configuration
-    ├── db/                    # Drizzle schema & database client
-    └── config/                # Shared TypeScript configs
-```
-
-### Package Dependencies
-
-- `web` → `api`, `auth`
-- `api` → `auth`, `db`
-- `auth` → `db`
-- All packages → `config`
-
-### tRPC Setup
-
-**API Layer** (`packages/api/`):
-- `src/index.ts` - Exports base tRPC builder (`t`, `router`, `publicProcedure`, `protectedProcedure`)
-- `src/context.ts` - Creates request context with Better-Auth session
-- `src/routers/` - tRPC routers (combined into `appRouter`)
-
-**Web Integration** (`apps/web/`):
-- `src/app/api/trpc/[trpc]/route.ts` - Next.js API route handler
-- `src/utils/trpc.ts` - Client-side tRPC setup with TanStack Query
-
-**Adding New Procedures**:
-1. Create/edit router in `packages/api/src/routers/`
-2. Export from `packages/api/src/routers/index.ts`
-3. Use `publicProcedure` (unauthenticated) or `protectedProcedure` (requires session)
-
-### Database Schema
-
-**Location**: `packages/db/src/schema/`
-
-**Current Tables** (in `auth.ts`):
-- `user` - User accounts
-- `session` - Active sessions
-- `account` - OAuth/credential providers
-- `verification` - Email verification tokens
-
-**Adding Tables/Columns**:
-1. Edit or create schema file in `packages/db/src/schema/`
-2. Export from `packages/db/src/index.ts`
-3. Run `bun run db:push` to sync with database
-4. For production, use `bun run db:generate` then `bun run db:migrate`
-
-**Drizzle Config**: `packages/db/drizzle.config.ts` reads `DATABASE_URL` from `apps/web/.env`
-
-### Authentication
-
-**Better-Auth** configured in `packages/auth/src/index.ts`:
-- Uses Drizzle adapter with PostgreSQL
-- Email/password authentication enabled
-- Next.js cookies plugin for session management
-
-**Session Access**:
-- In tRPC: `ctx.session` (available in all procedures via context)
-- Use `protectedProcedure` to enforce authentication
-
-### Workspace Catalog
-
-The root `package.json` defines a catalog for shared dependency versions:
-```json
-"catalog": {
-  "next": "16.0.0",
-  "zod": "^4.1.12",
-  "@trpc/server": "^11.5.0",
-  "@trpc/client": "^11.5.0",
-  "better-auth": "^1.3.28"
-}
-```
-
-Packages reference catalog entries with `"package": "catalog:"` syntax.
-
-## Environment Setup
-
-**Required**: `apps/web/.env` file with:
-```
-DATABASE_URL=              # PostgreSQL connection string (Neon)
-BETTER_AUTH_SECRET=        # Secret for auth tokens
-BETTER_AUTH_URL=          # Application URL (http://localhost:3001)
-CORS_ORIGIN=              # Allowed CORS origin
-```
-
-Copy `apps/web/.env.example` and fill in values.
-
-## Code Standards
-
-This project uses **Ultracite** (Biome preset) - see existing `.claude/CLAUDE.md` for complete standards.
-
-**Key Points**:
-- Run `bun run check` before committing
-- React 19: use `ref` as prop (not `forwardRef`)
-- Next.js: use Server Components by default
-- TypeScript: explicit types for function params/returns
-- Use `for...of` over `.forEach()`
-- Extract magic numbers to named constants
+## Additional Context
+- `agent_docs/tool-protocol.md` - **READ FIRST** - MCP tool decision tree
+- `agent_docs/infrastructure.md` - Neon project ID, deployment URLs

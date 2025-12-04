@@ -50,7 +50,7 @@ export default function Home() {
       <div className="mb-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {/* Total Products */}
         <Link
-          className="transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-xl"
+          className="rounded-xl transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           href="/products"
         >
           <Card className="h-full cursor-pointer transition-shadow hover:shadow-lg">
@@ -86,12 +86,14 @@ export default function Home() {
 
         {/* Coverage Gap */}
         <Link
-          className="transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-xl"
+          className="rounded-xl transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           href="/gap-analysis"
         >
           <Card className="h-full cursor-pointer transition-shadow hover:shadow-lg">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="font-medium text-sm">Coverage Gap</CardTitle>
+              <CardTitle className="font-medium text-sm">
+                Coverage Gap
+              </CardTitle>
               <AlertCircle className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -120,7 +122,7 @@ export default function Home() {
 
         {/* Unique Attributes */}
         <Link
-          className="transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-xl"
+          className="rounded-xl transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           href="/field-population"
         >
           <Card className="h-full cursor-pointer transition-shadow hover:shadow-lg">
@@ -156,7 +158,7 @@ export default function Home() {
 
         {/* Grammar Cohorts */}
         <Link
-          className="transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-xl"
+          className="rounded-xl transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           href="/cohorts"
         >
           <Card className="h-full cursor-pointer transition-shadow hover:shadow-lg">

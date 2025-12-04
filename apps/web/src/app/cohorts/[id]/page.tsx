@@ -303,10 +303,10 @@ export default function CohortDetailPage({ params }: PageProps) {
                       <TableCell>
                         <Badge variant="outline">{file.specStyle}</Badge>
                       </TableCell>
-                      <TableCell className="max-w-xs truncate font-mono text-xs text-muted-foreground">
+                      <TableCell className="max-w-xs truncate font-mono text-muted-foreground text-xs">
                         {file.sourcePath.split("/").pop()}
                       </TableCell>
-                      <TableCell className="text-sm text-muted-foreground">
+                      <TableCell className="text-muted-foreground text-sm">
                         {formatDate(file.importedAt)}
                       </TableCell>
                     </TableRow>
