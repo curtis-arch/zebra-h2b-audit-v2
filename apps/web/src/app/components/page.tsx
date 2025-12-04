@@ -48,7 +48,7 @@ export default function ComponentsPage() {
     type: string;
     value: string;
   } | null>(null);
-  const [threshold, setThreshold] = useState(0.85);
+  const [threshold, setThreshold] = useState(0.6);
   const detailsSectionRef = useRef<HTMLDivElement>(null);
   
   // Track query timing

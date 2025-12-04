@@ -33,7 +33,7 @@ export function ThresholdSlider({ value, onChange }: ThresholdSliderProps) {
   const displayValue = Math.round(localValue * 100);
 
   return (
-    <div className="flex min-w-[300px] items-center gap-4">
+    <div className="flex min-w-[400px] items-center gap-4">
       <label
         className="whitespace-nowrap font-medium text-sm"
         htmlFor="threshold-slider"
@@ -46,9 +46,9 @@ export function ThresholdSlider({ value, onChange }: ThresholdSliderProps) {
           className="flex-1"
           id="threshold-slider"
           max={1.0}
-          min={0.5}
+          min={0}
           onValueChange={handleValueChange}
-          step={0.05}
+          step={0.01}
           value={[localValue]}
         />
         <span className="min-w-[3ch] text-right font-medium text-muted-foreground text-sm">
