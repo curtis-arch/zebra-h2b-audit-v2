@@ -252,7 +252,7 @@ export const componentsRouter = router({
     .query(async ({ input }) => {
       const { similarityThreshold } = input;
 
-      // Complex query using pg_trgm for similarity matching
+      // Complex query using vector embeddings for similarity matching
       const results = await db.execute(sql`
         WITH component_stats AS (
           -- Get base stats for each component_type
@@ -266,19 +266,19 @@ export const componentsRouter = router({
           GROUP BY component_type
         ),
         similar_groups AS (
-          -- Self-join to find similar component types
+          -- Use vector embeddings to find similar component types (excluding self)
           SELECT 
-            a.component_type as component_type,
-            COUNT(DISTINCT b.component_type) as similar_count,
-            array_agg(DISTINCT b.component_type ORDER BY b.component_type) 
-              FILTER (WHERE b.component_type != a.component_type) as similar_values
-          FROM config_option_component a
-          LEFT JOIN config_option_component b 
-            ON similarity(a.component_type, b.component_type) >= ${similarityThreshold}
-            AND a.component_type IS NOT NULL 
-            AND b.component_type IS NOT NULL
-          WHERE a.component_type IS NOT NULL
-          GROUP BY a.component_type
+            ct.component_type,
+            COUNT(DISTINCT ec2.value) as similar_count,
+            array_agg(DISTINCT ec2.value ORDER BY ec2.value) as similar_values
+          FROM (SELECT DISTINCT component_type FROM config_option_component WHERE component_type IS NOT NULL) ct
+          LEFT JOIN embedding_cache ec ON ec.value = ct.component_type
+          LEFT JOIN embedding_cache ec2 
+            ON ec2.value != ct.component_type  -- Exclude self-matches
+            AND ec.embedding_small IS NOT NULL 
+            AND ec2.embedding_small IS NOT NULL
+            AND (1 - (ec.embedding_small <=> ec2.embedding_small)) >= ${similarityThreshold}
+          GROUP BY ct.component_type
         ),
         zebra_matches AS (
           -- Check for Zebra attribute matches
@@ -299,7 +299,7 @@ export const componentsRouter = router({
         )
         SELECT 
           cs.component_type,
-          COALESCE(sg.similar_count, 1) as similar_count,
+          COALESCE(sg.similar_count, 0) as similar_count,
           COALESCE(sg.similar_values, ARRAY[]::text[]) as similar_values,
           cs.product_count,
           cs.position_count,

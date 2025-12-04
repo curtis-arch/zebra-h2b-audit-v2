@@ -162,8 +162,22 @@ export default function ComponentsPage() {
             ) : (
               <ComponentTypeTable
                 data={componentTypesWithSimilarityQuery.data ?? []}
-                threshold={threshold}
+                onComponentTypeClick={(type) => {
+                  setActiveType(type);
+                  setSelectedComponent(null);
+                  // Scroll to the component types section
+                  const componentTypesCard = document.querySelector(
+                    '[data-section="component-types"]'
+                  );
+                  if (componentTypesCard) {
+                    componentTypesCard.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  }
+                }}
                 onThresholdChange={setThreshold}
+                threshold={threshold}
               />
             )}
           </CardContent>
@@ -272,7 +286,7 @@ export default function ComponentsPage() {
       </div>
 
       {/* Component Types Selection */}
-      <Card>
+      <Card data-section="component-types">
         <CardHeader>
           <CardTitle>Component Types</CardTitle>
           <CardDescription>

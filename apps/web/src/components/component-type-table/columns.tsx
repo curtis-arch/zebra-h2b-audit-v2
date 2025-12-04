@@ -1,7 +1,20 @@
-import type { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef, RowData } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { ZebraMatchBadge } from "./zebra-match-badge";
+
+// Extend TanStack Table's TableMeta to include our custom callback
+declare module "@tanstack/react-table" {
+  interface TableMeta<TData extends RowData> {
+    onComponentTypeClick?: (componentType: string) => void;
+  }
+}
 
 export interface ComponentTypeRow {
   componentType: string;
@@ -27,9 +40,23 @@ export const columns: ColumnDef<ComponentTypeRow>[] = [
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
-    cell: ({ row }) => (
-      <div className="font-medium">{row.getValue("componentType")}</div>
-    ),
+    cell: ({ row, table }) => {
+      const componentType = row.getValue("componentType") as string;
+      const onClick = table.options.meta?.onComponentTypeClick;
+
+      if (onClick) {
+        return (
+          <button
+            className="rounded text-left font-medium text-primary hover:underline focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            onClick={() => onClick(componentType)}
+          >
+            {componentType}
+          </button>
+        );
+      }
+
+      return <div className="font-medium">{componentType}</div>;
+    },
   },
   {
     id: "similarCount",
@@ -76,11 +103,40 @@ export const columns: ColumnDef<ComponentTypeRow>[] = [
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
-    cell: ({ row }) => (
-      <div className="text-center font-medium">
-        {row.getValue("productCount")}
-      </div>
-    ),
+    cell: ({ row }) => {
+      const count = row.getValue("productCount") as number;
+      const componentType = row.getValue("componentType") as string;
+
+      return (
+        <div className="text-center">
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                className="h-auto p-1 font-medium hover:bg-accent hover:text-accent-foreground"
+                variant="ghost"
+              >
+                {count}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-80">
+              <div className="space-y-2">
+                <h4 className="font-medium text-sm">
+                  Products using "{componentType}"
+                </h4>
+                <ScrollArea className="h-[200px] w-full rounded-md border p-4">
+                  <div className="text-muted-foreground text-sm">
+                    <p className="italic">
+                      Click to load products (endpoint needed)
+                    </p>
+                    <p className="mt-2 text-xs">Total products: {count}</p>
+                  </div>
+                </ScrollArea>
+              </div>
+            </PopoverContent>
+          </Popover>
+        </div>
+      );
+    },
   },
   {
     id: "positionCount",

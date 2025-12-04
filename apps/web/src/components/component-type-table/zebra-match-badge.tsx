@@ -1,4 +1,10 @@
 import { Badge } from "@/components/ui/badge";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 interface ZebraMatchBadgeProps {
@@ -20,9 +26,25 @@ export function ZebraMatchBadge({ match, className }: ZebraMatchBadgeProps) {
     no: "No",
   };
 
-  return (
+  const badge = (
     <Badge className={cn(variants[match], className)} variant="outline">
       {labels[match]}
     </Badge>
   );
+
+  // Only show tooltip for partial matches
+  if (match === "partial") {
+    return (
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>{badge}</TooltipTrigger>
+          <TooltipContent>
+            <p>Partial match - case insensitive</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    );
+  }
+
+  return badge;
 }

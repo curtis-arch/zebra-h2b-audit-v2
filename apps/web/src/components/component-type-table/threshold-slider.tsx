@@ -18,10 +18,10 @@ export function ThresholdSlider({ value, onChange }: ThresholdSliderProps) {
     setLocalValue(value);
   }, [value]);
 
-  // Debounced callback to parent (300ms)
+  // Debounced callback to parent (1000ms = 1 second)
   const debouncedOnChange = useDebouncedCallback((newValue: number) => {
     onChange(newValue);
-  }, 300);
+  }, 1000);
 
   const handleValueChange = (values: number[]) => {
     const newValue = values[0] ?? value;

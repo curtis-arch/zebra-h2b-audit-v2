@@ -10,7 +10,9 @@ import {
   useReactTable,
   type VisibilityState,
 } from "@tanstack/react-table";
+import { Download } from "lucide-react";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -20,18 +22,21 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { type ComponentTypeRow, columns } from "./columns";
+import { exportToCsv } from "./csv-export";
 import { ThresholdSlider } from "./threshold-slider";
 
 type ComponentTypeTableProps = {
   data: ComponentTypeRow[];
   threshold?: number;
   onThresholdChange?: (value: number) => void;
+  onComponentTypeClick?: (componentType: string) => void;
 };
 
 export function ComponentTypeTable({
   data,
   threshold = 0.85,
   onThresholdChange,
+  onComponentTypeClick,
 }: ComponentTypeTableProps) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -54,6 +59,9 @@ export function ComponentTypeTable({
       globalFilter,
       columnVisibility,
     },
+    meta: {
+      onComponentTypeClick,
+    },
   });
 
   return (
@@ -63,7 +71,14 @@ export function ComponentTypeTable({
         <div className="flex items-center justify-between gap-4">
           <ThresholdSlider onChange={onThresholdChange} value={threshold} />
           <div className="flex-shrink-0">
-            {/* Export button can go here in the future */}
+            <Button
+              onClick={() => exportToCsv(data, threshold)}
+              size="sm"
+              variant="outline"
+            >
+              <Download className="mr-2 h-4 w-4" />
+              Export CSV
+            </Button>
           </div>
         </div>
       )}
