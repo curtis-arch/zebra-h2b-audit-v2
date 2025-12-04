@@ -338,9 +338,10 @@ export const componentsRouter = router({
             COUNT(DISTINCT ec2.value) as similar_count,
             array_agg(DISTINCT ec2.value ORDER BY ec2.value) as similar_values
           FROM (SELECT DISTINCT component_type FROM config_option_component WHERE component_type IS NOT NULL) ct
-          LEFT JOIN embedding_cache ec ON ec.value = ct.component_type
+          LEFT JOIN embedding_cache ec ON ec.value = ct.component_type AND ec.source_column = 'attribute_label'
           LEFT JOIN embedding_cache ec2 
             ON ec2.value != ct.component_type  -- Exclude self-matches
+            AND ec2.source_column = 'attribute_label'
             AND ec.embedding_small IS NOT NULL 
             AND ec2.embedding_small IS NOT NULL
             AND (1 - (ec.embedding_small <=> ec2.embedding_small)) >= ${similarityThreshold}
