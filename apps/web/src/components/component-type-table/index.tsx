@@ -10,8 +10,8 @@ import {
   useReactTable,
   type VisibilityState,
 } from "@tanstack/react-table";
-import { Download } from "lucide-react";
-import { useState } from "react";
+import { Download, Loader2, CheckCircle2 } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -30,6 +30,8 @@ type ComponentTypeTableProps = {
   threshold?: number;
   onThresholdChange?: (value: number) => void;
   onComponentTypeClick?: (componentType: string) => void;
+  isLoading?: boolean;
+  queryTimeMs?: number | null;
 };
 
 export function ComponentTypeTable({
@@ -37,11 +39,25 @@ export function ComponentTypeTable({
   threshold = 0.85,
   onThresholdChange,
   onComponentTypeClick,
+  isLoading = false,
+  queryTimeMs = null,
 }: ComponentTypeTableProps) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [showTimingFeedback, setShowTimingFeedback] = useState(false);
+
+  // Show timing feedback for 3 seconds after query completes
+  useEffect(() => {
+    if (!isLoading && queryTimeMs !== null) {
+      setShowTimingFeedback(true);
+      const timer = setTimeout(() => {
+        setShowTimingFeedback(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading, queryTimeMs]);
 
   const table = useReactTable({
     data,
@@ -69,7 +85,27 @@ export function ComponentTypeTable({
       {/* Header with threshold slider */}
       {onThresholdChange && (
         <div className="flex items-center justify-between gap-4">
-          <ThresholdSlider onChange={onThresholdChange} value={threshold} />
+          <div className="flex flex-1 items-center gap-4">
+            <ThresholdSlider onChange={onThresholdChange} value={threshold} />
+            
+            {/* Query status indicator */}
+            <div className="flex items-center gap-2 text-sm">
+              {isLoading ? (
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <span>Updating...</span>
+                </div>
+              ) : showTimingFeedback && queryTimeMs !== null ? (
+                <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                  <CheckCircle2 className="h-4 w-4" />
+                  <span>
+                    Updated in {queryTimeMs < 1000 ? `${queryTimeMs}ms` : `${(queryTimeMs / 1000).toFixed(2)}s`}
+                  </span>
+                </div>
+              ) : null}
+            </div>
+          </div>
+          
           <div className="flex-shrink-0">
             <Button
               onClick={() => exportToCsv(data, threshold)}

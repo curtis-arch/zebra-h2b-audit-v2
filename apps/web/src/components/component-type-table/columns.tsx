@@ -1,6 +1,7 @@
 import type { ColumnDef, RowData } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { ProductCountPopover } from "./product-count-popover";
 import { ZebraMatchBadge } from "./zebra-match-badge";
 
@@ -19,6 +20,19 @@ export interface ComponentTypeRow {
   positionCount: number;
   positions: string[];
   zebraMatch: "yes" | "partial" | "no";
+}
+
+// Badge color rotation helper
+const badgeColors = [
+  "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
+  "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
+  "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200",
+  "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200",
+  "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200",
+];
+
+function getBadgeColor(index: number): string {
+  return badgeColors[index % badgeColors.length];
 }
 
 export const columns: ColumnDef<ComponentTypeRow>[] = [
@@ -78,9 +92,20 @@ export const columns: ColumnDef<ComponentTypeRow>[] = [
     header: "Similar Values",
     cell: ({ row }) => {
       const values = row.getValue("similarValues") as string[];
+      if (!values || values.length === 0) {
+        return <div className="text-muted-foreground text-sm">-</div>;
+      }
       return (
-        <div className="max-w-xs truncate text-muted-foreground text-sm">
-          {values.join(", ") || "-"}
+        <div className="flex flex-wrap gap-1">
+          {values.map((value, index) => (
+            <Badge
+              key={`${value}-${index}`}
+              variant="secondary"
+              className={getBadgeColor(index)}
+            >
+              {value}
+            </Badge>
+          ))}
         </div>
       );
     },
@@ -134,9 +159,27 @@ export const columns: ColumnDef<ComponentTypeRow>[] = [
     header: "Positions",
     cell: ({ row }) => {
       const positions = row.getValue("positions") as string[];
+      if (!positions || positions.length === 0) {
+        return <div className="text-muted-foreground text-sm">-</div>;
+      }
+      
+      // If only 1 position, show as plain text
+      if (positions.length === 1) {
+        return <div className="text-sm">{positions[0]}</div>;
+      }
+      
+      // If more than 1, show as colored badges
       return (
-        <div className="max-w-xs truncate text-muted-foreground text-sm">
-          {positions.join(", ") || "-"}
+        <div className="flex flex-wrap gap-1">
+          {positions.map((position, index) => (
+            <Badge
+              key={`${position}-${index}`}
+              variant="secondary"
+              className={getBadgeColor(index)}
+            >
+              {position}
+            </Badge>
+          ))}
         </div>
       );
     },

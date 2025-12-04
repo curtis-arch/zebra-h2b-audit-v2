@@ -50,6 +50,10 @@ export default function ComponentsPage() {
   } | null>(null);
   const [threshold, setThreshold] = useState(0.85);
   const detailsSectionRef = useRef<HTMLDivElement>(null);
+  
+  // Track query timing
+  const [queryTimeMs, setQueryTimeMs] = useState<number | null>(null);
+  const queryStartTime = useRef<number>(0);
 
   // Fetch component type statistics
   const componentTypesQuery = useQuery(
@@ -63,6 +67,17 @@ export default function ComponentsPage() {
     }),
     placeholderData: (prev) => prev,
   });
+
+  // Track query timing when fetching state changes
+  useEffect(() => {
+    if (componentTypesWithSimilarityQuery.isFetching) {
+      queryStartTime.current = Date.now();
+    } else if (queryStartTime.current > 0) {
+      const elapsed = Date.now() - queryStartTime.current;
+      setQueryTimeMs(elapsed);
+      queryStartTime.current = 0;
+    }
+  }, [componentTypesWithSimilarityQuery.isFetching]);
 
   // Fetch components for the active type
   const componentsQuery = useQuery({
@@ -162,6 +177,8 @@ export default function ComponentsPage() {
             ) : (
               <ComponentTypeTable
                 data={componentTypesWithSimilarityQuery.data ?? []}
+                isLoading={componentTypesWithSimilarityQuery.isFetching}
+                queryTimeMs={queryTimeMs}
                 onComponentTypeClick={(type) => {
                   setActiveType(type);
                   setSelectedComponent(null);
