@@ -1,0 +1,18 @@
+{
+  "name": "@zebra-h2b-audit-v2/attribute-analysis",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Excel parser for Zebra attribute properties analysis",
+  "scripts": {
+    "parse": "bun run parse-xlsx.ts",
+    "generate-sql": "bun run generate-import-sql.ts"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
