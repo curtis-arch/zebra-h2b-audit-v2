@@ -238,4 +238,88 @@ export const componentsRouter = router({
         })),
       };
     }),
+
+  /**
+   * Get component types with similarity grouping and Zebra attribute matching
+   * Returns: component types with similar values grouped together
+   */
+  getComponentTypesWithSimilarity: publicProcedure
+    .input(
+      z.object({
+        similarityThreshold: z.number().min(0).max(1).default(0.85),
+      })
+    )
+    .query(async ({ input }) => {
+      const { similarityThreshold } = input;
+
+      // Complex query using pg_trgm for similarity matching
+      const results = await db.execute(sql`
+        WITH component_stats AS (
+          -- Get base stats for each component_type
+          SELECT 
+            component_type,
+            COUNT(DISTINCT option_id) as product_count,
+            COUNT(DISTINCT sequence_position) as position_count,
+            array_agg(DISTINCT sequence_position::text ORDER BY sequence_position::text) as positions
+          FROM config_option_component
+          WHERE component_type IS NOT NULL
+          GROUP BY component_type
+        ),
+        similar_groups AS (
+          -- Self-join to find similar component types
+          SELECT 
+            a.component_type as component_type,
+            COUNT(DISTINCT b.component_type) as similar_count,
+            array_agg(DISTINCT b.component_type ORDER BY b.component_type) 
+              FILTER (WHERE b.component_type != a.component_type) as similar_values
+          FROM config_option_component a
+          LEFT JOIN config_option_component b 
+            ON similarity(a.component_type, b.component_type) >= ${similarityThreshold}
+            AND a.component_type IS NOT NULL 
+            AND b.component_type IS NOT NULL
+          WHERE a.component_type IS NOT NULL
+          GROUP BY a.component_type
+        ),
+        zebra_matches AS (
+          -- Check for Zebra attribute matches
+          SELECT 
+            c.component_type,
+            CASE
+              WHEN EXISTS (
+                SELECT 1 FROM zebra_provided_attributes z 
+                WHERE LOWER(z.attribute_name) = LOWER(c.component_type)
+              ) THEN 'yes'
+              WHEN EXISTS (
+                SELECT 1 FROM zebra_provided_attributes z 
+                WHERE similarity(LOWER(z.attribute_name), LOWER(c.component_type)) >= 0.7
+              ) THEN 'partial'
+              ELSE 'no'
+            END as zebra_match
+          FROM (SELECT DISTINCT component_type FROM config_option_component WHERE component_type IS NOT NULL) c
+        )
+        SELECT 
+          cs.component_type,
+          COALESCE(sg.similar_count, 1) as similar_count,
+          COALESCE(sg.similar_values, ARRAY[]::text[]) as similar_values,
+          cs.product_count,
+          cs.position_count,
+          cs.positions,
+          zm.zebra_match
+        FROM component_stats cs
+        LEFT JOIN similar_groups sg ON cs.component_type = sg.component_type
+        LEFT JOIN zebra_matches zm ON cs.component_type = zm.component_type
+        ORDER BY cs.component_type
+      `);
+
+      // Transform results to match output schema
+      return results.rows.map((row: any) => ({
+        componentType: row.component_type as string,
+        similarCount: Number(row.similar_count),
+        similarValues: (row.similar_values || []) as string[],
+        productCount: Number(row.product_count),
+        positionCount: Number(row.position_count),
+        positions: (row.positions || []) as string[],
+        zebraMatch: row.zebra_match as "yes" | "partial" | "no",
+      }));
+    }),
 });

@@ -120,7 +120,7 @@ export default function FieldPopulationPage() {
   return (
     <div>
       <DashboardHeader
-        description="Attribute coverage and data quality metrics"
+        description={`Attribute coverage and data quality metrics${!isLoading && fieldData.length > 0 ? ` · ${fieldData.length} attributes` : ""}`}
         title="Field Population Analysis"
       />
 

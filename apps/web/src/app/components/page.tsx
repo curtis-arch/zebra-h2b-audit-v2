@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Check, ChevronsUpDown, Package, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { ComponentTypeTable } from "@/components/component-type-table";
 import { ComponentsTable } from "@/components/components/components-table";
 import { DashboardHeader } from "@/components/layout";
 import { Badge } from "@/components/ui/badge";
@@ -47,12 +48,21 @@ export default function ComponentsPage() {
     type: string;
     value: string;
   } | null>(null);
+  const [threshold, setThreshold] = useState(0.85);
   const detailsSectionRef = useRef<HTMLDivElement>(null);
 
   // Fetch component type statistics
   const componentTypesQuery = useQuery(
     trpc.components.getComponentTypes.queryOptions()
   );
+
+  // Fetch component types with similarity grouping
+  const componentTypesWithSimilarityQuery = useQuery({
+    ...trpc.components.getComponentTypesWithSimilarity.queryOptions({
+      similarityThreshold: threshold,
+    }),
+    placeholderData: (prev) => prev,
+  });
 
   // Fetch components for the active type
   const componentsQuery = useQuery({
@@ -125,6 +135,40 @@ export default function ComponentsPage() {
         description="Browse and analyze component variants across product configurations"
         title="Component Explorer"
       />
+
+      {/* NEW: Component Type Overview Section */}
+      <section className="mb-8">
+        <Card>
+          <CardHeader>
+            <CardTitle>Component Type Overview</CardTitle>
+            <CardDescription>
+              Analysis of component types with similarity grouping and Zebra
+              attribute matching
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            {componentTypesWithSimilarityQuery.isLoading ? (
+              <div className="space-y-4">
+                <Skeleton className="h-10 w-full" />
+                <Skeleton className="h-64 w-full" />
+              </div>
+            ) : componentTypesWithSimilarityQuery.isError ? (
+              <div className="py-8 text-center text-red-600">
+                <p>Failed to load component type overview</p>
+                <p className="mt-2 text-muted-foreground text-sm">
+                  {componentTypesWithSimilarityQuery.error?.message}
+                </p>
+              </div>
+            ) : (
+              <ComponentTypeTable
+                data={componentTypesWithSimilarityQuery.data ?? []}
+                threshold={threshold}
+                onThresholdChange={setThreshold}
+              />
+            )}
+          </CardContent>
+        </Card>
+      </section>
 
       {/* Error State */}
       {isError && (

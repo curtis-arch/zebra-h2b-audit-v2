@@ -1,4 +1,5 @@
 import {
+  boolean,
   index,
   integer,
   jsonb,
@@ -8,7 +9,6 @@ import {
   timestamp,
   uniqueIndex,
   varchar,
-  boolean,
 } from "drizzle-orm/pg-core";
 
 /**
@@ -328,9 +328,15 @@ export const zebraProvidedAttributeValues = pgTable(
   })
 );
 
-export type ZebraProvidedAttribute = typeof zebraProvidedAttributes.$inferSelect;
-export type NewZebraProvidedAttribute = typeof zebraProvidedAttributes.$inferInsert;
-export type ZebraProvidedPropertyCatalog = typeof zebraProvidedPropertiesCatalog.$inferSelect;
-export type NewZebraProvidedPropertyCatalog = typeof zebraProvidedPropertiesCatalog.$inferInsert;
-export type ZebraProvidedAttributeValue = typeof zebraProvidedAttributeValues.$inferSelect;
-export type NewZebraProvidedAttributeValue = typeof zebraProvidedAttributeValues.$inferInsert;
+export type ZebraProvidedAttribute =
+  typeof zebraProvidedAttributes.$inferSelect;
+export type NewZebraProvidedAttribute =
+  typeof zebraProvidedAttributes.$inferInsert;
+export type ZebraProvidedPropertyCatalog =
+  typeof zebraProvidedPropertiesCatalog.$inferSelect;
+export type NewZebraProvidedPropertyCatalog =
+  typeof zebraProvidedPropertiesCatalog.$inferInsert;
+export type ZebraProvidedAttributeValue =
+  typeof zebraProvidedAttributeValues.$inferSelect;
+export type NewZebraProvidedAttributeValue =
+  typeof zebraProvidedAttributeValues.$inferInsert;
