@@ -240,6 +240,72 @@ export const componentsRouter = router({
     }),
 
   /**
+   * Get products (config files) that use a specific component type
+   * Returns: list of distinct products with basic metadata
+   */
+  getProductsByComponentType: publicProcedure
+    .input(
+      z.object({
+        componentType: componentTypeSchema,
+        limit: z.number().min(1).max(100).default(50),
+      })
+    )
+    .query(async ({ input }) => {
+      const { componentType, limit } = input;
+
+      // Get distinct products that have this component type
+      const products = await db
+        .selectDistinct({
+          fileId: configFile.id,
+          baseModel: configFile.baseModel,
+          productCode: configFile.productCode,
+          specStyle: configFile.specStyle,
+        })
+        .from(configOptionComponent)
+        .innerJoin(
+          configOption,
+          eq(configOptionComponent.optionId, configOption.id)
+        )
+        .innerJoin(
+          configPosition,
+          eq(configOption.positionId, configPosition.id)
+        )
+        .innerJoin(configFile, eq(configPosition.fileId, configFile.id))
+        .where(eq(configOptionComponent.componentType, componentType))
+        .orderBy(configFile.baseModel)
+        .limit(limit);
+
+      // Get total count for the popover header
+      const totalResult = await db
+        .select({
+          total: sql<number>`COUNT(DISTINCT ${configFile.id})`,
+        })
+        .from(configOptionComponent)
+        .innerJoin(
+          configOption,
+          eq(configOptionComponent.optionId, configOption.id)
+        )
+        .innerJoin(
+          configPosition,
+          eq(configOption.positionId, configPosition.id)
+        )
+        .innerJoin(configFile, eq(configPosition.fileId, configFile.id))
+        .where(eq(configOptionComponent.componentType, componentType));
+
+      const totalCount = Number(totalResult[0]?.total ?? 0);
+
+      return {
+        products: products.map((p) => ({
+          fileId: p.fileId,
+          baseModel: p.baseModel,
+          productCode: p.productCode,
+          specStyle: p.specStyle,
+        })),
+        totalCount,
+      };
+    }),
+
+  /**
    * Get component types with similarity grouping and Zebra attribute matching
    * Returns: component types with similar values grouped together
    */

@@ -1,12 +1,7 @@
 import type { ColumnDef, RowData } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ProductCountPopover } from "./product-count-popover";
 import { ZebraMatchBadge } from "./zebra-match-badge";
 
 // Extend TanStack Table's TableMeta to include our custom callback
@@ -109,31 +104,7 @@ export const columns: ColumnDef<ComponentTypeRow>[] = [
 
       return (
         <div className="text-center">
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                className="h-auto p-1 font-medium hover:bg-accent hover:text-accent-foreground"
-                variant="ghost"
-              >
-                {count}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-80">
-              <div className="space-y-2">
-                <h4 className="font-medium text-sm">
-                  Products using "{componentType}"
-                </h4>
-                <ScrollArea className="h-[200px] w-full rounded-md border p-4">
-                  <div className="text-muted-foreground text-sm">
-                    <p className="italic">
-                      Click to load products (endpoint needed)
-                    </p>
-                    <p className="mt-2 text-xs">Total products: {count}</p>
-                  </div>
-                </ScrollArea>
-              </div>
-            </PopoverContent>
-          </Popover>
+          <ProductCountPopover componentType={componentType} count={count} />
         </div>
       );
     },
