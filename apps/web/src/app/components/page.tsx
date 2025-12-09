@@ -50,7 +50,7 @@ export default function ComponentsPage() {
   } | null>(null);
   const [threshold, setThreshold] = useState(0.6);
   const detailsSectionRef = useRef<HTMLDivElement>(null);
-  
+
   // Track query timing
   const [queryTimeMs, setQueryTimeMs] = useState<number | null>(null);
   const queryStartTime = useRef<number>(0);
@@ -178,7 +178,6 @@ export default function ComponentsPage() {
               <ComponentTypeTable
                 data={componentTypesWithSimilarityQuery.data ?? []}
                 isLoading={componentTypesWithSimilarityQuery.isFetching}
-                queryTimeMs={queryTimeMs}
                 onComponentTypeClick={(type) => {
                   setActiveType(type);
                   setSelectedComponent(null);
@@ -194,6 +193,7 @@ export default function ComponentsPage() {
                   }
                 }}
                 onThresholdChange={setThreshold}
+                queryTimeMs={queryTimeMs}
                 threshold={threshold}
               />
             )}

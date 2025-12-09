@@ -10,8 +10,8 @@ import {
   useReactTable,
   type VisibilityState,
 } from "@tanstack/react-table";
-import { Download, Loader2, CheckCircle2 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { CheckCircle2, Download, Loader2 } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -87,7 +87,7 @@ export function ComponentTypeTable({
         <div className="flex items-center justify-between gap-4">
           <div className="flex flex-1 items-center gap-4">
             <ThresholdSlider onChange={onThresholdChange} value={threshold} />
-            
+
             {/* Query status indicator */}
             <div className="flex items-center gap-2 text-sm">
               {isLoading ? (
@@ -99,13 +99,16 @@ export function ComponentTypeTable({
                 <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
                   <CheckCircle2 className="h-4 w-4" />
                   <span>
-                    Updated in {queryTimeMs < 1000 ? `${queryTimeMs}ms` : `${(queryTimeMs / 1000).toFixed(2)}s`}
+                    Updated in{" "}
+                    {queryTimeMs < 1000
+                      ? `${queryTimeMs}ms`
+                      : `${(queryTimeMs / 1000).toFixed(2)}s`}
                   </span>
                 </div>
               ) : null}
             </div>
           </div>
-          
+
           <div className="flex-shrink-0">
             <Button
               onClick={() => exportToCsv(data, threshold)}

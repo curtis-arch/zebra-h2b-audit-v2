@@ -1,7 +1,7 @@
 import type { ColumnDef, RowData } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { ProductCountPopover } from "./product-count-popover";
 import { ZebraMatchBadge } from "./zebra-match-badge";
 
@@ -99,9 +99,9 @@ export const columns: ColumnDef<ComponentTypeRow>[] = [
         <div className="flex flex-wrap gap-1">
           {values.map((value, index) => (
             <Badge
+              className={getBadgeColor(index)}
               key={`${value}-${index}`}
               variant="secondary"
-              className={getBadgeColor(index)}
             >
               {value}
             </Badge>
@@ -162,20 +162,20 @@ export const columns: ColumnDef<ComponentTypeRow>[] = [
       if (!positions || positions.length === 0) {
         return <div className="text-muted-foreground text-sm">-</div>;
       }
-      
+
       // If only 1 position, show as plain text
       if (positions.length === 1) {
         return <div className="text-sm">{positions[0]}</div>;
       }
-      
+
       // If more than 1, show as colored badges
       return (
         <div className="flex flex-wrap gap-1">
           {positions.map((position, index) => (
             <Badge
+              className={getBadgeColor(index)}
               key={`${position}-${index}`}
               variant="secondary"
-              className={getBadgeColor(index)}
             >
               {position}
             </Badge>
