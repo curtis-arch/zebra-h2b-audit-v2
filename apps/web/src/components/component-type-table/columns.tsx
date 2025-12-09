@@ -3,12 +3,14 @@ import { ArrowUpDown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ProductCountPopover } from "./product-count-popover";
+import { SimilarValuePopover } from "./similar-value-popover";
 import { ZebraMatchBadge } from "./zebra-match-badge";
 
-// Extend TanStack Table's TableMeta to include our custom callback
+// Extend TanStack Table's TableMeta to include our custom callback and allRows
 declare module "@tanstack/react-table" {
   interface TableMeta<TData extends RowData> {
     onComponentTypeClick?: (componentType: string) => void;
+    allRows?: TData[];
   }
 }
 
@@ -226,24 +228,26 @@ export const columns: ColumnDef<ComponentTypeRow>[] = [
     id: "htbSimilarMatches",
     accessorKey: "htbSimilarMatches",
     header: "HTB Distance",
-    cell: ({ row }) => {
+    cell: ({ row, table }) => {
       const matches = row.getValue("htbSimilarMatches") as Array<{
         value: string;
         matchPercentage: number;
       }>;
+      const allRows = table.options.meta?.allRows as ComponentTypeRow[];
+
       if (!matches || matches.length === 0) {
         return <span className="text-muted-foreground">-</span>;
       }
       return (
         <div className="flex flex-wrap gap-1">
           {matches.slice(0, 3).map((match, index) => (
-            <Badge
-              className={getBadgeColor(index)}
+            <SimilarValuePopover
               key={`${match.value}-${index}`}
-              variant="secondary"
-            >
-              {match.value} {match.matchPercentage}%
-            </Badge>
+              pillValue={match.value}
+              matchPercentage={match.matchPercentage}
+              allRows={allRows}
+              badgeClassName={getBadgeColor(index)}
+            />
           ))}
         </div>
       );

@@ -77,6 +77,7 @@ export function ComponentTypeTable({
     },
     meta: {
       onComponentTypeClick,
+      allRows: data,
     },
   });
 
