@@ -238,4 +238,155 @@ export const componentsRouter = router({
         })),
       };
     }),
+
+  /**
+   * Get products (config files) that use a specific component type
+   * Returns: list of distinct products with basic metadata
+   */
+  getProductsByComponentType: publicProcedure
+    .input(
+      z.object({
+        componentType: componentTypeSchema,
+        limit: z.number().min(1).max(100).default(50),
+      })
+    )
+    .query(async ({ input }) => {
+      const { componentType, limit } = input;
+
+      // Get distinct products that have this component type
+      const products = await db
+        .selectDistinct({
+          fileId: configFile.id,
+          baseModel: configFile.baseModel,
+          productCode: configFile.productCode,
+          specStyle: configFile.specStyle,
+        })
+        .from(configOptionComponent)
+        .innerJoin(
+          configOption,
+          eq(configOptionComponent.optionId, configOption.id)
+        )
+        .innerJoin(
+          configPosition,
+          eq(configOption.positionId, configPosition.id)
+        )
+        .innerJoin(configFile, eq(configPosition.fileId, configFile.id))
+        .where(eq(configOptionComponent.componentType, componentType))
+        .orderBy(configFile.baseModel)
+        .limit(limit);
+
+      // Get total count for the popover header
+      const totalResult = await db
+        .select({
+          total: sql<number>`COUNT(DISTINCT ${configFile.id})`,
+        })
+        .from(configOptionComponent)
+        .innerJoin(
+          configOption,
+          eq(configOptionComponent.optionId, configOption.id)
+        )
+        .innerJoin(
+          configPosition,
+          eq(configOption.positionId, configPosition.id)
+        )
+        .innerJoin(configFile, eq(configPosition.fileId, configFile.id))
+        .where(eq(configOptionComponent.componentType, componentType));
+
+      const totalCount = Number(totalResult[0]?.total ?? 0);
+
+      return {
+        products: products.map((p) => ({
+          fileId: p.fileId,
+          baseModel: p.baseModel,
+          productCode: p.productCode,
+          specStyle: p.specStyle,
+        })),
+        totalCount,
+      };
+    }),
+
+  /**
+   * Get component types with similarity grouping and Zebra attribute matching
+   * Returns: component types with similar values grouped together
+   */
+  getComponentTypesWithSimilarity: publicProcedure
+    .input(
+      z.object({
+        similarityThreshold: z.number().min(0).max(1).default(0.85),
+      })
+    )
+    .query(async ({ input }) => {
+      const { similarityThreshold } = input;
+
+      // Complex query using vector embeddings for similarity matching
+      const results = await db.execute(sql`
+        WITH component_stats AS (
+          -- Get base stats for each component_type
+          SELECT 
+            component_type,
+            COUNT(DISTINCT option_id) as product_count,
+            COUNT(DISTINCT sequence_position) as position_count,
+            array_agg(DISTINCT sequence_position::text ORDER BY sequence_position::text) as positions
+          FROM config_option_component
+          WHERE component_type IS NOT NULL
+          GROUP BY component_type
+        ),
+        similar_groups AS (
+          -- Use vector embeddings to find similar component types (excluding self)
+          SELECT 
+            ct.component_type,
+            COUNT(DISTINCT ec2.value) as similar_count,
+            array_agg(DISTINCT ec2.value ORDER BY ec2.value) as similar_values
+          FROM (SELECT DISTINCT component_type FROM config_option_component WHERE component_type IS NOT NULL) ct
+          LEFT JOIN embedding_cache ec ON ec.value = ct.component_type AND ec.source_column = 'attribute_label'
+          LEFT JOIN embedding_cache ec2 
+            ON ec2.value != ct.component_type  -- Exclude self-matches
+            AND ec2.source_column = 'attribute_label'
+            AND ec.embedding_small IS NOT NULL 
+            AND ec2.embedding_small IS NOT NULL
+            AND (1 - (ec.embedding_small <=> ec2.embedding_small)) >= ${similarityThreshold}
+          GROUP BY ct.component_type
+        ),
+        zebra_matches AS (
+          -- Check for Zebra attribute matches
+          SELECT 
+            c.component_type,
+            CASE
+              WHEN EXISTS (
+                SELECT 1 FROM zebra_provided_attributes z 
+                WHERE LOWER(z.attribute_name) = LOWER(c.component_type)
+              ) THEN 'yes'
+              WHEN EXISTS (
+                SELECT 1 FROM zebra_provided_attributes z 
+                WHERE similarity(LOWER(z.attribute_name), LOWER(c.component_type)) >= 0.7
+              ) THEN 'partial'
+              ELSE 'no'
+            END as zebra_match
+          FROM (SELECT DISTINCT component_type FROM config_option_component WHERE component_type IS NOT NULL) c
+        )
+        SELECT 
+          cs.component_type,
+          COALESCE(sg.similar_count, 0) as similar_count,
+          COALESCE(sg.similar_values, ARRAY[]::text[]) as similar_values,
+          cs.product_count,
+          cs.position_count,
+          cs.positions,
+          zm.zebra_match
+        FROM component_stats cs
+        LEFT JOIN similar_groups sg ON cs.component_type = sg.component_type
+        LEFT JOIN zebra_matches zm ON cs.component_type = zm.component_type
+        ORDER BY cs.component_type
+      `);
+
+      // Transform results to match output schema
+      return results.rows.map((row: any) => ({
+        componentType: row.component_type as string,
+        similarCount: Number(row.similar_count),
+        similarValues: (row.similar_values || []) as string[],
+        productCount: Number(row.product_count),
+        positionCount: Number(row.position_count),
+        positions: (row.positions || []) as string[],
+        zebraMatch: row.zebra_match as "yes" | "partial" | "no",
+      }));
+    }),
 });
