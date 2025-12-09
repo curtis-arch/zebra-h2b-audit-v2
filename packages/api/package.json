@@ -19,7 +19,7 @@
   "dependencies": {
     "@trpc/server": "catalog:",
     "@trpc/client": "catalog:",
-    "next": "catalog:",
+    "next": "15.5.7",
     "dotenv": "catalog:",
     "zod": "catalog:",
     "@zebra-h2b-audit-v2/auth": "workspace:*",
