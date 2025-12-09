@@ -410,7 +410,7 @@ export const componentsRouter = router({
             ON ec2.source_column = 'attribute_name_for_htb'
             AND ec.embedding_small IS NOT NULL
             AND ec2.embedding_small IS NOT NULL
-            AND (1 - (ec.embedding_small <=> ec2.embedding_small)) >= 0.3
+            AND (1 - (ec.embedding_small <=> ec2.embedding_small)) >= ${similarityThreshold}
           GROUP BY ct.component_type
         )
         SELECT
