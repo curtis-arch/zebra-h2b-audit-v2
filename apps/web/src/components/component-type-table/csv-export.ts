@@ -18,6 +18,8 @@ export function exportToCsv(data: ComponentTypeRow[], threshold?: number) {
     "# Positions",
     "Positions",
     "Zebra Match",
+    "HTB Match",
+    "HTB Similar Matches",
   ];
 
   // Convert data to CSV rows
@@ -30,6 +32,12 @@ export function exportToCsv(data: ComponentTypeRow[], threshold?: number) {
       row.positionCount.toString(),
       escapeCSV(row.positions.join(";")), // Use semicolon for array values
       row.zebraMatch,
+      row.htbMatch,
+      escapeCSV(
+        row.htbSimilarMatches
+          .map((m) => `${m.value} ${m.matchPercentage}%`)
+          .join("; ")
+      ),
     ].join(",");
   });
 
@@ -87,15 +95,30 @@ export function exportCsvReport(data: ComponentTypeRow[], threshold?: number) {
     ...data.map((row) => row.similarMatches?.length || 0)
   );
 
+  const maxHtbSimilar = Math.max(
+    0,
+    ...data.map((row) => row.htbSimilarMatches?.length || 0)
+  );
+
   // Build dynamic headers
-  const baseHeaders = ["Component Type", "Source Positions", "# Similar"];
+  const baseHeaders = [
+    "Component Type",
+    "Source Positions",
+    "# Similar",
+    "HTB Match",
+  ];
 
   const similarHeaders: string[] = [];
   for (let i = 1; i <= maxSimilar; i++) {
     similarHeaders.push(`Similar ${i}`, `Match ${i} %`, `Match ${i} Positions`);
   }
 
-  const headers = [...baseHeaders, ...similarHeaders];
+  const htbSimilarHeaders: string[] = [];
+  for (let i = 1; i <= maxHtbSimilar; i++) {
+    htbSimilarHeaders.push(`HTB Similar ${i}`, `HTB Similar ${i} %`);
+  }
+
+  const headers = [...baseHeaders, ...similarHeaders, ...htbSimilarHeaders];
 
   // Convert data to CSV rows
   const csvRows = data.map((row) => {
@@ -103,6 +126,7 @@ export function exportCsvReport(data: ComponentTypeRow[], threshold?: number) {
       escapeCSV(row.componentType),
       escapeCSV(row.positions?.join(";") || ""),
       row.similarCount.toString(),
+      row.htbMatch,
     ];
 
     const similarFields: string[] = [];
@@ -119,7 +143,20 @@ export function exportCsvReport(data: ComponentTypeRow[], threshold?: number) {
       }
     }
 
-    return [...baseFields, ...similarFields].join(",");
+    const htbSimilarFields: string[] = [];
+    for (let i = 0; i < maxHtbSimilar; i++) {
+      const match = row.htbSimilarMatches?.[i];
+      if (match) {
+        htbSimilarFields.push(
+          escapeCSV(match.value),
+          match.matchPercentage.toString()
+        );
+      } else {
+        htbSimilarFields.push("", "");
+      }
+    }
+
+    return [...baseFields, ...similarFields, ...htbSimilarFields].join(",");
   });
 
   // Combine everything
@@ -158,6 +195,8 @@ export function exportJsonReport(data: ComponentTypeRow[], threshold?: number) {
       similarMatches: row.similarMatches || [],
       productCount: row.productCount,
       zebraMatch: row.zebraMatch,
+      htbMatch: row.htbMatch,
+      htbSimilarMatches: row.htbSimilarMatches || [],
     })),
   };
 

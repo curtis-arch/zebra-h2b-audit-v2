@@ -380,6 +380,38 @@ export const componentsRouter = router({
               ELSE 'no'
             END as zebra_match
           FROM (SELECT DISTINCT component_type FROM config_option_component WHERE component_type IS NOT NULL) c
+        ),
+        htb_exact_matches AS (
+          -- Check for HTB attribute exact matches
+          SELECT
+            c.component_type,
+            CASE
+              WHEN EXISTS (
+                SELECT 1 FROM htb_attribute_mapping_zebra_provided h
+                WHERE LOWER(h.attribute_name_for_htb) = LOWER(c.component_type)
+              ) THEN 'yes'
+              ELSE 'no'
+            END as htb_match
+          FROM (SELECT DISTINCT component_type FROM config_option_component WHERE component_type IS NOT NULL) c
+        ),
+        htb_distance_matches AS (
+          -- Use vector embeddings to find similar HTB attributes
+          SELECT
+            ct.component_type,
+            jsonb_agg(
+              jsonb_build_object(
+                'value', ec2.value,
+                'matchPercentage', ROUND(((1 - (ec.embedding_small <=> ec2.embedding_small)) * 100)::numeric, 1)
+              ) ORDER BY (1 - (ec.embedding_small <=> ec2.embedding_small)) DESC
+            ) FILTER (WHERE ec2.value IS NOT NULL) as htb_similar_matches
+          FROM (SELECT DISTINCT component_type FROM config_option_component WHERE component_type IS NOT NULL) ct
+          LEFT JOIN embedding_cache ec ON ec.value = ct.component_type AND ec.source_column = 'attribute_label'
+          LEFT JOIN embedding_cache ec2
+            ON ec2.source_column = 'attribute_name_for_htb'
+            AND ec.embedding_small IS NOT NULL
+            AND ec2.embedding_small IS NOT NULL
+            AND (1 - (ec.embedding_small <=> ec2.embedding_small)) >= 0.3
+          GROUP BY ct.component_type
         )
         SELECT
           cs.component_type,
@@ -389,10 +421,14 @@ export const componentsRouter = router({
           cs.product_count,
           cs.position_count,
           cs.positions,
-          zm.zebra_match
+          zm.zebra_match,
+          hem.htb_match,
+          COALESCE(hdm.htb_similar_matches, '[]'::jsonb) as htb_similar_matches
         FROM component_stats cs
         LEFT JOIN similar_groups sg ON cs.component_type = sg.component_type
         LEFT JOIN zebra_matches zm ON cs.component_type = zm.component_type
+        LEFT JOIN htb_exact_matches hem ON cs.component_type = hem.component_type
+        LEFT JOIN htb_distance_matches hdm ON cs.component_type = hdm.component_type
         ORDER BY cs.component_type
       `);
 
@@ -406,6 +442,11 @@ export const componentsRouter = router({
         positionCount: Number(row.position_count),
         positions: (row.positions || []) as string[],
         zebraMatch: row.zebra_match as "yes" | "partial" | "no",
+        htbMatch: row.htb_match as "yes" | "no",
+        htbSimilarMatches: (row.htb_similar_matches || []) as Array<{
+          value: string;
+          matchPercentage: number;
+        }>,
       }));
     }),
 });

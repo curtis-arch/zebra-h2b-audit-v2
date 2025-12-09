@@ -27,6 +27,8 @@ export interface ComponentTypeRow {
   positionCount: number;
   positions: string[];
   zebraMatch: "yes" | "partial" | "no";
+  htbMatch: "yes" | "no";
+  htbSimilarMatches: Array<{ value: string; matchPercentage: number }>;
 }
 
 // Badge color rotation helper
@@ -198,6 +200,53 @@ export const columns: ColumnDef<ComponentTypeRow>[] = [
     cell: ({ row }) => {
       const match = row.getValue("zebraMatch") as "yes" | "partial" | "no";
       return <ZebraMatchBadge match={match} />;
+    },
+  },
+  {
+    id: "htbMatch",
+    accessorKey: "htbMatch",
+    header: "HTB Match",
+    cell: ({ row }) => {
+      const match = row.getValue("htbMatch") as "yes" | "no";
+      return (
+        <Badge
+          className={
+            match === "yes"
+              ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+              : "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200"
+          }
+          variant="secondary"
+        >
+          {match}
+        </Badge>
+      );
+    },
+  },
+  {
+    id: "htbSimilarMatches",
+    accessorKey: "htbSimilarMatches",
+    header: "HTB Distance",
+    cell: ({ row }) => {
+      const matches = row.getValue("htbSimilarMatches") as Array<{
+        value: string;
+        matchPercentage: number;
+      }>;
+      if (!matches || matches.length === 0) {
+        return <span className="text-muted-foreground">-</span>;
+      }
+      return (
+        <div className="flex flex-wrap gap-1">
+          {matches.slice(0, 3).map((match, index) => (
+            <Badge
+              className={getBadgeColor(index)}
+              key={`${match.value}-${index}`}
+              variant="secondary"
+            >
+              {match.value} {match.matchPercentage}%
+            </Badge>
+          ))}
+        </div>
+      );
     },
   },
 ];
