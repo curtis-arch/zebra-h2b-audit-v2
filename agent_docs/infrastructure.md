@@ -1,47 +1,27 @@
 # Infrastructure
 
-## Database (Neon)
-
-| Property | Value |
-|----------|-------|
-| Project Name | `zebra-data-parser-h2b` |
-| Project ID | `still-snow-60472291` |
-| Region | `aws-us-east-1` |
-| PostgreSQL Version | 17 |
-| Organization | CURTIS Digital Inc |
-
-### Tables (Zebra Domain)
-- `config_file` - Configuration matrix files
-- `config_position` - SKU character positions with attribute meanings
-- `config_option` - Valid codes/values for each position
-- `config_grammar_cohort` - Groups of files with identical SKU structure
-- `config_option_component` - Extracted semantic components from options
-- `config_file_blob` - Raw file content storage
-
-### Tables (Auth)
-- `user`, `session`, `account`, `verification` (Better-Auth managed)
+## Database
+- **Neon Project:** `still-snow-60472291`
+- **Region:** aws-us-east-1
+- **PostgreSQL:** v17
+- **Tables:** config_file, config_position, config_option, config_grammar_cohort, config_option_component, config_file_blob, user, session, account, verification, embedding_cache, htb_attribute_mapping_zebra_provided, zebra_provided_attributes, zebra_provided_attribute_values, zebra_provided_properties_catalog
 
 ## Deployment
-
-| Environment | URL |
-|-------------|-----|
-| Production | Vercel (check `.vercel/project.json` for project ID) |
-| Local Dev | `http://localhost:3001` |
+- **Production URL:** https://zebra-h2b-audit-v2-web.vercel.app/
+- **Project Name:** zebra-h2b-audit-v2-web
+- **Dev Server:** localhost:3001
 
 ## Environment Variables
+- DATABASE_URL
+- BETTER_AUTH_SECRET
+- BETTER_AUTH_URL
+- CORS_ORIGIN
+- OPENAI_API_KEY
 
-Required in `apps/web/.env`:
-- `DATABASE_URL` - Neon connection string
-- `BETTER_AUTH_SECRET` - Auth token secret
-- `BETTER_AUTH_URL` - App URL (localhost:3001 for dev)
-- `CORS_ORIGIN` - Allowed CORS origin
-
-## Key File Locations
-
-| What | Where |
-|------|-------|
-| tRPC Routers | `packages/api/src/routers/` |
-| Drizzle Schema | `packages/db/src/schema/` |
-| Auth Config | `packages/auth/src/index.ts` |
-| UI Components | `apps/web/src/components/` |
-| App Pages | `apps/web/src/app/` |
+## Key Paths
+- tRPC routers: `/packages/api/src/routers/`
+- Drizzle schema: `/packages/db/src/schema/`
+- Auth config: `/packages/auth/src/index.ts`
+- UI components: `/apps/web/src/components/`
+- Pages: `/apps/web/src/app/`
+- Scripts: `/scripts/`
