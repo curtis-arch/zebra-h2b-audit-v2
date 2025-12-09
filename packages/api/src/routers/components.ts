@@ -331,6 +331,15 @@ export const componentsRouter = router({
           WHERE component_type IS NOT NULL
           GROUP BY component_type
         ),
+        component_positions AS (
+          -- Pre-compute positions for all component types to avoid correlated subquery
+          SELECT
+            component_type,
+            array_agg(DISTINCT sequence_position::text ORDER BY sequence_position::text) as positions
+          FROM config_option_component
+          WHERE component_type IS NOT NULL
+          GROUP BY component_type
+        ),
         similar_groups AS (
           -- Use vector embeddings to find similar component types (excluding self)
           SELECT
@@ -340,13 +349,8 @@ export const componentsRouter = router({
             jsonb_agg(
               jsonb_build_object(
                 'value', ec2.value,
-                'matchPercentage', ROUND((1 - (ec.embedding_small <=> ec2.embedding_small)) * 100, 1),
-                'positions', COALESCE(
-                  (SELECT array_agg(DISTINCT sequence_position::text ORDER BY sequence_position::text)
-                   FROM config_option_component
-                   WHERE component_type = ec2.value),
-                  ARRAY[]::text[]
-                )
+                'matchPercentage', ROUND(((1 - (ec.embedding_small <=> ec2.embedding_small)) * 100)::numeric, 1),
+                'positions', COALESCE(cp.positions, ARRAY[]::text[])
               ) ORDER BY (1 - (ec.embedding_small <=> ec2.embedding_small)) DESC
             ) FILTER (WHERE ec2.value IS NOT NULL) as similar_matches
           FROM (SELECT DISTINCT component_type FROM config_option_component WHERE component_type IS NOT NULL) ct
@@ -357,6 +361,7 @@ export const componentsRouter = router({
             AND ec.embedding_small IS NOT NULL
             AND ec2.embedding_small IS NOT NULL
             AND (1 - (ec.embedding_small <=> ec2.embedding_small)) >= ${similarityThreshold}
+          LEFT JOIN component_positions cp ON cp.component_type = ec2.value
           GROUP BY ct.component_type
         ),
         zebra_matches AS (
