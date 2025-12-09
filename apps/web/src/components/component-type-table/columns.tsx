@@ -12,10 +12,17 @@ declare module "@tanstack/react-table" {
   }
 }
 
+export interface SimilarMatch {
+  value: string;
+  matchPercentage: number; // 0-100, rounded to 1 decimal
+  positions: string[];
+}
+
 export interface ComponentTypeRow {
   componentType: string;
   similarCount: number;
-  similarValues: string[];
+  similarValues: string[]; // KEEP for backward compatibility
+  similarMatches: SimilarMatch[]; // NEW for enhanced exports
   productCount: number;
   positionCount: number;
   positions: string[];

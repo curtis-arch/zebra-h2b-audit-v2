@@ -328,6 +328,69 @@ export const zebraProvidedAttributeValues = pgTable(
   })
 );
 
+/**
+ * HTB Attribute Mapping - Zebra-Provided Mapping Table
+ *
+ * Stores attribute mapping data from HTB Attribute Mapping XLSX.
+ * Contains 25 columns mapping attributes between PIM, AEM, and other systems.
+ * Key column is attribute_name_for_htb (Column A) used for embeddings and matching.
+ *
+ * This table provides cross-system attribute mappings for:
+ * - PIM attributes and validation rules
+ * - AEM Content Fragment attributes and labels
+ * - Data type mappings and length validations
+ * - Product categorization and content type assignments
+ */
+export const htbAttributeMappingZebraProvided = pgTable(
+  "htb_attribute_mapping_zebra_provided",
+  {
+    id: serial("id").primaryKey(),
+    attributeNameForHtb: text("attribute_name_for_htb").notNull(),
+    pimAttribute: text("pim_attribute"),
+    pimDataType: text("pim_data_type"),
+    lengthValidationInPim: text("length_validation_in_pim"),
+    otherValidationInPim: text("other_validation_in_pim"),
+    aemCfAttributeName: text("aem_cf_attribute_name"),
+    aemCfLabel: text("aem_cf_label"),
+    aemCfDataType: text("aem_cf_data_type"),
+    aemLengthValidation: text("aem_length_validation"),
+    note: text("note"),
+    originalSource: text("original_source"),
+    synonym: text("synonym"),
+    required: text("required"),
+    productCategory: text("product_category"),
+    luisaCheckPimAttributes: text("luisa_check_pim_attributes"),
+    michelleCheckPimAttributes: text("michelle_check_pim_attributes"),
+    length: text("length"),
+    attributeFamily: text("attribute_family"),
+    whereCfUsed: text("where_cf_used"),
+    whereDataUsed: text("where_data_used"),
+    notes: text("notes"),
+    cleanupAction: text("cleanup_action"),
+    reviewBy: text("review_by"),
+    contentType: text("content_type"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .defaultNow()
+      .notNull(),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
+      .defaultNow()
+      .notNull(),
+  },
+  (table) => ({
+    attributeNameIdx: uniqueIndex("htb_attribute_name_idx").on(
+      table.attributeNameForHtb
+    ),
+    idxPimAttribute: index("idx_htb_pim_attribute").on(table.pimAttribute),
+    idxAemCfAttribute: index("idx_htb_aem_cf_attribute").on(
+      table.aemCfAttributeName
+    ),
+    idxProductCategory: index("idx_htb_product_category").on(
+      table.productCategory
+    ),
+    idxContentType: index("idx_htb_content_type").on(table.contentType),
+  })
+);
+
 export type ZebraProvidedAttribute =
   typeof zebraProvidedAttributes.$inferSelect;
 export type NewZebraProvidedAttribute =
@@ -340,3 +403,7 @@ export type ZebraProvidedAttributeValue =
   typeof zebraProvidedAttributeValues.$inferSelect;
 export type NewZebraProvidedAttributeValue =
   typeof zebraProvidedAttributeValues.$inferInsert;
+export type HtbAttributeMappingZebraProvided =
+  typeof htbAttributeMappingZebraProvided.$inferSelect;
+export type NewHtbAttributeMappingZebraProvided =
+  typeof htbAttributeMappingZebraProvided.$inferInsert;

@@ -322,7 +322,7 @@ export const componentsRouter = router({
       const results = await db.execute(sql`
         WITH component_stats AS (
           -- Get base stats for each component_type
-          SELECT 
+          SELECT
             component_type,
             COUNT(DISTINCT option_id) as product_count,
             COUNT(DISTINCT sequence_position) as position_count,
@@ -333,41 +333,54 @@ export const componentsRouter = router({
         ),
         similar_groups AS (
           -- Use vector embeddings to find similar component types (excluding self)
-          SELECT 
+          SELECT
             ct.component_type,
             COUNT(DISTINCT ec2.value) as similar_count,
-            array_agg(DISTINCT ec2.value ORDER BY ec2.value) as similar_values
+            array_agg(DISTINCT ec2.value ORDER BY ec2.value) as similar_values,
+            jsonb_agg(
+              jsonb_build_object(
+                'value', ec2.value,
+                'matchPercentage', ROUND((1 - (ec.embedding_small <=> ec2.embedding_small)) * 100, 1),
+                'positions', COALESCE(
+                  (SELECT array_agg(DISTINCT sequence_position::text ORDER BY sequence_position::text)
+                   FROM config_option_component
+                   WHERE component_type = ec2.value),
+                  ARRAY[]::text[]
+                )
+              ) ORDER BY (1 - (ec.embedding_small <=> ec2.embedding_small)) DESC
+            ) FILTER (WHERE ec2.value IS NOT NULL) as similar_matches
           FROM (SELECT DISTINCT component_type FROM config_option_component WHERE component_type IS NOT NULL) ct
           LEFT JOIN embedding_cache ec ON ec.value = ct.component_type AND ec.source_column = 'attribute_label'
-          LEFT JOIN embedding_cache ec2 
+          LEFT JOIN embedding_cache ec2
             ON ec2.value != ct.component_type  -- Exclude self-matches
             AND ec2.source_column = 'attribute_label'
-            AND ec.embedding_small IS NOT NULL 
+            AND ec.embedding_small IS NOT NULL
             AND ec2.embedding_small IS NOT NULL
             AND (1 - (ec.embedding_small <=> ec2.embedding_small)) >= ${similarityThreshold}
           GROUP BY ct.component_type
         ),
         zebra_matches AS (
           -- Check for Zebra attribute matches
-          SELECT 
+          SELECT
             c.component_type,
             CASE
               WHEN EXISTS (
-                SELECT 1 FROM zebra_provided_attributes z 
+                SELECT 1 FROM zebra_provided_attributes z
                 WHERE LOWER(z.attribute_name) = LOWER(c.component_type)
               ) THEN 'yes'
               WHEN EXISTS (
-                SELECT 1 FROM zebra_provided_attributes z 
+                SELECT 1 FROM zebra_provided_attributes z
                 WHERE similarity(LOWER(z.attribute_name), LOWER(c.component_type)) >= 0.7
               ) THEN 'partial'
               ELSE 'no'
             END as zebra_match
           FROM (SELECT DISTINCT component_type FROM config_option_component WHERE component_type IS NOT NULL) c
         )
-        SELECT 
+        SELECT
           cs.component_type,
           COALESCE(sg.similar_count, 0) as similar_count,
           COALESCE(sg.similar_values, ARRAY[]::text[]) as similar_values,
+          COALESCE(sg.similar_matches, '[]'::jsonb) as similar_matches,
           cs.product_count,
           cs.position_count,
           cs.positions,
@@ -383,6 +396,7 @@ export const componentsRouter = router({
         componentType: row.component_type as string,
         similarCount: Number(row.similar_count),
         similarValues: (row.similar_values || []) as string[],
+        similarMatches: (row.similar_matches || []) as any[],
         productCount: Number(row.product_count),
         positionCount: Number(row.position_count),
         positions: (row.positions || []) as string[],

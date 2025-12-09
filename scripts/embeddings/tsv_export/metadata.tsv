@@ -1,0 +1,1277 @@
+value	source_table	source_column	usage_count
+Bluetooth 4.0	config_option	description	1
+Standard: 802.11, BT, NFC	config_option	description	1
+USB, USB Host, Modular Connectivity Slot, 802.11, Bluetooth USA/Canada	config_option	description	1
+Healthcare*	config_option	description	1
+Vibration Motor + TAA Compliant	config_option	description	1
+47 Key	config_option	description	1
+ZQ521	config_option	description	1
+Built-In Horn	config_option	description	1
+(600 dpi)	config_option	description	1
+SE4770 SR+ Front/Rear Camera	config_option	description	1
+India Only (RFID)	config_option	description	1
+USB-C 3.0- 2-Pin Rear I/O	config_option	description	1
+White with Green LED Aimer	config_option	description	1
+Reserved/Open/Future	config_option	description	1
+SAW Filter by Region	config_option	description	1
+Single Nano SIM + eSIM	config_option	description	1
+ROW_ APAC- LATAM- EMEA  (WWAN and WLAN)	config_option	description	1
+White Illumination with Green LED Aimer	config_option	description	1
+900 MHz Frequencies + Japan License Station	config_option	description	1
+Camera	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+ROW (EMEA, LATAM, APAC)	config_option	description	1
+TBD	config_option	description	1
+USB, USB Host, Ethernet, Serial, 802.11ac, Bluetooth 4 (Japan)	config_option	description	1
+SE965 1D Laser + Front/Rear Camera	config_option	description	1
+SE4720 Standard Range Imager (for select China SKUs)	config_option	description	1
+9Port	config_option	description	1
+CHINA	config_option	description	1
+Suffix	config_position	attribute_label	1
+USB, USB Host, Ethernet, Serial, 802.11ac, Bluetooth 4, RFID - UHF (Japan)	config_option	description	1
+2D Imager - SE4850 Extended Range Imager	config_option	description	1
+6GB / 64GB	config_option	description	1
+Group "C" (China)	config_option	description	1
+USB, USB Host, Ethernet, Serial, BTLE (Intended for Zebra Printer Setup Utility App)	config_option	description	1
+802.11a/b/g/n/d/h/i/k/r/ac + NFC+ BT 5.1 + 2x2 MuMIMO  - SD660 + Vibe	config_option	description	1
+EEA (European Economic Area) (WWAN and WLAN)	config_option	description	1
+Unites States Only	config_option	description	1
+Color Camera Portrait	config_option	description	1
+Zebra Industrial Printer (Tabletop)	config_option	description	1
+DLP + Checkpoint	config_option	description	1
+All-Touch TE Pre-load	config_position	attribute_label	1
+2D Imager - SE4750-DP DPM Imager	config_option	description	1
+Turkey	config_option	description	1
+3Port	config_option	description	1
+Brazil	config_option	description	1
+Sri Lanka	config_option	description	1
+Bluetooth and FIPS	config_option	description	1
+China (WWAN / WLAN)	config_option	description	1
+Standard Range with Toshiba Tec	config_option	description	1
+WT5400	config_option	description	1
+Linered	config_option	description	1
+Color 4" Diagonal WVGA (800 Vertical x 480 Horizontal) w/ PCAP	config_option	description	1
+FIPS/TAA	config_option	description	1
+Double Sided, USB-C	config_option	description	1
+Advanced label and receipt printer	config_option	description	1
+Wireless Radio	config_position	attribute_label	1
+Group "C" (China - ZR Model)	config_option	description	1
+Condensation Resistant	config_option	description	1
+White with Green LED Aimer and Magnetic Foot	config_option	description	1
+SE4710	config_option	description	1
+No back connector	config_option	description	1
+Wireless Radio Option	config_position	attribute_label	1
+Non Incendive Class 1 Div 2	config_option	description	1
+SE55 Advanced Range Imager	config_option	description	1
+ZD220	config_option	description	1
+ZT6206	config_option	description	1
+802.11 a/b/g/n/ac MU-MIMO	config_option	description	1
+Battery Options	config_position	attribute_label	1
+UHF RFID Antenna	config_position	attribute_label	1
+One Physical SIM	config_option	description	1
+Standard (Gray) Exterior	config_option	description	1
+Group "A" (ID/TW/KR/MY/AU/NZ/LK/IN)	config_option	description	1
+Wrist	config_option	description	1
+Healthcare FFC & Rcam, Rear Button, NFC, Warm Swap Connector	config_option	description	1
+Basic	config_option	description	1
+Group "L" (Argentina/Brazil/Chile/Columbia/CostaRica/ElSalvador/Guatemala/ Honduras/Mexico/Nicaragua/Peru/Uruguay/Venezuela)	config_option	description	1
+Bluetooth 4.0 (does not include RTC or IoT sensors)	config_option	description	1
+SE4710 SR MPI + No Front Cam/ No Rear Cam	config_option	description	1
+Single Interval with Calibration switch	config_option	description	1
+Group "E" (EU/EFTA/RU/IL/EG/TR/UA/KZ/ZA)	config_option	description	1
+4-inch	config_option	description	1
+ROW:  APAC, LATAM, EMEA Excluding EEA & NA (WWAN and WLAN)	config_option	description	1
+TC53 LAN	config_option	description	1
+Multi-Operator GSM/HSPA+ / LTE (China)	config_option	description	1
+None (Standard)	config_option	description	1
+China	config_option	description	1
+Integrated Cross-Polarized Linear Antenna	config_option	description	1
+ZT5104	config_option	description	1
+Shoulder Strap and Belt clip (EMEA & China only)	config_option	description	1
+Group A (Australia India Indonesia Korea Malaysia New Zealand Sri Lanka Taiwan)	config_option	description	1
+OEM	config_option	description	1
+Configuration Center	config_option	description	1
+Not Supported	config_option	description	1
+34 (FN Numeric)	config_option	description	1
+Reader to Tag Frequency	config_position	attribute_label	1
+Enterprise Hand Mount, No Soft Good	config_option	description	1
+MFi with iOS Certification	config_option	description	1
+WiFi�6E (802.11ax) & support:� a/b/g/n/ac/d/h/i/r/k/v/w/mc/ax�(2x2 MIMO)?, NFC antenna in display, BT 5.2	config_option	description	1
+NA Only	config_option	description	1
+Cross-Sell	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+2-Pin Connector Back I/O connector	config_option	description	1
+No Battery (US/EU/EFTA/AU/NZ only)	config_option	description	1
+Rotating head	config_option	description	1
+NFC	config_position	attribute_label	1
+4 GB RAM/32 GB FLASH�	config_option	description	1
+Sapphire Glass	config_option	description	1
+RoW - 5G (EMEA, APAC, LA)	config_option	description	1
+Weight Guard	config_option	description	1
+Wi-Fi 6 (802.11ax/Bluetooth 5.3, Japan	config_option	description	1
+USB-C 3.0- 8-Pin Rear I/O	config_option	description	1
+Thermal Transfer (74/300m Ribbon Sizes)	config_option	description	1
+Twilight Black with Midnight Black Trim	config_option	description	1
+Android GMS with Mx, or Android AOSP with Mx (select China-only configurations)	config_option	description	1
+Battery Swap	config_position	attribute_label	1
+865-868	config_option	description	1
+4GB/64GB w/SD	config_option	description	1
+Wireless charge Battery included	config_option	description	1
+Clear Media Side Door & 3-inch Media Supply Spindle	config_option	description	1
+Back of Hand, No Top Trigger	config_option	description	1
+Back I/O Connector	config_position	attribute_label	1
+TC22  - 802.11 Wifi 6 a/b/g/n/d/h/i/k/r/mc/ac/ax, 2 x 2 Mu-MIMO, BT 5.2, NFC	config_option	description	1
+Standard Range with Driver License Parsing	config_option	description	1
+Digital Scanner	config_option	description	1
+Product Friendly Name	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Internal Antenna + Software	config_position	attribute_label	1
+FFC - 5MP_ RFC - 16MP	config_option	description	1
+RFID Performance	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Screen Size	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+USB, USB Host, Ethernet, Serial, 802.11ac, Bluetooth 4 (USA/Canada)	config_option	description	1
+ToshibaTec	config_option	description	1
+GMS; MDNA Enterprise	config_option	description	1
+Group L (Mexico Argentina Brazil Chile Columbia Costa Rica El Salvador Guatemala Honduras Nicaragua Peru Uruguay Venezuela)	config_option	description	1
+Extended Battery RFC  FFC	config_option	description	1
+European and UK (EU, UK)	config_option	description	1
+Bluetooth 5.2	config_option	description	1
+Direct Thermal (No Ribbon)/Linered Platen, 1.375" Media core size	config_option	description	1
+6-inch	config_option	description	1
+Cutter	config_option	description	1
+RESERVED - CUSTOM PRODUCT	config_position	attribute_label	1
+Kit or no Kit (NA RFID only)	config_position	attribute_label	1
+Vibration Motor + MFi	config_option	description	1
+DL Parsing	config_option	description	1
+Sapphire Glass and Checkpoint EAS	config_option	description	1
+Warm Battery Swap	config_option	description	1
+Opto-isolated (3,2)	config_option	description	1
+Secure	config_option	description	1
+UHF Encoder, US & Canada	config_option	description	1
+Zebra Mobile	config_option	description	1
+ZD421	config_option	description	1
+Attribute	config_position	attribute_label	1
+Enterprise Hand Mount, Right Hand, Large	config_option	description	1
+CELULAR RADIOS	config_position	attribute_label	1
+865-868 MHz	config_option	description	1
+RS51X?-XXXXXX	config_option	description	1
+TAA Compliant + Non Incendive Class 1 Div 2	config_option	description	1
+UHF RFID- BT 5.3- & Wi-Fi 6_5G with CBRS	config_option	description	1
+Standard Range Drivers License Parsing	config_option	description	1
+7 Pin bottom connector	config_option	description	1
+USB, USB Host, Ethernet, Serial, 802.11ac, Bluetooth 4, RFID - UHF (All countries except USA, Canada and Japan)	config_option	description	1
+High capacity 5200mAH	config_option	description	1
+ZD230	config_option	description	1
+Wireless 802.11 A/C (ROW)	config_option	description	1
+Wireless 802.11 A/C (US)	config_option	description	1
+Rest of World (902-928 MHz excluding US)	config_option	description	1
+World Wide	config_option	description	1
+Linerless Tear with Label Taken Sensor (ZD621D ONLY)	config_option	description	1
+Standard Battery Included	config_option	description	1
+ROW: APAC_ LATAM_ EMEA	config_option	description	1
+Base Printer	config_position	attribute_label	1
+Color Touch (Standard)	config_option	description	1
+Recognition	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Basic Battery RFC FFC	config_option	description	1
+Keyboard	config_position	attribute_label	1
+Part 90	config_option	description	1
+AOSP Healthcare White MDNA Enterprise License	config_option	description	1
+13 MP Rear Camera, 5MP Front Camera	config_option	description	1
+Multi-Operator HSPA+/ LTE/5G (Data Only- Turkey- Indonesia) SIM + eSIM	config_option	description	1
+Cost Reduced Model: Remove NFC, Screen Protector	config_option	description	1
+EMEA 900MHz	config_option	description	1
+Nominal Read Range	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Multi-Operator HSPA+ / LTE (Americas + Canada) GPS	config_option	description	1
+Device Type	config_position	attribute_label	1
+Scan Attribute	config_position	attribute_label	1
+Certified parcel dimensioning - US only (NTEP certification)	config_option	description	1
+Featured Label	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+16 Element with CLAS	config_option	description	1
+HC25 Healthcare - 802.11 Wifi 6 a/b/g/n/d/h/i/k/r/mc/ac/ax, 2 x 2 Mu-MIMO, BT 5.2, NFC	config_option	description	1
+802.11a/b/g/n/d/h/i/k/r/ac + NFC+ BT 4.x + 2x2 MIMO (WLAN Only)	config_option	description	1
+5Port	config_option	description	1
+Traditional Chinese, Hanstc.ttf,  24x24 Mkai, English/Latin9, 24x24 VietNamese	config_option	description	1
+Scan Technology	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Rewind	config_option	description	1
+No Radio	config_option	description	1
+SE4770 Standard Range Imager	config_option	description	1
+Qualcomm SD660, 4 GB RAM	config_option	description	1
+Worldwide RoHS	config_option	description	1
+Carrier	config_position	attribute_label	1
+16 Element without CLAS	config_option	description	1
+Rest of World WLAN (excluding US, Canada, and Puerto Rico)	config_option	description	1
+Non-Plus model with no label sensor	config_option	description	1
+Short cable to wrist	config_option	description	1
+JAPAN HIGH POWER	config_option	description	1
+HC20  - 802.11 Wifi 6 a/b/g/n/d/h/i/k/r/mc/ac/ax, 2 x 2 Mu-MIMO, BT 5.2, NFC	config_option	description	1
+China Version	config_option	description	1
+Extended Capacity	config_option	description	1
+SE58 Extended Range Imager with Green Laser aimer	config_option	description	1
+Japan � Registration Station	config_option	description	1
+WAN Config	config_position	attribute_label	1
+HC50  - 802.11 Wifi 6E  a/b/g/n/d/h/i/k/r/mc/ac/ax, 2 x 2 Mu-MIMO, BT 5.2, NFC	config_option	description	1
+White with Green LED Aimer for Electronics Manufacturing	config_option	description	1
+Media Sensor	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Radio	config_position	attribute_label	1
+No Radio TAA Only	config_option	description	1
+MDNA Enterprise Included	config_option	description	1
+RESERVED-LIFECYCLE	config_position	attribute_label	1
+North America (Canada, USA, PR) (WWAN / WLAN)	config_option	description	1
+Standard 2-Cell	config_option	description	1
+Blank	config_position	attribute_label	2
+PTT-Restricted	config_option	description	1
+Double Sided, No USB, No Top Trigger	config_option	description	1
+ZT211	config_option	description	1
+SE4710 and Front & Rear Camera Enterprise	config_option	description	1
+English Smpl China	config_option	description	1
+Rest of World WLAN excluding North America	config_option	description	1
+Scan Engine	config_position	attribute_label	1
+Product model	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+10" (1024 x 768)	config_option	description	1
+Rollout to AEM	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Group "J" (Japan)	config_option	description	1
+Revision	config_position	attribute_label	1
+High Density with Drivers License Parsing	config_option	description	1
+Cold Storage	config_option	description	1
+Accelerometer, Gyro	config_option	description	1
+Sales Region	config_position	attribute_label	1
+Resistive	config_option	description	1
+Corded to WT41N0	config_option	description	1
+PoE/PoE+	config_option	description	1
+China (CN)	config_option	description	1
+US/Canada/PR	config_option	description	1
+USB, USB Host, Modular Connectivity Slot, BTLE (Intended for Zebra Printer Setup Utility App)	config_option	description	1
+Extended Battery RFC No FFC	config_option	description	1
+Wireless charging compatible wireless Battery sold separately. Standard Battery Included	config_option	description	1
+No Color Camera	config_option	description	1
+256MB/1GB	config_option	description	1
+EU 800MHz	config_option	description	1
+Ships with USB Cable Adapter	config_option	description	1
+Vibrate Motor and MFi with iOS Certification	config_option	description	1
+4GB RAM /32GB Flash	config_option	description	1
+4GB RAM/64GB FLASH	config_option	description	1
+Secure Element	config_position	attribute_label	1
+STANDARD	config_option	description	1
+Reserved	config_position	attribute_label	2
+Plus (with Sensors)	config_option	description	1
+Basic Battery RFC No FFC	config_option	description	1
+Russia	config_option	description	1
+Numeric Calculator	config_option	description	1
+Thermal Transfer Standard Ribbon	config_option	description	1
+Direct Thermal (No Ribbon)/Linerless Platen, 1.375" Media core size	config_option	description	1
+OS	config_position	attribute_label	1
+European Economic Area	config_option	description	1
+Character Set	config_position	attribute_label	1
+Display	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+2 GB RAM / 16GB Flash	config_option	description	1
+Israel	config_option	description	1
+802.11a/b/g/n/d/h/i/k/r/ac/w + BT 5.x + NFC	config_option	description	1
+Prem Model Warm Battery Swap, no Wireless Power Charging	config_option	description	1
+Japan Only	config_option	description	1
+port_RFID	config_position	attribute_label	1
+0oC Operation	config_option	description	1
+Direct Thermal/Linerless Platen, 0.75 Media core size	config_option	description	1
+Plus model with Media Width Sensor	config_option	description	1
+1 x USB-C	config_option	description	1
+Japan - Registration Station	config_option	description	1
+Single Sided	config_option	description	1
+USB, USB Host, Modular Connectivity Slot, 802.11ac, Bluetooth 4 (Japan)	config_option	description	1
+BLE Enabled Battery	config_option	description	1
+On Metal	config_option	description	1
+INTEGRATED ANTENNA	config_position	attribute_label	1
+Straight Shooter (Brick)	config_option	description	1
+Product Gallery	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+900Mhz RFID for US and Canada or US Only non-RFID	config_option	description	1
+North America, US, Canada, Puerto Rico	config_option	description	1
+Reader Only	config_option	description	1
+India Only	config_option	description	1
+SE4710 Standard Range with LED aimer	config_option	description	1
+Communication	config_position	attribute_label	1
+SE4770 + 16MP Rear Facing Camera + 8MP Front Facing Camera	config_option	description	1
+Standard (-30 - +50 C, Non-Condensing Environments)	config_option	description	1
+4GB/16GB + Sensors	config_option	description	1
+Standard HC Battery w/BLE Hot Swap Included	config_option	description	1
+Wall mount Antenna Assembly	config_option	description	1
+Ultra-Rugged	config_option	description	1
+Legacy POE	config_option	description	1
+Red/Amber LED Aimer	config_option	description	1
+600  (24 dot/mm)	config_option	description	1
+Battery only	config_option	description	1
+Extended capacity 7000mAh	config_option	description	1
+WAN	config_position	attribute_label	1
+Only used with Device Tracker bundled configurations	config_option	description	1
+900MHz Bands, excluding US, Canada, Puerto Rico	config_option	description	1
+SE4750 SR+ Front/Rear Camera	config_option	description	1
+Non-certified parcel dimensioning	config_option	description	1
+Temperature Rating	config_position	attribute_label	1
+Wi-Fi 802.11a/b/g/n/d/h/i/k/r/v/ac + BT 5.x  (no WAN)	config_option	description	1
+Group E (EU/EFTA/RU/IL/EG/TR/UA/KZ/ZA)	config_option	description	1
+USB_ USB Host_ Ethernet. all-wired-only connectivity	config_option	description	1
+HSUPA + CDMA EVDO RevA	config_option	description	1
+No Manual Trigger, Top Trigger	config_option	description	1
+ZT421	config_option	description	1
+4600	config_option	description	1
+Generation	config_position	attribute_label	1
+Color Camera; Sensormatic EAS	config_option	description	1
+US, Canada, Puerto Rico	config_option	description	1
+Direct Connect Cable	config_position	attribute_label	1
+Wi-Fi 6 (802.11ax/Bluetooth 5.3, ROW (Rest of World)	config_option	description	1
+SE4770 + 13MP Rear Facing Camera + 5MP Front Facing Camera	config_option	description	1
+8 Inch WXGA Display	config_option	description	1
+Lanyard	config_option	description	1
+Android with Mx	config_option	description	1
+3300 Series	config_option	description	1
+OS and Plastics	config_position	attribute_label	1
+European Economic Union	config_option	description	1
+2.2ghz	config_option	description	1
+Standard Memory (64MB SDRAM)	config_option	description	1
+India Version	config_option	description	1
+Worldwide	config_option	description	1
+UHF Encoder, ROW (Rest of World)	config_option	description	1
+Canada/Mexico	config_option	description	1
+Horizontal Glass	config_position	attribute_label	1
+India and Korea	config_option	description	1
+QWERTY	config_option	description	1
+Premium Rugged label printer	config_option	description	1
+Clear Bi-fold Media Side Door & 3-inch Media Supply Spindle	config_option	description	1
+Extended Battery & Shoulder Strap (EMEA only)	config_option	description	1
+Performance	config_position	attribute_label	1
+RFID ROW	config_option	description	1
+EMEA 800MHz	config_option	description	1
+WWAN ROW (Includes CN)	config_option	description	1
+Circular Polarized Antenna	config_option	description	1
+Category/Subcategory	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+BUILT-IN OUTPUT DEVICES	config_position	attribute_label	1
+No. Antenna	config_position	attribute_label	1
+Bluetooth 4.x	config_option	description	1
+Option	config_position	attribute_label	1
+Indonesia (Reqd for WAN Only)	config_option	description	1
+Plus model with no label sensor	config_option	description	1
+2 Ports	config_option	description	1
+Mobile Dimensioning	config_position	attribute_label	1
+Tunisia	config_option	description	1
+Control Panel	config_position	attribute_label	1
+North America ONLY	config_option	description	1
+Andriod GMS with eSIM Support	config_option	description	1
+AC	config_option	description	1
+Enterprise Hand Mount, Right Hand, Medium	config_option	description	1
+Base (No Sensors/No Camera)	config_option	description	1
+User Interface	config_position	attribute_label	1
+Group B (Hong Kong Philippines Singapore Thailand Vietnam)	config_option	description	1
+Linux	config_option	description	1
+LTE/HSPA+UMTS/GSM, DSDS, Carrier Aggregation   SD660	config_option	description	1
+Antenna Ports	config_position	attribute_label	1
+Extended Capacity 7000mAh, with Integrated Secondary BLE Beacon	config_option	description	1
+Thumbnail Image	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Plus model with label sensor	config_option	description	1
+Thin Wrist Mount	config_option	description	1
+Custom	config_position	attribute_label	2
+Multi-Operator GSM/HSPA+ / LTE (China) GPS	config_option	description	1
+China/Japan	config_option	description	1
+Standard/Custom	config_position	attribute_label	1
+802.11 a/b/g/n/ac/d/h/i/r/k/v/w/mc + NFC + BT 5.x + 2x2 MU-MIMO (WLAN Only)	config_option	description	1
+Direct Thermal (No Ribbon)/Linerless Platen, 0.75" Media core size	config_option	description	1
+Group "E" (EU/EFTA,Bahrain/Belarus/Croatia/Egypt/Israel/Jordan/Kazakhstan/Kuwait/Lebanon/Morocco/Oman/Qatar/Russia/Saudi Arabia/S.Africa/Serbia/ Turkey/UAE/Ukraine/Yemen)	config_option	description	1
+SE4750SR + 5MP front/13MP Rear Cam Non-ARCore SD660	config_option	description	1
+Multi-Operator, GSM/HSPA+ / LTE, (China)	config_option	description	1
+English, Traditional Chinese (NotoMono scal, 16x16), Thai (Angsana scal), & Vietnamese (SourceCodePro scal, 16x16 Utah)	config_option	description	1
+Direct Thermal (No Ribbon)	config_option	description	1
+38 Key Function Numeric	config_option	description	1
+ZD510-HC Wristband Cartridge Printer	config_option	description	1
+SIM Slot	config_position	attribute_label	1
+Prem Battery, Warm Battery Swap	config_option	description	1
+Enterprise Hand Mount, Left Hand, Large	config_option	description	1
+No Camera	config_option	description	1
+Rev 1A	config_option	description	1
+OS Language & Custom	config_position	attribute_label	1
+None (LAN only)	config_option	description	1
+TAA Compliant	config_option	description	1
+Encoding	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+SE4770 Standard Range Imager with Red Laser aimer	config_option	description	1
+4GB/32GB + Sensors	config_option	description	1
+Gain	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Standard with 256M/512M	config_option	description	1
+Thermal Transfer/Direct Thermal technology	config_option	description	1
+SE4100 1D/2D Imager - Green LED Aimer Dot on White Illumination	config_option	description	1
+802.11 a/b/g/n/ac/d/h/l/k/r/v/w/mc	config_option	description	1
+Android 10.x AOSP with MX	config_option	description	1
+Standard Range	config_option	description	1
+Wireless (802.11ac), ROW (Rest of World)	config_option	description	1
+Standard Microphone	config_option	description	1
+800mAh	config_option	description	1
+Finger scan	config_option	description	1
+No scanner	config_option	description	1
+Multi-Operator,GSM/ HSPA+ / LTE, (ROW: EMEA, LATAM + APAC)	config_option	description	1
+China, No NFC	config_option	description	1
+Android AOSP (Dedicated China SKUs Only)	config_option	description	1
+SE4850 Extended Range Imager	config_option	description	1
+802.11 a/b/g/n/ac/ax/d/h/i/r/k/v/w/mc + NFC + BT 5.x + 2x2 MU-MIMO (Wi-Fi 6)	config_option	description	1
+Single Sided, No USB, Top Trigger	config_option	description	1
+WiFi6_ BT_ NFC_No WAN	config_option	description	1
+FIPS TAA Certified/ Disabled BT/ Wi-Fi/ Microphone & Camera	config_option	description	1
+Base Model	config_position	attribute_label	1
+Extended Battery 5000mAh	config_option	description	1
+4 GB RAM / 32 GB Flash	config_option	description	1
+European Economic Area, RF800	config_option	description	1
+Linerless platen (0.75 media core)	config_option	description	1
+Product Classification	config_position	attribute_label	1
+6 GB RAM/64 GB FLASH	config_option	description	1
+County Code/Custom	config_position	attribute_label	1
+CUSTOM SMARTLENS	config_option	description	1
+Single Sided, No USB, No Top Trigger	config_option	description	1
+Connectivity	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+WAN + WiFi	config_option	description	1
+None (LAN BASE SKU only)	config_option	description	1
+No PTT for Pakistan and Qatar	config_option	description	1
+8GB/128GB w/SD	config_option	description	1
+ZT111	config_option	description	1
+22XX Series	config_option	description	1
+802.11a/b/g/n/d/h/i/k/r/ac + BT 5.x no NFC	config_option	description	1
+Polarization	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Features	config_position	attribute_label	1
+4 GB RAM/64 GB FLASH	config_option	description	1
+5G WITH CBRS	config_option	description	1
+Cordless/Radio Option	config_position	attribute_label	1
+India/South Korea	config_option	description	1
+2 GB RAM/16 GB FLASH	config_option	description	1
+T-mobile	config_option	description	1
+Ukraine	config_option	description	1
+I/O Suffix	config_position	attribute_label	1
+2400mAh	config_option	description	1
+6GB / 128GB	config_option	description	1
+1 NanoSIM	config_option	description	1
+SE4710 1D/2D Imager - Red LED Aimer Dot on Amber Illumination	config_option	description	1
+English, Traditional Chinese (NotoMono scalable, bitmap: 24x24, 16x16) & Korean (NotoMono scalable)	config_option	description	1
+FIPS TAA Certified	config_option	description	1
+8 GB RAM / 128 GB Flash	config_option	description	1
+Israel (IL)	config_option	description	1
+SE4770 + 5MP Front/13MP Rear Cam   SD660	config_option	description	1
+Healthcare + Locking Media Cabinet (ZD621D ONLY)*	config_option	description	1
+Long Range, Linear Polarized Yagi Antenna	config_option	description	1
+Extended Battery	config_option	description	1
+Healthcare FFC & R Cam _ no headset jack_ Red Rear Button_ NFC_ Hotswap	config_option	description	1
+Alpine White	config_option	description	1
+Hanging Transition Reader	config_option	description	1
+TC53e/TC58e - QC4490 chipset - WiFi�6E (802.11ax) (2x2 MIMO)?, NFC antenna under display, BT 5.3	config_option	description	1
+Data Only	config_option	description	1
+Android GMS	config_option	description	1
+United States_ Canada_ Puerto Rico	config_option	description	1
+BLE Battery included	config_option	description	1
+Red Illumination/Amber LED Aimer	config_option	description	1
+EU/UK/Australia/Japan	config_option	description	1
+SPoC	config_option	description	1
+Multi-Operator HSPA+/ LTE/5G (Data Only-Turkey-Indonesia) SIM + eSIM	config_option	description	1
+Multi-Operator HSPA+/ LTE/5G_5G CBRS (US + Canada) SIM + eSIM	config_option	description	1
+Model	config_position	attribute_label	1
+Toshiba TEC	config_option	description	1
+Country or Custom	config_position	attribute_label	1
+Destination Region	config_position	attribute_label	1
+Premium, FHD Display, Rear I/O connector	config_option	description	1
+Local Radios (802.11xxx) NFC, BT	config_position	attribute_label	1
+Color Camera Landscape with CV compute	config_option	description	1
+34 Key Function Numeric	config_option	description	1
+13 MP Color Camera	config_option	description	1
+Group L (AR/BR/HN/SV/GT/CR/NI/CL/MX)	config_option	description	1
+SE4100	config_option	description	1
+English/Latin9 Arabic Cyrillic & Hebrew	config_option	description	1
+Scan Type	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+SEO Title (AEM only)	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+USB	config_option	description	1
+Operator Generic	config_option	description	1
+Color Camera	config_option	description	1
+Made In India	config_option	description	1
+GMS	config_option	description	1
+203  (8 dot/mm)	config_option	description	1
+Direct Thermal	config_option	description	1
+SE4770 + Camera (N/A for Gun configurations)	config_option	description	1
+Connection	config_position	attribute_label	1
+USB, USB Host, Ethernet, Serial, BTLE (Intended for Zebra Printer Setup Utility App), RFID - UHF (USA/Canada)	config_option	description	1
+SE4850	config_option	description	1
+Certified parcel dimensioning - Canada only (Measurement Canada certification)	config_option	description	1
+BLANK COLUMN	config_position	attribute_label	1
+Integrated Standard Range Circular Polarized Antenna	config_option	description	1
+USB, USB Host, Modular Connectivity Slot, 802.11ac, Bluetooth 4 (All countries except USA, Canada and Japan)	config_option	description	1
+Japan	config_option	description	1
+8300 Series	config_option	description	1
+Warranty URL	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+North America	config_option	description	1
+Font	config_position	attribute_label	1
+SE55 Auto Range Imager with Green Laser aimer	config_option	description	1
+White Exterior	config_option	description	1
+Back of hand scan	config_option	description	1
+Standard Battery (480mAh)	config_option	description	1
+Region/Suffix	config_position	attribute_label	1
+2 Nano SIM (QC8x56) and SIM Lock	config_option	description	1
+Group D (India)	config_option	description	1
+2GB RAM/ 16GB FLASH MLC	config_option	description	1
+RFID Capability	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Bluetooth 4.2	config_option	description	1
+Media Type	config_position	attribute_label	1
+Sustainability Features	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Ethernet	config_position	attribute_label	1
+North America, RF900	config_option	description	1
+SE58 Extended Range Imager	config_option	description	1
+Opto-isolated (2-3)	config_option	description	1
+SE58 + 16MP Rear Facing Camera + 8MP Front Facing Camera	config_option	description	1
+POE	config_option	description	1
+8" (1280 x 720)	config_option	description	1
+1.8ghz	config_option	description	1
+Multi-Operator HSPA+/ LTE/5G_ 5G CBRS (US + Canada) SIM + eSIM	config_option	description	1
+Certified parcel dimensioning - Australia only (NMI certification)	config_option	description	1
+Touch	config_option	description	1
+4 Ports	config_option	description	1
+Premium Full HD Display	config_option	description	1
+Liner Takeup with Peel (4" model only)	config_option	description	1
+Zebra Mobile (China Only)	config_option	description	1
+Rogers	config_option	description	1
+No Manual Trigger, No Top Trigger	config_option	description	1
+Taiwan (TW)	config_option	description	1
+SE4500 2D imager	config_option	description	1
+Direct Thermal/Linered Platen, 1.375" Media core size	config_option	description	1
+Bluetooth 4.x & BTLE	config_option	description	1
+Color	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+SE4850 Extended Range + Front/Rear Camera	config_option	description	1
+1 NanoSIM + 1 eSIM	config_option	description	1
+WLAN (Wi-Fi 6E) + WWAN (5G)	config_option	description	1
+Full Rewind with Peel	config_option	description	1
+802.11_ BT_ NFC	config_option	description	1
+Turkey Version	config_option	description	1
+Healthcare White with Light Blue Trim	config_option	description	1
+FFC - 8MP_ RFC - 16MP	config_option	description	1
+SE4770	config_option	description	1
+Fastest Read Rate	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Thailand	config_option	description	1
+Hex-Core; 4.7" display w/capacitive touch panel, 1 micro SD, Ecompass, Handstrap.	config_option	description	1
+US Only	config_option	description	1
+Gen 1	config_option	description	1
+Accelerometer, Gyro, Vibration Feedback	config_option	description	1
+United States/Puerto Rico	config_option	description	1
+Battery & AC	config_option	description	1
+Media Width Sensor	config_option	description	1
+RFID Freq (ROW RFID only)	config_position	attribute_label	1
+Russia (WLAN / WWAN)	config_option	description	1
+Country	config_position	attribute_label	1
+Serial, Ethernet, USB	config_option	description	1
+Asia Pacific Only	config_option	description	1
+UHF Encoder, Japan	config_option	description	1
+Specification URLs	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Premium, rear Button, Camera, rugged I/O, NFC, Warm Swap	config_option	description	1
+Battery Type	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Channel SKU	config_option	description	1
+Wearable Solution	config_option	description	1
+Japanese (Hansj.ttf, Bitmapped 24x24,16x16)	config_option	description	1
+7000mAh	config_option	description	1
+RFID with 256M/512M	config_option	description	1
+Scanner	config_position	attribute_label	1
+India Only Battery	config_option	description	1
+Specialization	config_position	attribute_label	1
+Midnight Black + Industrial Green	config_option	description	1
+Support URLs	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Double Sided, USB-C, No Top Trigger	config_option	description	1
+India & Korea Only	config_option	description	1
+53 Key 3270 Emulation	config_option	description	1
+APAC Power Cord Bundle (EU/UK)	config_option	description	1
+Positioning	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+MC3300 Premium Plus + UHF RFID	config_option	description	1
+Dual Interval with Calibration switch	config_option	description	1
+Base Technology	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Color Camera Landscape	config_option	description	1
+Memory (RAM/Flash/SD slot)	config_position	attribute_label	1
+Standard White	config_option	description	1
+Radios	config_position	attribute_label	1
+SE55 1D/2D Advanced Range Imager - Green Laser Aimer on White Illumination	config_option	description	1
+Prefix	config_position	attribute_label	1
+None (LAN ONLY)	config_option	description	1
+Sensors	config_position	attribute_label	1
+Wi-Fi 6E 802.a/b/g/n/ac/d/h/i/r/k/v/w/mc/ax BT 5.3 NFC	config_option	description	1
+Hardware Options	config_position	attribute_label	1
+WWAN NA	config_option	description	1
+Android GMS; MDNA Professional	config_option	description	1
+External Keypad and Touch Screen	config_option	description	1
+Wi-Fi 6 (802.11ax/Bluetooth 5.3), Japan	config_option	description	1
+Android (version not stated or tracked)	config_option	description	1
+Wan Radio	config_position	attribute_label	1
+-30oC Operation	config_option	description	1
+1GB/8GB	config_option	description	1
+Product Applications	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+No Keyboard	config_option	description	1
+Group E (EU/EFTA Bahrain Belarus Egypt Israel Jordan Kazakhstan Kuwait Lebanon Oman Qatar Russia Saudi Arabia Serbia South Africa Turkey United Arab Emirates Ukraine Yemen)	config_option	description	1
+Hardware	config_position	attribute_label	1
+GMS; MDNA Professional	config_option	description	1
+Form Factor	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Group "A" (ID/TW/KR/MY/AU/NZ/LK)	config_option	description	1
+Advanced Features	config_position	attribute_label	1
+Android Strongbox supported - Secure Element	config_option	description	1
+Antenna	config_position	attribute_label	1
+RadioOption	config_position	attribute_label	1
+Print Speed	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+VERSION	config_position	attribute_label	1
+Standard Range, Horizontal	config_option	description	1
+Thermal Transfer/Direct Thermal	config_option	description	1
+Keypad + Touch Screen	config_option	description	1
+Illumination	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Standard (No Option)	config_option	description	1
+NA, LA, EMEA Only (Rest of World)	config_option	description	1
+RS232 Serial, Parallel, USB, & Internal PrintServer	config_option	description	1
+USB, USB Host, Ethernet, BTLE (Intended for Zebra Printer Setup Utility App)	config_option	description	1
+Additional Features	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Syndicate to AEM (PIM only)	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+GPIO	config_position	attribute_label	1
+Multi-Operator HSPA+ / LTE (US + Canada)	config_option	description	1
+SE 4750SR + 5.0MP Front/13MP Rear Cam   SD660	config_option	description	1
+US, CA, MX, BR, JP, TW Power Supply (100 - 240VAC) 50-14000-253R	config_option	description	1
+opto-isolated (5,5)	config_option	description	1
+Wi-Fi 6 (802.11ax/Bluetooth 5.3), ROW (Rest of World)	config_option	description	1
+Direct Thermal/Linered Platen 0.75 Media core Size	config_option	description	1
+SE4100 Scanner + Camera	config_option	description	1
+8Port	config_option	description	1
+Scale Platter	config_option	description	1
+Indonesia (for WWAN SKUs Only)	config_option	description	1
+Standard  Battery w/BLE	config_option	description	1
+800MHz RFID (EU/UK and other countries supporting 800MHz RFID) or European Economic Area non-RFID	config_option	description	1
+Tier Option	config_position	attribute_label	1
+RADIO CONFIG	config_position	attribute_label	1
+European Union	config_option	description	1
+Asia Bundle (EU, UK, AU, JP)	config_option	description	1
+Power Cords	config_position	attribute_label	1
+TC73 LAN	config_option	description	1
+Windows Mobile 6.x Professional	config_option	description	1
+Extended Battery, RFC, No FFC	config_option	description	1
+Weight	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Antenna Assembly	config_position	attribute_label	1
+OperatingSystem	config_position	attribute_label	1
+Standard Tear	config_option	description	1
+WT6400	config_option	description	1
+Freezer	config_option	description	1
+Encryption	config_position	attribute_label	1
+SE55	config_option	description	1
+SE4850 Extended Range Imager + Camera  (not applicable for Gun configurations)	config_option	description	1
+Echo	config_option	description	1
+Cordless/Radio	config_position	attribute_label	1
+Extended Battery, RFC,  FFC	config_option	description	1
+Brick Straight Shooter	config_option	description	1
+Standard (Ethernet, Serial, USB, USB Host, Bluetooth LE)	config_option	description	1
+English Japanese (NotoMono scalable Square Gothic JMT scalable/16x16 and legacy 24x24)	config_option	description	1
+Diamond-like Glass and Checkpoint EAS	config_option	description	1
+Japanese (Hansj.ttf) Bitmapped 24x24,16x16)	config_option	description	1
+2 Inch	config_option	description	1
+Sensormatic EAS	config_option	description	1
+Accelerometer, Gyro, Vibration Feedback, Magnetometer, Proximity Sensor	config_option	description	1
+Radio Config	config_position	attribute_label	1
+Telstra	config_option	description	1
+USB, 802.11ac WiFi, Bluetooth 4.0 ROW (Rest of the World)	config_option	description	1
+Multi Operator (AT&T/Verizon/T-Mobile)	config_option	description	1
+1D Laser - SE965 Standard Range Laser	config_option	description	1
+Bluetooth Beacon- 4150 mAh- with NFC	config_option	description	1
+Additional Software	config_position	attribute_label	1
+Local Radios	config_position	attribute_label	1
+No Scale	config_option	description	1
+5,000 mAh battery	config_option	description	1
+Config	config_position	attribute_label	1
+China + Japan 5G / LTE GPS Data Only + Wi-Fi 6E: 802.a/b/g/n/ac/d/h/i/r/k/v/w/mc/ax BT 5.3 NFC	config_option	description	1
+UHF RFID- BT 5.3	config_option	description	1
+United States, Canada, Puerto Rico	config_option	description	1
+UHF RFID, BT 5.3, & Wi-Fi 6	config_option	description	1
+Serial, Ethernet, USB, USB Host, Bluetooth 4.1	config_option	description	1
+Alpha and Numeric Primary Wide	config_option	description	1
+SE4720	config_option	description	1
+RoW	config_option	description	1
+Nova White	config_option	description	1
+No Trigger	config_option	description	1
+3GB/32GB	config_option	description	1
+802.11	config_option	description	1
+ZD621	config_option	description	1
+Power Supply	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Bluetooth	config_option	description	1
+Thermal Transfer (Ribbon Cartridge)	config_option	description	1
+Non-Plus model with Media Width Sensor	config_option	description	1
+Warm swap	config_option	description	1
+Dash	config_position	attribute_label	1
+2 Antenna	config_option	description	1
+Country Code	config_position	attribute_label	1
+EMEA only	config_option	description	1
+US and Canada Only   SD660	config_option	description	1
+Diamond-like Glass and Sensormatic EAS	config_option	description	1
+Double Sided, Vibrator, Top Trigger	config_option	description	1
+Radio Option	config_position	attribute_label	1
+2Port	config_option	description	1
+India (IN)	config_option	description	1
+WiFi�6E (802.11ax) & support:� a/b/g/n/ac/d/h/i/r/k/v/w/mc/ax�(2x2 MIMO) NFC antenna in display, BT 5.2	config_option	description	1
+Android GMS; MDNA Enterprise	config_option	description	1
+Medium	config_option	description	1
+RFID 800 MHz	config_option	description	1
+English Smpl Ch (Hans scalable and bitmap 24x24 16x16)	config_option	description	1
+Connector	config_position	attribute_label	1
+Android AOSP China Only	config_option	description	1
+No Scanner	config_option	description	1
+Japan & South Korea (WWAN)	config_option	description	1
+Label Sensor	config_position	attribute_label	1
+Global language support	config_option	description	1
+Hex-Core; 4.7'' display w/capacitive touch panel, 1 micro SD, Ecompass, Handstrap. 2.45 GHZ processor	config_option	description	1
+Digimarc	config_option	description	1
+ImagePerfect	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Radio Platform	config_position	attribute_label	1
+Extreme Density	config_option	description	1
+Local Radios/Family	config_position	attribute_label	1
+Standard range	config_option	description	1
+RFID or Std	config_position	attribute_label	1
+Group "B" (SG/TH/PH/HK/VN)	config_option	description	1
+SE965 1D Standard Range Laser	config_option	description	1
+Dimensions	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+EU	config_option	description	1
+English/Latin9, Arabic, Crillic & Hebrew	config_option	description	1
+Simple Chinese (Hans CN,  bitmapped: 24x24 Msung & 16x16 SimSun)	config_option	description	1
+EU dual band	config_option	description	1
+Number Designation	config_position	attribute_label	1
+Multi Interface	config_option	description	1
+Ships with Battery	config_option	description	1
+8100	config_option	description	1
+India (WWAN / WLAN)	config_option	description	1
+4 Inch	config_option	description	1
+Standard Display	config_option	description	1
+Price	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Ivanti Velocity	config_option	description	1
+Zebra NGE Radio	config_option	description	1
+European eco. Area	config_option	description	1
+ROW: EMEA, Canada, LATAM and APAC	config_option	description	1
+Basic Battery, RFC, FFC	config_option	description	1
+SE4720 White & Green HC only Imager  Front and Rear Camera	config_option	description	1
+Country Code/Custom	config_position	attribute_label	1
+Capacitive	config_option	description	1
+Full HD Display, 7 Pin connector, BLE Beacon, Rear IO for Trigger	config_option	description	1
+Tumble Specifications	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Enterprise Hand Mount, Left Hand, Medium	config_option	description	1
+Additional Feature	config_position	attribute_label	1
+Premium label printer	config_option	description	1
+SE4710 SR MPI , Front&Rear Camera (Healthcare)	config_option	description	1
+HF RFID Radio with NFC	config_option	description	1
+Cash Register White	config_option	description	1
+SE4710 Front Camera & Rear Sunny Camera, no ARCore support	config_option	description	1
+LAN Only	config_option	description	1
+RFID	config_position	attribute_label	2
+Wi-Fi 6 (802.11ax/Bluetooth 5.3, US & Canada	config_option	description	1
+Extended Capacity  Battery included	config_option	description	1
+Dual radio / 802.11AC + BT 4.1 (Includes IoT sensors)	config_option	description	1
+Linear Polarized Yagi Antenna	config_option	description	1
+No ATTE Pre-load	config_option	description	1
+TC53e-RFID Integrated RFID - QC4490 chipset - WiFi�6E (802.11ax) (2x2 MIMO)?, NFC antenna under display, BT 5.3	config_option	description	1
+CPU Suffix	config_position	attribute_label	1
+SE4850 Extended Range	config_option	description	1
+Rusia	config_option	description	1
+3 GB RAM/32 GB FLASH	config_option	description	1
+Cordless/Radio Options	config_position	attribute_label	1
+US	config_option	description	1
+North America Only	config_option	description	1
+India Only Standard 2 Cell Battery_ Belt Clip	config_option	description	1
+Images Per Roll	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+USB, USB Host, Modular Connectivity Slot, 802.11, Bluetooth ROW (Rest of the World)	config_option	description	1
+Red with Amber LED Aimer	config_option	description	1
+SE4720 Red & Amber imager Front & Rear Camera	config_option	description	1
+13MP Side Camera only	config_option	description	1
+Back of hand RFID	config_option	description	1
+In the box	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Direct Thermal (No Ribbon)/Linered Platen, 0.75" Media core size	config_option	description	1
+Standard Range, Vertical	config_option	description	1
+None/Batch	config_option	description	1
+WLAN	config_position	attribute_label	2
+European Power Supply (220VAC): KT-14001-002R	config_option	description	1
+Custom SKU	config_option	description	1
+Dual Interval Scale	config_option	description	1
+Environment	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+RFID Japan	config_option	description	1
+Enterprise Hand Mount, Right Hand, Small	config_option	description	1
+Integrated High-Gain Circular Polarized Antenna	config_option	description	1
+53 Key Standard Alpha Numeric	config_option	description	1
+2-inch	config_option	description	1
+High Density Focus	config_option	description	1
+Korea and India	config_option	description	1
+Numeric Telephony	config_option	description	1
+SE4750 Standard Range Imager	config_option	description	1
+Basic IO (2 USB, 2 RS232, Speaker/Mic)	config_option	description	1
+Taiwan FCC compliance + NS (WAN Only)	config_option	description	1
+Android Non-GMS	config_option	description	1
+Compare Models	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+India, South Korea	config_option	description	1
+2D Imager - SE4750MR Medium Range Imager	config_option	description	1
+ROW Version	config_option	description	1
+Print Technology	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Standard (White)	config_option	description	1
+Scanner Key	config_position	attribute_label	1
+Drop Specifications	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+EU Countries Only	config_option	description	1
+WLAN Only	config_option	description	1
+Rest of World (APAC EMEA LATAM)	config_option	description	1
+Wi-Fi 6 Dual radio (802.11ax + Bluetooth 5.x)	config_option	description	1
+Photo Eye	config_option	description	1
+USB, USB Host, Modular Connectivity Slot, 802.11ac, Bluetooth 4 (USA/Canada)	config_option	description	1
+EMEA DUAL BAND	config_option	description	1
+Standard Version (No RFID)	config_option	description	1
+Ceiling mount Antenna Assembly	config_option	description	1
+Battery and Camera	config_position	attribute_label	1
+North America (includes US, Canada, Puerto Rico)	config_option	description	1
+Peel	config_option	description	1
+300  (12 dot/mm)	config_option	description	1
+Language	config_position	attribute_label	1
+Model Name	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+3GB RAM / 32GB Flash	config_option	description	1
+Premium 4GB/32GB	config_option	description	1
+GMS Healthcare White MDNA Enterprise License	config_option	description	1
+Marketing Name (including Local Radios)	config_position	attribute_label	1
+Battery Capacity	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Liner Takeup with Peel	config_option	description	1
+Healthcare	config_option	description	1
+WLAN Only - WW	config_option	description	1
+4Port	config_option	description	1
+Storage	config_position	attribute_label	1
+Country/Compliance	config_position	attribute_label	1
+Indonesia (Req�d for WAN Only)	config_option	description	1
+2 Nano SIM/1 SAM	config_option	description	1
+USB, USB Host, Ethernet, Serial, 802.11ac, Bluetooth 4, RFID - UHF (USA/Canada)	config_option	description	1
+PowerCap Capacitor	config_option	description	1
+Hex-Core; 4.7" display w/capacitive touch panel, 1 micro SD, IrDA, Ecompass, Handstrap. (US ONLY)	config_option	description	1
+Series	config_position	attribute_label	1
+Wall Mounted Transition Reader	config_option	description	1
+Temperature Indication	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+52 Key 3270 Emulation	config_option	description	1
+Multi-Operator HSPA+/ LTE/5G (ROW: EMEA_ LATAM + APAC SIM + eSIM	config_option	description	1
+ROW_ APAC- LATAM- EMEA (WWAN and WLAN)	config_option	description	1
+SE58 + 13MP Rear Facing Camera + 5MP Front Facing Camera	config_option	description	1
+NA - 5G	config_option	description	1
+Read Range	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Vodafone	config_option	description	1
+Wi-Fi 5 Dual Radio (802.11AC + Bluetooth 4.2)	config_option	description	1
+USA	config_option	description	1
+Wi-Fi 5 (802.11ac/Bluetooth 4.2), Japan	config_option	description	1
+Accessory Guide	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+OS + Plastics	config_position	attribute_label	1
+8 Ports	config_option	description	1
+Battery & DC	config_option	description	1
+Dual Physical SIM	config_option	description	1
+915 - 916.8 (Israel)	config_option	description	1
+Penta-band GSM	config_option	description	1
+India	config_option	description	1
+Housing Material	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+North America (NA)	config_option	description	1
+Power Consumption	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+902-928. 865-868	config_option	description	1
+Lanyard, No Top Trigger	config_option	description	1
+TAA & FIPS (US)	config_option	description	1
+4GB / 64GB	config_option	description	1
+SIM/SAM/nano slots	config_position	attribute_label	1
+SE4750MR Mid-Range Imager	config_option	description	1
+Back of Hand	config_option	description	1
+Proximity Triggering	config_position	attribute_label	1
+Healthcare Hot Swap	config_option	description	1
+Rest of World	config_option	description	1
+Touch Screen	config_position	attribute_label	2
+None (LAN Only)	config_option	description	1
+4GB RAM/32GB FLASH pSLC	config_option	description	1
+USB, USB Host, Ethernet, Serial, 802.11ac, Bluetooth 4 (All countries except USA, Canada and Japan)	config_option	description	1
+3-inch	config_option	description	1
+SE4720 Red & Amber Imager, Front&Rear Camera Enterprise	config_option	description	1
+TC78 WAN	config_option	description	1
+Thai (Scalable, Angsana)	config_option	description	1
+ULTRA-RUGGED	config_option	description	1
+SE950 1D Laser with 3 MP Color Camera	config_option	description	1
+IP Sealing	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+RFID NA	config_option	description	1
+WAN Carrier	config_position	attribute_label	1
+Motion Sensor	config_option	description	1
+Group "D" (India)	config_option	description	1
+Image Sensor	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Max Receive Sensitivity	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+HC55 Healthcare - 802.11 Wifi 6(E) a/b/g/n/d/h/i/k/r/mc/ac/ax, 2 x 2 Mu-MIMO, BT 5.2, NFC	config_option	description	1
+Cutter with Catch Tray	config_option	description	1
+Display Size	config_position	attribute_label	1
+Configuration	config_position	attribute_label	1
+FIPS & TAA (US)	config_option	description	1
+High Density Focus with Driver License Parsing	config_option	description	1
+Rugged	config_option	description	1
+SE4710 SR MPI  + No Front  Cam/ 13MP Rear Cam	config_option	description	1
+45 degree SE4770 + Camera (45 degree scan angle N/A for Gun configurations)	config_option	description	1
+Industry	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+58 Key Alpha Numeric	config_option	description	1
+902-928 + Japan License Station	config_option	description	1
+China ONLY	config_option	description	1
+8 dot/mm (203 dpi)	config_option	description	1
+English, Simple Chinese (Hans scalable and bitmap 24x24, 16x16)	config_option	description	1
+FFC - 8MP_ RFC - 16MP With OIS_ Time Of Flight	config_option	description	1
+Kit (device + preinstalled screen protector + preinstalled boot + USB-C cable in shipping box)	config_option	description	1
+Six Input/Six Output	config_option	description	1
+Country code	config_position	attribute_label	1
+Sapphire Glass and Sensormatic EAS	config_option	description	1
+Product family	config_position	attribute_label	1
+USB, USB Host, Modular Connectivity Slot, 802.11, Bluetooth Japan	config_option	description	1
+US, Canada, Puerto Rico, TAA Compliant	config_option	description	1
+Multi-Interface	config_option	description	1
+North America - United States Canada and Puerto Rico	config_option	description	1
+Standard Battery	config_option	description	1
+AOSP Healthcare White	config_option	description	1
+1300mAh	config_option	description	1
+GMS Std Color MDNA Enterprise License	config_option	description	1
+12 dot/mm (300 dpi)	config_option	description	1
+Unknown	config_position	attribute_label	1
+Android AOSP (Non-GMS); MDNA Enterprise	config_option	description	1
+Built-In Light Stack	config_option	description	1
+Group J (Japan)	config_option	description	1
+Camera Option	config_position	attribute_label	1
+Media Options	config_position	attribute_label	1
+Turkey (WLAN / WWAN)	config_option	description	1
+Color Touch User Interface ( ZD621 ONLY)	config_option	description	1
+Standard (Ethernet, Serial, USB, 2x USB Host, Bluetooth 4.1)	config_option	description	1
+Operating language	config_position	attribute_label	1
+Android 11 AOSP	config_option	description	1
+Bluetooth (cordless) or None (corded)	config_option	description	1
+English	config_option	description	1
+SE965 1D Laser + Camera (N/A for Gun configurations)	config_option	description	1
+Model Type	config_position	attribute_label	1
+Direct Thermal/Linered Platen, 1.375 Media core size	config_option	description	1
+45 degree SE4770 (45 degree scan angle N/A for Gun configurations)	config_option	description	1
+53 Key Virtual Terminal	config_option	description	1
+Gun	config_option	description	1
+Trust Icon	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+SE4750MR	config_option	description	1
+Audio	config_position	attribute_label	1
+No Standard Battery Pack, Belt Clip (US Only)	config_option	description	1
+SIM	config_position	attribute_label	1
+USB, USB Host, Ethernet, Serial, BTLE (Intended for Zebra Printer Setup Utility App), RFID - UHF (All countries except USA, Canada and Japan)	config_option	description	1
+Family	config_position	attribute_label	1
+ROW minus EMEA, RF900	config_option	description	1
+Verizon	config_option	description	1
+FIPS & TAA	config_option	description	1
+Channel Type	config_position	attribute_label	1
+802.11a/b/g/n/d/h/i/k/r/ac + BT 5.x with NFC	config_option	description	1
+Mount Type	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+No SIM	config_option	description	1
+Linered platen (0.75 media core)	config_option	description	1
+Interface (Connectivity)	config_position	attribute_label	1
+RFID 900 MHz	config_option	description	1
+HOUSING	config_position	attribute_label	1
+Certified parcel dimensioning - EU/EFTA only (OIML certification)	config_option	description	1
+ZT6104	config_option	description	1
+Argentina (AR)	config_option	description	1
+AZERTY	config_option	description	1
+Scanner Type	config_position	attribute_label	1
+USB/Serial (RS-232) Only	config_option	description	1
+Checkpoint Antenna	config_option	description	1
+For Labs with DL Parsing	config_option	description	1
+CTDI(Made in India)	config_option	description	1
+Australia	config_option	description	1
+Standard with 256MB Flash/128MB RAM	config_option	description	1
+EU/UK	config_option	description	1
+Russia Version	config_option	description	1
+Interface	config_position	attribute_label	1
+Clear Bi-fold Media Side Door & Media Hanger	config_option	description	1
+Direct Thermal/Linerless Platen 1.375 Media Core Size	config_option	description	1
+White/Green LED Aimer	config_option	description	1
+Non-Plus model (Standard)	config_option	description	1
+AOSP Haelthcare White	config_option	description	1
+Memory	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Gravity Zone	config_position	attribute_label	1
+Connectors	config_position	attribute_label	1
+Certified parcel dimensioning - NN (OIML certification- use for UK)	config_option	description	1
+India Only Standard 4 Cell Battery, Belt Clip	config_option	description	1
+World Wide (all regulatory approved countries)	config_option	description	1
+Plus (with Sensors/Camera)	config_option	description	1
+DL Parsing, Vertical	config_option	description	1
+SE4750SR Standard Range Imager	config_option	description	1
+Both Front and Rear Camera	config_option	description	1
+Wi-Fi 5 (802.11ac/Bluetooth 4.2), ROW (Rest of World)	config_option	description	1
+NONE	config_option	description	1
+ROW WLAN / WWAN: LATAM, EMEA, APAC	config_option	description	1
+NO eSIM AOSP China Only	config_option	description	1
+Multi-Operator HSPA+/ LTE/5G (Japan) SIM + eSIM	config_option	description	1
+TAA (US)	config_option	description	1
+53 Key 5250 Emulation	config_option	description	1
+Platform	config_position	attribute_label	1
+Plus model (Standard)	config_option	description	1
+Zebra Desktop	config_option	description	1
+1Port	config_option	description	1
+South Korea	config_option	description	1
+USB Only	config_option	description	1
+Touch Computer	config_option	description	1
+Linerless Cutter with Label Taken Sensor (ZD621D ONLY)	config_option	description	1
+Product Family	config_position	attribute_label	1
+Power Mgmt	config_position	attribute_label	1
+Singapore	config_option	description	1
+SE 4750MR + 5.0MP Front/13MP Rear Cam   SD660	config_option	description	1
+SE4770SR + 5MP front/13MP Rear Cam Non-ARCore SD660	config_option	description	1
+7Port	config_option	description	1
+WAN Radio	config_position	attribute_label	1
+Short Tagline	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Alpha Primary	config_option	description	1
+8-Pin Connector Back I/O connector	config_option	description	1
+2 Nano SIM (no SAM)	config_option	description	1
+Double Sided	config_option	description	1
+Straight Shooter	config_option	description	1
+SE4770 Standard Range Imager + Camera (not applicable for Gun configurations)	config_option	description	1
+Special Options	config_position	attribute_label	1
+Healthcare with 256M/512M	config_option	description	1
+Group 0 (USA Canada)	config_option	description	1
+USB, USB Host, Ethernet, Serial, BTLE (Intended for Zebra Printer Setup Utility App), RFID - UHF (Japan)	config_option	description	1
+Replaces Model	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Corded/Cordless	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Scan Range	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+3D Browser URL	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Data Only (Turkey)	config_option	description	1
+Important information	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Vibration Motor	config_option	description	1
+ROW: LATAM, EMEA & APAC	config_option	description	1
+SE2100	config_option	description	1
+Korean (Hansk.ttf and bitmapped: 24x24,16x16)	config_option	description	1
+No SIM/1 SAM   SD660	config_option	description	1
+Direct Thermal/Linerless Platen 0_75 Media Core Size	config_option	description	1
+Belt Clip	config_option	description	1
+EU 900MHz	config_option	description	1
+English Trdl Ch (NotoMono scalable bitmap: 24x24 16x16) & Korean (NotoMono scalable)	config_option	description	1
+Wi-Fi (no WAN)	config_option	description	1
+Input Type	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Android 10.x GMS with MX	config_option	description	1
+802.11a/b/g/n/d/h/i/k/r/ac + BT 5.1 + 2x2 MuMIMO  - SD660	config_option	description	1
+3GB/32GB with Vibrator	config_option	description	1
+Camera in place of scan engine	config_option	description	1
+Sapphire	config_option	description	1
+8 GB RAM/ 128 GB FLASH	config_option	description	1
+10.1Inch WUXGA Display	config_option	description	1
+PowerPrecision+ Battery	config_option	description	1
+AT&T	config_option	description	1
+2D Imager - SE4750-DPA DPM Imager (wide angle)	config_option	description	1
+Long	config_option	description	1
+Clip Mount	config_option	description	1
+Nova White with Midnight Black Trim	config_option	description	1
+SE4500 2D  Imager with 3 MP Color Camera	config_option	description	1
+29 Key Numeric	config_option	description	1
+2D Imager - SE4770 Standard Range Imager	config_option	description	1
+Icon User Interface	config_option	description	1
+DLC	config_option	description	1
+Midnight Black	config_option	description	1
+Mobile Computer	config_option	description	1
+Region	config_position	attribute_label	1
+SE4850 Extended Range + Camera (N/A for Gun configurations)	config_option	description	1
+True hot swap	config_option	description	1
+1 Physical SIM	config_option	description	1
+For labs	config_option	description	1
+4 GB RAM/64GB Flash UFS Memory	config_option	description	1
+-20oC Operation	config_option	description	1
+Simplified Chinese	config_option	description	1
+Media Handling Options	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+47 Key Alpha Numeric	config_option	description	1
+Proximity Sensor	config_option	description	1
+ROW (EMEA LATAM APAC- excluding China)	config_option	description	1
+Diamond-like Glass	config_option	description	1
+Standard Monochrome	config_option	description	1
+Built-In Siren	config_option	description	1
+Group "A" (Australia/HongKong/Indonesia/India/Korea/Malaysia/NewZeland/Philippines/Singapore/Taiwan/ Thailand/VietNam)	config_option	description	1
+TC27  - 802.11 Wifi 6 a/b/g/n/d/h/i/k/r/mc/ac/ax, 2 x 2 Mu-MIMO, BT 5.2, NFC	config_option	description	1
+APAC Only	config_option	description	1
+Asian Bundle UK/AU/JP/EU	config_option	description	1
+Media Roll Outer Diameter	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Cutter (ZD621 ONLY)*	config_option	description	1
+Wireless (802.11ac), US & Canada	config_option	description	1
+16MP Rear/ 5MP Front Cameras	config_option	description	1
+2 Nano SIM SD660 SIM lock	config_option	description	1
+Keypad	config_position	attribute_label	1
+Color Camera; Checkpoint EAS	config_option	description	1
+Corded to WT6000	config_option	description	1
+Double Sided, USB-C, Top Trigger	config_option	description	1
+Parallel	config_option	description	1
+USB, USB Host, BTLE, Ethernet	config_option	description	1
+BLE Bluetooth Beacon Battery	config_option	description	1
+US Version	config_option	description	1
+Wireless	config_position	attribute_label	1
+Print Width	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Blank Column For Future Use	config_option	description	1
+AOSP Standard Color	config_option	description	1
+Android AOSP (Non-GMS)	config_option	description	1
+High Density with Driver�s License Parsing	config_option	description	1
+Tear (Standard)	config_option	description	1
+AOSP	config_option	description	1
+Checkpoint EAS	config_option	description	1
+Std (non-RFID)	config_option	description	1
+Enterprise Hand Mount, Left Hand, Small	config_option	description	1
+CPU	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Group "0" (USA, Canada)	config_option	description	1
+Indonesia	config_option	description	1
+2 x Rugged I/O	config_option	description	1
+ZebraNet b/g Printer server	config_option	description	1
+None	config_option	description	1
+Short Description	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+GMS - Standard Color	config_option	description	1
+Version	config_position	attribute_label	1
+Non-Plus model with label sensor	config_option	description	1
+Taiwan	config_option	description	1
+Prem Model Warm Battery Swap	config_option	description	1
+Ports	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+9300 Series	config_option	description	1
+Premium	config_option	description	1
+Buy Online Eligibililty	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+SEO Description (AEM only)	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Multicarrier	config_option	description	1
+Trigger Version	config_position	attribute_label	1
+Freezer (-30 - +50 C, Condensing Environments)	config_option	description	1
+4GB RAM/ 64GB FLASH; with Apple VAS / Google Smart Tap	config_option	description	1
+ZT411	config_option	description	1
+Battery	config_position	attribute_label	1
+Dispenser	config_option	description	1
+Modem Region	config_position	attribute_label	1
+None (corded)	config_option	description	1
+8GB RAM/128GB FLASH	config_option	description	1
+Single Nano SIM	config_option	description	1
+Long cable to hip	config_option	description	1
+Dual radio / 802.11ac + Bluetooth 5.x	config_option	description	1
+Custom or courntry	config_position	attribute_label	1
+900MHz RFID (Australia; New Zealand; Taiwan and other countries supporting 900MHz RFID)	config_option	description	1
+Base Model No Warm Battery Swap, no Wireless Power Charging	config_option	description	1
+Group A (ID/TW/KR/MY/AU/NZ/LK/IN)	config_option	description	1
+Li-ion battery	config_option	description	1
+Twilight Black	config_option	description	1
+Non-Plus model with No Media Width Sensor (Standard)	config_option	description	1
+Wrist RFID	config_option	description	1
+Power Cord	config_position	attribute_label	1
+NA Only- Multi-Operator 5G / LTE (Americas + Canada) GPS Data Only + Wi-Fi 6E 802.a/b/g/n/ac/d/h/i/r/k/v/w/mc/ax BT 5.3 NFC	config_option	description	1
+FIPS	config_option	description	1
+Enterprise Hand Mount	config_option	description	1
+N/A	config_option	description	1
+India, Korea and Japan	config_option	description	1
+English Thai (Angsana scal) & Vietnamese (SourceCodePro scal 16x16 Utah)	config_option	description	1
+Shoulder Strap and Belt Clip (EMEA only)	config_option	description	1
+Brazil (BR)	config_option	description	1
+NA Only -- USA, Canada, Puerto Rico  (WLAN)	config_option	description	1
+CPU and Memory	config_position	attribute_label	1
+6GB/128GB w/SD	config_option	description	1
+Wi-Fi 5 (802.11ac/Bluetooth 4.2), US & Canada	config_option	description	1
+6GB | 128GB	config_option	description	1
+No Kit (only device + USB-C cable in shipping box)	config_option	description	1
+2 Nano SIM/ 2 SAM   SD660 WAN ROW	config_option	description	1
+Extended Battery (735mAh)	config_option	description	1
+Clear Media Side Door & Media Hanger	config_option	description	1
+TC58 WAN	config_option	description	1
+4GB RAM/ 32GB FLASH UFS Memory	config_option	description	1
+Multi/Operator HSPA+/ LTE/5G (China) SIM	config_option	description	1
+Premium 4GB/32GB+ Sensors	config_option	description	1
+Wi-Fi 6 Dual Radio (802.11AX + Bluetooth 5.3)	config_option	description	1
+Wi-Fi 5 Dual radio (802.11ac + Bluetooth 4.x)	config_option	description	1
+Plus model with No Media Width Sensor (Standard)	config_option	description	1
+No PTT support countries (Pakistan. Qatar)	config_option	description	1
+Zebra Tabletop	config_option	description	1
+Wireless (802.11ac), Japan	config_option	description	1
+8-inch	config_option	description	1
+94XX Series	config_option	description	1
+Group "L" (AR/BR/HN/SV/GT/CR/NI/CL/MX)	config_option	description	1
+Local Radio	config_position	attribute_label	1
+Android AOSP	config_option	description	1
+AOSP Std Color MDNA Enterprise License	config_option	description	1
+Rear Alert Button	config_option	description	1
+Corded	config_option	description	1
+Wireless 802.11 A/C (Japan)	config_option	description	1
+Healthcare White	config_option	description	1
+Argentina	config_option	description	1
+Extended Freezer Battery (660mAh)	config_option	description	1
+Double Sided, No USB, Top Trigger	config_option	description	1
+SE4750 Direct Part Mark	config_option	description	1
+Single Interval Scale	config_option	description	1
+6GB RAM/64GB FLASH	config_option	description	1
+Indoor Use (Silver)	config_option	description	1
+Group B (SG/TH/PH/HK/VN)	config_option	description	1
+BATTERY	config_position	attribute_label	1
+I/O	config_position	attribute_label	1
+USB, Ethernet	config_option	description	1
+RFC - 16MP Only	config_option	description	1
+Direct Part Marking	config_option	description	1
+Extended Capacity; 7000mAh	config_option	description	1
+Warranty Duration	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+DC	config_option	description	1
+43 Key Function Numeric	config_option	description	1
+4 Input/4 Output	config_option	description	1
+EU/UK/AUS/JP (for standard), or AUS (for Wireless)	config_option	description	1
+WT0-WT64B-T6DCC2NA	config_position	attribute_label	1
+SE4770 Red Illumination	config_option	description	1
+Standard Battery 3350mAh	config_option	description	1
+Finger RFID	config_option	description	1
+Double Sided, Vibrator	config_option	description	1
+RFID- (Use with connectivity option W and media type linered)	config_option	description	1
+Public Announce Date	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+SE4710 Imager	config_option	description	1
+Linerless	config_option	description	1
+Outdoor Use (Black)	config_option	description	1
+Standard	config_option	description	1
+KBW Cable (Series A connector, 7 ft. straight) CBA-K01-S07PA	config_option	description	1
+38 Key	config_option	description	1
+Base (No Sensors)	config_option	description	1
+WLAN & WWAN	config_option	description	1
+Wi-Fi 6 (802.11ax/Bluetooth 5.3), US & Canada	config_option	description	1
+Scale	config_position	attribute_label	1
+Customs	config_position	attribute_label	1
+RoW- Multi-Operator 5G / LTE GPS Data Only + Wi-Fi 6E: 802.a/b/g/n/ac/d/h/i/r/k/v/w/mc/ax BT 5.3 NFC	config_option	description	1
+8GB/128GB w/SD and SIM LOCK	config_option	description	1
+Brazil (Req'd for WWAN Only)	config_option	description	1
+Printing Technology	config_position	attribute_label	1
+Outdoor Readable Display	config_option	description	1
+32 GB MMC (pSLC)	config_option	description	1
+1 Antenna	config_option	description	1
+29 Key	config_option	description	1
+UHF RFID- BT 5.3- & Wi-Fi 6	config_option	description	1
+RFID White Illumination with Green LED Aimer	config_option	description	1
+English Trdl Ch (NotoMono scal 16x16) Thai (Angsana scal) & Vietnamese (SourceCodePro scal 16x16 Utah)	config_option	description	1
+Series Path (AEM only)	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+SIM / SAM / nano slots (China can not use eSIM)	config_position	attribute_label	1
+SE4770 White Illumination	config_option	description	1
+6Port	config_option	description	1
+6GB/64GB w/SD	config_option	description	1
+No WAN	config_option	description	1
+Basic Battery, RFC, No FFC	config_option	description	1
+Operating Temperature	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+8GB/64GB w/SD	config_option	description	1
+High Density	config_option	description	1
+4GB RAM/ 32GB FLASH MLC	config_option	description	1
+No Standard Battery Pack Belt Clip (US Only)	config_option	description	1
+13MP Side 5MP Front Camera	config_option	description	1
+3 Inch	config_option	description	1
+Short	config_option	description	1
+Platter Type	config_position	attribute_label	1
+16MP Rear Camera only	config_option	description	1
+DL Parsing, Horizontal	config_option	description	1
+No Battery provided - purchase Battery separately	config_option	description	1
+Group C (China)	config_option	description	1
+Battery & Camera	config_position	attribute_label	1
+TAA-compliant SKU for United States Government Use only	config_option	description	1
+ZT231	config_option	description	1
+Drivers License Parsing	config_option	description	1
+Standard HC Battery w/BLE Included	config_option	description	1
+Multi-Operator GSM/ HSPA+ / LTE (ROW: EMEA + APAC) GPS	config_option	description	1
+AT&T, Verizon, Sprint, TIMO, Telstra, Vodafone	config_option	description	1
+Vibrate Motor	config_option	description	1
+800MHz & 900MHz WORLDWIDE	config_option	description	1
+Thermal Transfer	config_option	description	1
+English, Japanese (NotoMono scalable, Square Gothic JMT scalable/16x16, and legacy 24x24)	config_option	description	1
+SE4750 Direct Part Mark Wide Angle	config_option	description	1
+Color Touch (Discontinued)	config_option	description	1
+Multi-Operator GSM/ HSPA+ / LTE (Data Only)	config_option	description	1
+Other	config_position	attribute_label	1
+Multi-Operator GSM/ HSPA+ / LTE (ROW: EMEA, LATAM  + APAC)	config_option	description	1
+WLAN (Wi-Fi 6E) Only	config_option	description	1
+802.11a/b/g/n/d/h/i/k/r/ac/w + BT 5.x + No NFC	config_option	description	1
+Wi-Fi 802.11 a/b/g/n/ac/ax/d/h/i/r/k/v/w/mc; 2x2 MU-MIMO; Tri-band (2.4 GHz, 5 Ghz, 6 GHz); Wi-Fi Certified 6 (Wi-Fi 6E); Dual Band Simultaneous; IPv4, IPv6	config_option	description	1
+GMS Healthcare White	config_option	description	1
+Beam Width	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+Frequency Bands	config_position	attribute_label	1
+34XX Series	config_option	description	1
+Hex-Core; 4.7" display w/capacitive touch panel, no SD, Ecompass, Handstrap.	config_option	description	1
+802.11 a/b/g/n/d/h/i/k/r/a/c + NFC + BT 5.1 + 2x2 MuMIMO   SD660	config_option	description	1
+ZQ511	config_option	description	1
+TAA compliant	config_option	description	1
+English/Latin 9 Arabic Cyrillic & Hebrew	config_option	description	1
+Sprint	config_option	description	1
+8 Pin Rear I/O FHD Display	config_option	description	1
+SE950 1D Laser Scan Engine	config_option	description	1
+Basic Features	config_position	attribute_label	1
+Direct Part Mark	config_option	description	1
+Base, no Rear button, w/ Rugged I/O Conn, No NFC, No Warm Swap	config_option	description	1
+4 GB RAM/16 GB FLASH	config_option	description	1
+Standard Range, Circular Polarized Antenna	config_option	description	1
+General Purpose	config_option	description	1
+70XX Series	config_option	description	1
+Data Capture	config_position	attribute_label	1
+UHF RFID Only	config_option	description	1
+Print Resolution	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+OIML/Australia	config_option	description	1
+Operating System	htb_attribute_mapping_zebra_provided	attribute_name_for_htb	1
+1 physical SIM and 1 eSIM	config_option	description	1
+Japan (Wireless Connectivity Only)	config_option	description	1

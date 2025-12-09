@@ -10,7 +10,7 @@ import {
   useReactTable,
   type VisibilityState,
 } from "@tanstack/react-table";
-import { CheckCircle2, Download, Loader2 } from "lucide-react";
+import { CheckCircle2, Download, FileJson, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,7 +22,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { type ComponentTypeRow, columns } from "./columns";
-import { exportToCsv } from "./csv-export";
+import { exportCsvReport, exportJsonReport, exportToCsv } from "./csv-export";
 import { ThresholdSlider } from "./threshold-slider";
 
 type ComponentTypeTableProps = {
@@ -109,7 +109,8 @@ export function ComponentTypeTable({
             </div>
           </div>
 
-          <div className="flex-shrink-0">
+          <div className="flex flex-shrink-0 gap-2">
+            {/* Original CSV export for backward compatibility */}
             <Button
               onClick={() => exportToCsv(data, threshold)}
               size="sm"
@@ -117,6 +118,26 @@ export function ComponentTypeTable({
             >
               <Download className="mr-2 h-4 w-4" />
               Export CSV
+            </Button>
+
+            {/* Enhanced CSV report with match scores */}
+            <Button
+              onClick={() => exportCsvReport(data, threshold)}
+              size="sm"
+              variant="outline"
+            >
+              <Download className="mr-2 h-4 w-4" />
+              Export CSV Report
+            </Button>
+
+            {/* JSON report with full structured data */}
+            <Button
+              onClick={() => exportJsonReport(data, threshold)}
+              size="sm"
+              variant="outline"
+            >
+              <FileJson className="mr-2 h-4 w-4" />
+              Export JSON Report
             </Button>
           </div>
         </div>

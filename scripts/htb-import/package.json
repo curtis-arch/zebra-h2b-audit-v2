@@ -1,0 +1,17 @@
+{
+  "name": "@zebra-h2b-audit-v2/htb-import",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "parse": "bun run parse-htb-xlsx.ts",
+    "import": "bun run import-htb-data.ts"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}

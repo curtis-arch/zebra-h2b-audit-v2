@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "models": {
+    "large": "text-embedding-3-large",
+    "small": "text-embedding-3-small"
+  },
+  "batchSize": 100,
+  "sources": [
+    {
+      "name": "Option Descriptions",
+      "table": "config_option",
+      "column": "description",
+      "enabled": true
+    },
+    {
+      "name": "Position Labels",
+      "table": "config_position",
+      "column": "attribute_label",
+      "enabled": true
+    },
+    {
+      "name": "HTB Attribute Names",
+      "table": "htb_attribute_mapping_zebra_provided",
+      "column": "attribute_name_for_htb",
+      "enabled": true
+    }
+  ]
+}
