@@ -105,7 +105,7 @@ export const columns: ColumnDef<ComponentTypeRow>[] = [
       // Use similarMatches for percentage data, fall back to similarValues for display
       const matches = row.original.similarMatches;
       const allRows = table.options.meta?.allRows as ComponentTypeRow[];
-      
+
       if (!matches || matches.length === 0) {
         return <div className="text-muted-foreground text-sm">-</div>;
       }
@@ -113,11 +113,11 @@ export const columns: ColumnDef<ComponentTypeRow>[] = [
         <div className="flex flex-wrap gap-1">
           {matches.map((match, index) => (
             <SimilarValuePopover
-              key={`${match.value}-${index}`}
-              pillValue={match.value}
-              matchPercentage={match.matchPercentage}
               allRows={allRows}
               badgeClassName={getBadgeColor(index)}
+              key={`${match.value}-${index}`}
+              matchPercentage={match.matchPercentage}
+              pillValue={match.value}
             />
           ))}
         </div>
@@ -245,11 +245,11 @@ export const columns: ColumnDef<ComponentTypeRow>[] = [
         <div className="flex flex-wrap gap-1">
           {matches.slice(0, 3).map((match, index) => (
             <SimilarValuePopover
-              key={`${match.value}-${index}`}
-              pillValue={match.value}
-              matchPercentage={match.matchPercentage}
               allRows={allRows}
               badgeClassName={getBadgeColor(index)}
+              key={`${match.value}-${index}`}
+              matchPercentage={match.matchPercentage}
+              pillValue={match.value}
             />
           ))}
         </div>
