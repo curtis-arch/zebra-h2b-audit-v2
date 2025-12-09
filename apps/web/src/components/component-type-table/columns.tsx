@@ -101,21 +101,24 @@ export const columns: ColumnDef<ComponentTypeRow>[] = [
     id: "similarValues",
     accessorKey: "similarValues",
     header: "Similar Values",
-    cell: ({ row }) => {
-      const values = row.getValue("similarValues") as string[];
-      if (!values || values.length === 0) {
+    cell: ({ row, table }) => {
+      // Use similarMatches for percentage data, fall back to similarValues for display
+      const matches = row.original.similarMatches;
+      const allRows = table.options.meta?.allRows as ComponentTypeRow[];
+      
+      if (!matches || matches.length === 0) {
         return <div className="text-muted-foreground text-sm">-</div>;
       }
       return (
         <div className="flex flex-wrap gap-1">
-          {values.map((value, index) => (
-            <Badge
-              className={getBadgeColor(index)}
-              key={`${value}-${index}`}
-              variant="secondary"
-            >
-              {value}
-            </Badge>
+          {matches.map((match, index) => (
+            <SimilarValuePopover
+              key={`${match.value}-${index}`}
+              pillValue={match.value}
+              matchPercentage={match.matchPercentage}
+              allRows={allRows}
+              badgeClassName={getBadgeColor(index)}
+            />
           ))}
         </div>
       );
