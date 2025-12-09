@@ -186,11 +186,9 @@ async function syncToDatabase(
           ${source.column},
           1,
           NOW()
-        ON CONFLICT (value_hash) DO UPDATE SET
+        ON CONFLICT (value_hash, source_table, source_column) DO UPDATE SET
           embedding_large = EXCLUDED.embedding_large,
           embedding_small = EXCLUDED.embedding_small,
-          source_table = EXCLUDED.source_table,
-          source_column = EXCLUDED.source_column,
           created_at = NOW()
       `;
     }
