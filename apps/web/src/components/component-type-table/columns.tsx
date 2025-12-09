@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ProductCountPopover } from "./product-count-popover";
 import { SimilarValuePopover } from "./similar-value-popover";
+import { HTBDistancePopover } from "./htb-distance-popover";
 import { ZebraMatchBadge } from "./zebra-match-badge";
 
 // Extend TanStack Table's TableMeta to include our custom callback and allRows
@@ -244,9 +245,9 @@ export const columns: ColumnDef<ComponentTypeRow>[] = [
       return (
         <div className="flex flex-wrap gap-1">
           {matches.slice(0, 3).map((match, index) => (
-            <SimilarValuePopover
+            <HTBDistancePopover
               key={`${match.value}-${index}`}
-              pillValue={match.value}
+              htbValue={match.value}
               matchPercentage={match.matchPercentage}
               allRows={allRows}
               badgeClassName={getBadgeColor(index)}
